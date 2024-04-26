@@ -3788,8 +3788,8 @@
 										"$ref": "AAAAAAGOyQDOkBhkR+Q="
 									},
 									"font": "Arial;13;1",
-									"left": 2072,
-									"top": 1525,
+									"left": 1544,
+									"top": 1773,
 									"width": 267.1611328125,
 									"height": 13,
 									"text": "TipoProyecto"
@@ -3814,8 +3814,8 @@
 												"$ref": "AAAAAAGOyQD4QxhvJ+U="
 											},
 											"font": "Arial;13;0",
-											"left": 2077,
-											"top": 1548,
+											"left": 1549,
+											"top": 1796,
 											"width": 257.1611328125,
 											"height": 13
 										},
@@ -3829,22 +3829,22 @@
 												"$ref": "AAAAAAGOyQEgfBh2jZA="
 											},
 											"font": "Arial;13;0",
-											"left": 2077,
-											"top": 1563,
+											"left": 1549,
+											"top": 1811,
 											"width": 257.1611328125,
 											"height": 13
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 2072,
-									"top": 1543,
+									"left": 1544,
+									"top": 1791,
 									"width": 267.1611328125,
 									"height": 38
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 2072,
-							"top": 1520,
+							"left": 1544,
+							"top": 1768,
 							"width": 267.1611328125,
 							"height": 61,
 							"nameLabel": {
@@ -3871,8 +3871,8 @@
 										"$ref": "AAAAAAGOyQHQ8BiIqtQ="
 									},
 									"font": "Arial;13;0",
-									"left": 1898,
-									"top": 1543,
+									"left": 1603,
+									"top": 1704,
 									"width": 158.48193359375,
 									"height": 13,
 									"alpha": -1.3734017284836622,
@@ -3890,8 +3890,8 @@
 										"$ref": "AAAAAAGOyQHQ8BiIqtQ="
 									},
 									"font": "Arial;13;0",
-									"left": 2046,
-									"top": 1568,
+									"left": 1657,
+									"top": 1736,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -3907,8 +3907,8 @@
 										"$ref": "AAAAAAGOyQHQ8BiIqtQ="
 									},
 									"font": "Arial;13;0",
-									"left": 1912,
-									"top": 1568,
+									"left": 1657,
+									"top": 1676,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -3924,7 +3924,7 @@
 							"tail": {
 								"$ref": "AAAAAAGOyQDOkBhkR+Q="
 							},
-							"points": "2072:1560;1887:1560",
+							"points": "1672:1768;1672:1657",
 							"nameLabel": {
 								"$ref": "AAAAAAGOyQHQ8BiJon4="
 							},
@@ -7855,7 +7855,8 @@
 							},
 							"name": "FechaFinalizacion",
 							"type": "DATE",
-							"length": 0
+							"length": 0,
+							"nullable": true
 						},
 						{
 							"_type": "ERDColumn",
