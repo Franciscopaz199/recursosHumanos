@@ -1819,7 +1819,7 @@
 									"fillColor": "#B6FF6D",
 									"font": "Arial;13;1",
 									"left": 24,
-									"top": 1629,
+									"top": 1717,
 									"width": 257.04931640625,
 									"height": 13,
 									"text": "RolProceso"
@@ -1846,7 +1846,7 @@
 											"fillColor": "#B6FF6D",
 											"font": "Arial;13;0",
 											"left": 29,
-											"top": 1652,
+											"top": 1740,
 											"width": 247.04931640625,
 											"height": 13
 										},
@@ -1862,7 +1862,7 @@
 											"fillColor": "#B6FF6D",
 											"font": "Arial;13;0",
 											"left": 29,
-											"top": 1667,
+											"top": 1755,
 											"width": 247.04931640625,
 											"height": 13
 										}
@@ -1870,7 +1870,7 @@
 									"fillColor": "#B6FF6D",
 									"font": "Arial;13;0",
 									"left": 24,
-									"top": 1647,
+									"top": 1735,
 									"width": 257.04931640625,
 									"height": 38
 								}
@@ -1878,7 +1878,7 @@
 							"fillColor": "#B6FF6D",
 							"font": "Arial;13;0",
 							"left": 24,
-							"top": 1624,
+							"top": 1712,
 							"width": 257.04931640625,
 							"height": 61,
 							"nameLabel": {
@@ -2194,17 +2194,18 @@
 									"_parent": {
 										"$ref": "AAAAAAGOQHlwYrXxqtE="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 199,
-									"top": 1497,
+									"left": 80,
+									"top": 1599,
+									"width": 204.49609375,
 									"height": 13,
-									"alpha": 1.5707963267948966,
-									"distance": 15,
+									"alpha": 0.05875587233994839,
+									"distance": 102.17631819555841,
 									"hostEdge": {
 										"$ref": "AAAAAAGOQHlwYrXxqtE="
 									},
-									"edgePosition": 1
+									"edgePosition": 1,
+									"text": "FK_EmpleadoProceso_RolProceso"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2230,8 +2231,8 @@
 										"$ref": "AAAAAAGOQHlwYrXxqtE="
 									},
 									"font": "Arial;13;0",
-									"left": 199,
-									"top": 1592,
+									"left": 191,
+									"top": 1680,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -2247,7 +2248,7 @@
 							"tail": {
 								"$ref": "AAAAAAGOP94/qLOyMBo="
 							},
-							"points": "296:1504;184:1504;184:1624",
+							"points": "296:1504;176:1504;176:1712",
 							"nameLabel": {
 								"$ref": "AAAAAAGOQHlwYrXyaPA="
 							},
@@ -2274,17 +2275,18 @@
 									"_parent": {
 										"$ref": "AAAAAAGOQJQzRrceFYs="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1247,
-									"top": 1497,
+									"left": 984,
+									"top": 1463,
+									"width": 195.837890625,
 									"height": 13,
-									"alpha": 1.5707963267948966,
-									"distance": 15,
+									"alpha": -0.10736992841558557,
+									"distance": 167.96725871431016,
 									"hostEdge": {
 										"$ref": "AAAAAAGOQJQzRrceFYs="
 									},
-									"edgePosition": 1
+									"edgePosition": 1,
+									"text": "FK_EmpleadoProceso_Empleado"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -3139,17 +3141,18 @@
 									"_parent": {
 										"$ref": "AAAAAAGOWRsG3nazLgk="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 793,
-									"top": 1786,
+									"left": 752,
+									"top": 1807,
+									"width": 146.67529296875,
 									"height": 13,
-									"alpha": 1.5707963267948966,
-									"distance": 15,
+									"alpha": -3.064819900526799,
+									"distance": 13.038404810405298,
 									"hostEdge": {
 										"$ref": "AAAAAAGOWRsG3nazLgk="
 									},
-									"edgePosition": 1
+									"edgePosition": 1,
+									"text": "FK_Proceso_Descripcion"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -3158,7 +3161,7 @@
 										"$ref": "AAAAAAGOWRsG3nazLgk="
 									},
 									"font": "Arial;13;0",
-									"left": 793,
+									"left": 809,
 									"top": 1872,
 									"height": 13,
 									"alpha": 0.5235987755982988,
@@ -3175,8 +3178,8 @@
 										"$ref": "AAAAAAGOWRsG3nazLgk="
 									},
 									"font": "Arial;13;0",
-									"left": 793,
-									"top": 1702,
+									"left": 809,
+									"top": 1717,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -3192,7 +3195,7 @@
 							"tail": {
 								"$ref": "AAAAAAGOWRj2U3aKtnU="
 							},
-							"points": "808:1904;808:1683",
+							"points": "824:1904;824:1698",
 							"nameLabel": {
 								"$ref": "AAAAAAGOWRsG3na0nt4="
 							},
@@ -4064,17 +4067,18 @@
 									"_parent": {
 										"$ref": "AAAAAAGOy+S5jkqLnvg="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 2222,
-									"top": 897,
+									"left": 1960,
+									"top": 887,
+									"width": 192.21337890625,
 									"height": 13,
-									"alpha": 1.5707963267948966,
-									"distance": 15,
+									"alpha": -1.6364913826569636,
+									"distance": 152.3285921946369,
 									"hostEdge": {
 										"$ref": "AAAAAAGOy+S5jkqLnvg="
 									},
-									"edgePosition": 1
+									"edgePosition": 1,
+									"text": "FK_EmpleadoProyecto_Proyecto"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4310,12 +4314,12 @@
 										"$ref": "AAAAAAGOyu51rfs2BYs="
 									},
 									"font": "Arial;13;0",
-									"left": 1574,
-									"top": 347,
+									"left": 1536,
+									"top": 304,
 									"width": 211.7197265625,
 									"height": 13,
-									"alpha": -0.46364771664477233,
-									"distance": 55.90169943749474,
+									"alpha": 1.0222465198500865,
+									"distance": 21.095023109728988,
 									"hostEdge": {
 										"$ref": "AAAAAAGOyu51rfs2BYs="
 									},
@@ -4460,6 +4464,22 @@
 										},
 										{
 											"_type": "ERDColumnView",
+											"_id": "AAAAAAGPH9Fv37vDWl0=",
+											"_parent": {
+												"$ref": "AAAAAAGOyvyi2fuxKM0="
+											},
+											"model": {
+												"$ref": "AAAAAAGPH9FvvbvAmWs="
+											},
+											"fillColor": "#B6FF6D",
+											"font": "Arial;13;0",
+											"left": 709,
+											"top": 1650,
+											"width": 261.97265625,
+											"height": 13
+										},
+										{
+											"_type": "ERDColumnView",
 											"_id": "AAAAAAGOywk+W/v++ko=",
 											"_parent": {
 												"$ref": "AAAAAAGOyvyi2fuxKM0="
@@ -4470,7 +4490,7 @@
 											"fillColor": "#B6FF6D",
 											"font": "Arial;13;0",
 											"left": 709,
-											"top": 1650,
+											"top": 1665,
 											"width": 261.97265625,
 											"height": 13
 										},
@@ -4486,7 +4506,7 @@
 											"fillColor": "#B6FF6D",
 											"font": "Arial;13;0",
 											"left": 709,
-											"top": 1665,
+											"top": 1680,
 											"width": 261.97265625,
 											"height": 13
 										}
@@ -4496,7 +4516,7 @@
 									"left": 704,
 									"top": 1615,
 									"width": 271.97265625,
-									"height": 68
+									"height": 83
 								}
 							],
 							"fillColor": "#B6FF6D",
@@ -4504,7 +4524,7 @@
 							"left": 704,
 							"top": 1592,
 							"width": 271.97265625,
-							"height": 91,
+							"height": 106,
 							"nameLabel": {
 								"$ref": "AAAAAAGOyvyi2fuwXUQ="
 							},
@@ -4528,17 +4548,18 @@
 									"_parent": {
 										"$ref": "AAAAAAGOyxys//wydeY="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 903,
+									"left": 811,
 									"top": 1534,
+									"width": 184.98974609375,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
 									"hostEdge": {
 										"$ref": "AAAAAAGOyxys//wydeY="
 									},
-									"edgePosition": 1
+									"edgePosition": 1,
+									"text": "FK_EmpleadoProceso_Proceso"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -6447,12 +6468,12 @@
 										"$ref": "AAAAAAGPG1B6fouTkt4="
 									},
 									"font": "Arial;13;0",
-									"left": 416,
-									"top": 728,
+									"left": 672,
+									"top": 736,
 									"width": 248.5869140625,
 									"height": 13,
-									"alpha": 0.9917217879971614,
-									"distance": 31.064449134018133,
+									"alpha": 0.06583876689798066,
+									"distance": 273.59276306218334,
 									"hostEdge": {
 										"$ref": "AAAAAAGPG1B6fouTkt4="
 									},
@@ -6648,17 +6669,18 @@
 									"_parent": {
 										"$ref": "AAAAAAGPHJRPDKvzG2I="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 2839,
+									"left": 2772,
 									"top": 1249,
+									"width": 135.12255859375,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
 									"hostEdge": {
 										"$ref": "AAAAAAGPHJRPDKvzG2I="
 									},
-									"edgePosition": 1
+									"edgePosition": 1,
+									"text": "FK_Actividad_Proyecto"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -6729,17 +6751,18 @@
 									"_parent": {
 										"$ref": "AAAAAAGPHJcQkaw0ZAY="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 2263,
-									"top": 521,
+									"left": 2168,
+									"top": 567,
+									"width": 164.75341796875,
 									"height": 13,
-									"alpha": 1.5707963267948966,
-									"distance": 15,
+									"alpha": 0.04345108833419942,
+									"distance": 46.04345773288535,
 									"hostEdge": {
 										"$ref": "AAAAAAGPHJcQkaw0ZAY="
 									},
-									"edgePosition": 1
+									"edgePosition": 1,
+									"text": "FK_Proyecto_Departamento"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -6810,17 +6833,18 @@
 									"_parent": {
 										"$ref": "AAAAAAGPHK3wlqzNtvE="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 2479,
-									"top": 329,
+									"left": 2360,
+									"top": 344,
+									"width": 227.60791015625,
 									"height": 13,
-									"alpha": 1.5707963267948966,
-									"distance": 15,
+									"alpha": 1.3415647096401586,
+									"distance": 30.805843601498726,
 									"hostEdge": {
 										"$ref": "AAAAAAGPHK3wlqzNtvE="
 									},
-									"edgePosition": 1
+									"edgePosition": 1,
+									"text": "FK_CambioHorario_PeriodoAcademico"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -6891,17 +6915,18 @@
 									"_parent": {
 										"$ref": "AAAAAAGPHMpBua0stc0="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 780,
+									"left": 713,
 									"top": 803,
+									"width": 134.4052734375,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
 									"hostEdge": {
 										"$ref": "AAAAAAGPHMpBua0stc0="
 									},
-									"edgePosition": 1
+									"edgePosition": 1,
+									"text": "FK_Empleado_Usuario"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -7062,8 +7087,8 @@
 									},
 									"fillColor": "#FFD8FF",
 									"font": "Arial;13;1",
-									"left": 288,
-									"top": 1333,
+									"left": 312,
+									"top": 1357,
 									"width": 250.32080078125,
 									"height": 13,
 									"text": "Permiso"
@@ -7089,8 +7114,8 @@
 											},
 											"fillColor": "#FFD8FF",
 											"font": "Arial;13;0",
-											"left": 293,
-											"top": 1356,
+											"left": 317,
+											"top": 1380,
 											"width": 240.32080078125,
 											"height": 13
 										},
@@ -7105,24 +7130,24 @@
 											},
 											"fillColor": "#FFD8FF",
 											"font": "Arial;13;0",
-											"left": 293,
-											"top": 1371,
+											"left": 317,
+											"top": 1395,
 											"width": 240.32080078125,
 											"height": 13
 										}
 									],
 									"fillColor": "#FFD8FF",
 									"font": "Arial;13;0",
-									"left": 288,
-									"top": 1351,
+									"left": 312,
+									"top": 1375,
 									"width": 250.32080078125,
 									"height": 38
 								}
 							],
 							"fillColor": "#FFD8FF",
 							"font": "Arial;13;0",
-							"left": 288,
-							"top": 1328,
+							"left": 312,
+							"top": 1352,
 							"width": 250.32080078125,
 							"height": 61,
 							"nameLabel": {
@@ -7236,17 +7261,18 @@
 									"_parent": {
 										"$ref": "AAAAAAGPHM1sM64K/bo="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 484,
-									"top": 1281,
+									"left": 336,
+									"top": 1271,
+									"width": 145.9326171875,
 									"height": 13,
-									"alpha": 1.5707963267948966,
-									"distance": 15,
+									"alpha": -0.12914730671452057,
+									"distance": 77.64663547121665,
 									"hostEdge": {
 										"$ref": "AAAAAAGPHM1sM64K/bo="
 									},
-									"edgePosition": 1
+									"edgePosition": 1,
+									"text": "FK_RolPermiso_Permiso"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -7256,7 +7282,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 470,
-									"top": 1296,
+									"top": 1320,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -7273,7 +7299,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 247,
-									"top": 1280,
+									"top": 1296,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -7290,7 +7316,7 @@
 								"$ref": "AAAAAAGPHMqWmK1N9BM="
 							},
 							"lineStyle": 2,
-							"points": "485:1328;485:1272;222:1272",
+							"points": "485:1352;485:1288;222:1288",
 							"nameLabel": {
 								"$ref": "AAAAAAGPHM1sM64LLaI="
 							},
@@ -7320,7 +7346,7 @@
 									"fillColor": "#FFD8FF",
 									"font": "Arial;13;1",
 									"left": 312,
-									"top": 1125,
+									"top": 1141,
 									"width": 202.62451171875,
 									"height": 13,
 									"text": "UsuarioRol"
@@ -7347,7 +7373,7 @@
 											"fillColor": "#FFD8FF",
 											"font": "Arial;13;0",
 											"left": 317,
-											"top": 1148,
+											"top": 1164,
 											"width": 192.62451171875,
 											"height": 13
 										},
@@ -7363,7 +7389,7 @@
 											"fillColor": "#FFD8FF",
 											"font": "Arial;13;0",
 											"left": 317,
-											"top": 1163,
+											"top": 1179,
 											"width": 192.62451171875,
 											"height": 13
 										}
@@ -7371,7 +7397,7 @@
 									"fillColor": "#FFD8FF",
 									"font": "Arial;13;0",
 									"left": 312,
-									"top": 1143,
+									"top": 1159,
 									"width": 202.62451171875,
 									"height": 38
 								}
@@ -7379,7 +7405,7 @@
 							"fillColor": "#FFD8FF",
 							"font": "Arial;13;0",
 							"left": 312,
-							"top": 1120,
+							"top": 1136,
 							"width": 202.62451171875,
 							"height": 61,
 							"nameLabel": {
@@ -7405,17 +7431,18 @@
 									"_parent": {
 										"$ref": "AAAAAAGPHM6vdK5dYUc="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 414,
-									"top": 1063,
+									"left": 280,
+									"top": 1047,
+									"width": 114.8798828125,
 									"height": 13,
-									"alpha": 1.5707963267948966,
-									"distance": 15,
+									"alpha": -1.8195065052733992,
+									"distance": 65,
 									"hostEdge": {
 										"$ref": "AAAAAAGPHM6vdK5dYUc="
 									},
-									"edgePosition": 1
+									"edgePosition": 1,
+									"text": "FK_UsuarioRol_Rol"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -7442,7 +7469,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 415,
-									"top": 1088,
+									"top": 1104,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -7459,7 +7486,7 @@
 								"$ref": "AAAAAAGPHMp/yq0/Dq8="
 							},
 							"lineStyle": 2,
-							"points": "218:1070;400:1070;400:1120",
+							"points": "218:1070;400:1070;400:1136",
 							"nameLabel": {
 								"$ref": "AAAAAAGPHM6vda5eM/o="
 							},
@@ -7486,17 +7513,18 @@
 									"_parent": {
 										"$ref": "AAAAAAGPHM67VK5x/4k="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 134,
+									"left": 76,
 									"top": 1163,
+									"width": 117.76171875,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
 									"hostEdge": {
 										"$ref": "AAAAAAGPHM67VK5x/4k="
 									},
-									"edgePosition": 1
+									"edgePosition": 1,
+									"text": "FK_RolPermiso_Rol"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -7567,17 +7595,18 @@
 									"_parent": {
 										"$ref": "AAAAAAGPHM7F6q6FQKg="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 447,
-									"top": 986,
+									"left": 360,
+									"top": 967,
+									"width": 140.1689453125,
 									"height": 13,
-									"alpha": 1.5707963267948966,
-									"distance": 15,
+									"alpha": -3.06765406302127,
+									"distance": 27.073972741361768,
 									"hostEdge": {
 										"$ref": "AAAAAAGPHM7F6q6FQKg="
 									},
-									"edgePosition": 1
+									"edgePosition": 1,
+									"text": "FK_UsuarioRol_Usuario"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -7604,7 +7633,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 447,
-									"top": 1088,
+									"top": 1104,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -7621,7 +7650,7 @@
 								"$ref": "AAAAAAGPHH1MUaqRAQM="
 							},
 							"lineStyle": 2,
-							"points": "432:867;432:1120",
+							"points": "432:867;432:1136",
 							"nameLabel": {
 								"$ref": "AAAAAAGPHM7F6q6G08M="
 							},
@@ -7650,8 +7679,8 @@
 									},
 									"fillColor": "#FFFF91",
 									"font": "Arial;13;1",
-									"left": 2472,
-									"top": 1213,
+									"left": 2464,
+									"top": 1245,
 									"width": 227.67236328125,
 									"height": 13,
 									"text": "Estado"
@@ -7677,8 +7706,8 @@
 											},
 											"fillColor": "#FFFF91",
 											"font": "Arial;13;0",
-											"left": 2477,
-											"top": 1236,
+											"left": 2469,
+											"top": 1268,
 											"width": 217.67236328125,
 											"height": 13
 										},
@@ -7693,24 +7722,24 @@
 											},
 											"fillColor": "#FFFF91",
 											"font": "Arial;13;0",
-											"left": 2477,
-											"top": 1251,
+											"left": 2469,
+											"top": 1283,
 											"width": 217.67236328125,
 											"height": 13
 										}
 									],
 									"fillColor": "#FFFF91",
 									"font": "Arial;13;0",
-									"left": 2472,
-									"top": 1231,
+									"left": 2464,
+									"top": 1263,
 									"width": 227.67236328125,
 									"height": 38
 								}
 							],
 							"fillColor": "#FFFF91",
 							"font": "Arial;13;0",
-							"left": 2472,
-							"top": 1208,
+							"left": 2464,
+							"top": 1240,
 							"width": 227.67236328125,
 							"height": 61,
 							"nameLabel": {
@@ -7736,17 +7765,18 @@
 									"_parent": {
 										"$ref": "AAAAAAGPHNKKR672Osk="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 2497,
-									"top": 1152,
+									"left": 2456,
+									"top": 1168,
+									"width": 122.84619140625,
 									"height": 13,
-									"alpha": 1.5707963267948966,
-									"distance": 15,
+									"alpha": -1.3734009977135069,
+									"distance": 5.0990195135927845,
 									"hostEdge": {
 										"$ref": "AAAAAAGPHNKKR672Osk="
 									},
-									"edgePosition": 1
+									"edgePosition": 1,
+									"text": "FK_Proyecto_Estado"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -7756,7 +7786,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 2497,
-									"top": 1176,
+									"top": 1208,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -7790,7 +7820,7 @@
 								"$ref": "AAAAAAGPHNIl0a7YvcA="
 							},
 							"lineStyle": 2,
-							"points": "2512:1208;2512:1110",
+							"points": "2512:1240;2512:1110",
 							"nameLabel": {
 								"$ref": "AAAAAAGPHNKKR673sNE="
 							},
@@ -7820,7 +7850,7 @@
 									"fillColor": "#B6FF6D",
 									"font": "Arial;13;1",
 									"left": 344,
-									"top": 1661,
+									"top": 1725,
 									"width": 267.64990234375,
 									"height": 13,
 									"text": "Asistencia"
@@ -7847,7 +7877,7 @@
 											"fillColor": "#B6FF6D",
 											"font": "Arial;13;0",
 											"left": 349,
-											"top": 1684,
+											"top": 1748,
 											"width": 257.64990234375,
 											"height": 13
 										},
@@ -7863,7 +7893,7 @@
 											"fillColor": "#B6FF6D",
 											"font": "Arial;13;0",
 											"left": 349,
-											"top": 1699,
+											"top": 1763,
 											"width": 257.64990234375,
 											"height": 13
 										},
@@ -7879,7 +7909,7 @@
 											"fillColor": "#B6FF6D",
 											"font": "Arial;13;0",
 											"left": 349,
-											"top": 1714,
+											"top": 1778,
 											"width": 257.64990234375,
 											"height": 13
 										}
@@ -7887,7 +7917,7 @@
 									"fillColor": "#B6FF6D",
 									"font": "Arial;13;0",
 									"left": 344,
-									"top": 1679,
+									"top": 1743,
 									"width": 267.64990234375,
 									"height": 53
 								}
@@ -7895,7 +7925,7 @@
 							"fillColor": "#B6FF6D",
 							"font": "Arial;13;0",
 							"left": 344,
-							"top": 1656,
+							"top": 1720,
 							"width": 267.64990234375,
 							"height": 76,
 							"nameLabel": {
@@ -7921,17 +7951,18 @@
 									"_parent": {
 										"$ref": "AAAAAAGPHNOi968lRyc="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 486,
-									"top": 1607,
+									"left": 388,
+									"top": 1639,
+									"width": 196.548828125,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
 									"hostEdge": {
 										"$ref": "AAAAAAGPHNOi968lRyc="
 									},
-									"edgePosition": 1
+									"edgePosition": 1,
+									"text": "FK_Asistencia_EmpleadoProceso"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -7958,7 +7989,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 487,
-									"top": 1624,
+									"top": 1688,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -7975,7 +8006,7 @@
 								"$ref": "AAAAAAGOP94/qLOyMBo="
 							},
 							"lineStyle": 2,
-							"points": "472:1572;472:1656",
+							"points": "472:1572;472:1720",
 							"nameLabel": {
 								"$ref": "AAAAAAGPHNOi+K8m8go="
 							},
@@ -8005,7 +8036,7 @@
 									"fillColor": "#B6FF6D",
 									"font": "Arial;13;1",
 									"left": 360,
-									"top": 1837,
+									"top": 1941,
 									"width": 226.47265625,
 									"height": 13,
 									"text": "NombrePrueba"
@@ -8032,7 +8063,7 @@
 											"fillColor": "#B6FF6D",
 											"font": "Arial;13;0",
 											"left": 365,
-											"top": 1860,
+											"top": 1964,
 											"width": 216.47265625,
 											"height": 13
 										},
@@ -8048,7 +8079,7 @@
 											"fillColor": "#B6FF6D",
 											"font": "Arial;13;0",
 											"left": 365,
-											"top": 1875,
+											"top": 1979,
 											"width": 216.47265625,
 											"height": 13
 										}
@@ -8056,7 +8087,7 @@
 									"fillColor": "#B6FF6D",
 									"font": "Arial;13;0",
 									"left": 360,
-									"top": 1855,
+									"top": 1959,
 									"width": 226.47265625,
 									"height": 38
 								}
@@ -8064,7 +8095,7 @@
 							"fillColor": "#B6FF6D",
 							"font": "Arial;13;0",
 							"left": 360,
-							"top": 1832,
+							"top": 1936,
 							"width": 226.47265625,
 							"height": 61,
 							"nameLabel": {
@@ -8090,17 +8121,18 @@
 									"_parent": {
 										"$ref": "AAAAAAGPHNSyxq9myvA="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 457,
-									"top": 1775,
+									"left": 384,
+									"top": 1859,
+									"width": 178.47705078125,
 									"height": 13,
-									"alpha": 1.5707963267948966,
-									"distance": 15,
+									"alpha": -0.7854030351673202,
+									"distance": 1.4142135623730951,
 									"hostEdge": {
 										"$ref": "AAAAAAGPHNSyxq9myvA="
 									},
-									"edgePosition": 1
+									"edgePosition": 1,
+									"text": "FK_Asistencia_NombrePrueba"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -8110,7 +8142,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 457,
-									"top": 1800,
+									"top": 1904,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -8127,7 +8159,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 457,
-									"top": 1751,
+									"top": 1815,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -8144,7 +8176,7 @@
 								"$ref": "AAAAAAGPHNQl5q9HHWw="
 							},
 							"lineStyle": 2,
-							"points": "472:1832;472:1732",
+							"points": "472:1936;472:1796",
 							"nameLabel": {
 								"$ref": "AAAAAAGPHNSyxq9nA+M="
 							},
@@ -8173,8 +8205,8 @@
 									},
 									"fillColor": "#FFC1AD",
 									"font": "Arial;13;1",
-									"left": 1112,
-									"top": 1685,
+									"left": 1136,
+									"top": 1781,
 									"width": 267.64990234375,
 									"height": 13,
 									"text": "PermisoCompensatorioProceso"
@@ -8200,8 +8232,8 @@
 											},
 											"fillColor": "#FFC1AD",
 											"font": "Arial;13;0",
-											"left": 1117,
-											"top": 1708,
+											"left": 1141,
+											"top": 1804,
 											"width": 257.64990234375,
 											"height": 13
 										},
@@ -8217,8 +8249,8 @@
 											"visible": false,
 											"fillColor": "#FFC1AD",
 											"font": "Arial;13;0",
-											"left": 1797,
-											"top": 2019,
+											"left": 1845,
+											"top": 2211,
 											"width": 257.64990234375,
 											"height": 13
 										},
@@ -8233,8 +8265,8 @@
 											},
 											"fillColor": "#FFC1AD",
 											"font": "Arial;13;0",
-											"left": 1117,
-											"top": 1723,
+											"left": 1141,
+											"top": 1819,
 											"width": 257.64990234375,
 											"height": 13
 										},
@@ -8250,8 +8282,8 @@
 											"visible": false,
 											"fillColor": "#FFC1AD",
 											"font": "Arial;13;0",
-											"left": 1109,
-											"top": 1730,
+											"left": 1157,
+											"top": 1922,
 											"width": 257.64990234375,
 											"height": 13
 										},
@@ -8267,26 +8299,26 @@
 											"visible": false,
 											"fillColor": "#FFC1AD",
 											"font": "Arial;13;0",
-											"left": 1109,
-											"top": 1730,
+											"left": 1157,
+											"top": 1922,
 											"width": 257.64990234375,
 											"height": 13
 										}
 									],
 									"fillColor": "#FFC1AD",
 									"font": "Arial;13;0",
-									"left": 1112,
-									"top": 1703,
+									"left": 1136,
+									"top": 1799,
 									"width": 267.64990234375,
 									"height": 38
 								}
 							],
 							"fillColor": "#FFC1AD",
 							"font": "Arial;13;0",
-							"left": 1112,
-							"top": 1680,
+							"left": 1136,
+							"top": 1776,
 							"width": 267.64990234375,
-							"height": 76,
+							"height": 61,
 							"nameLabel": {
 								"$ref": "AAAAAAGPHSd2JrBKmV8="
 							},
@@ -8310,17 +8342,18 @@
 									"_parent": {
 										"$ref": "AAAAAAGPHSeodbBZJlc="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1342,
-									"top": 1615,
+									"left": 1252,
+									"top": 1737,
+									"width": 262.2724609375,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
 									"hostEdge": {
 										"$ref": "AAAAAAGPHSeodbBZJlc="
 									},
-									"edgePosition": 1
+									"edgePosition": 1,
+									"text": "FK_PermisoCompensatorioProceso_Permiso"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -8329,8 +8362,8 @@
 										"$ref": "AAAAAAGPHSeodbBZJlc="
 									},
 									"font": "Arial;13;0",
-									"left": 1414,
-									"top": 1630,
+									"left": 1455,
+									"top": 1716,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -8347,7 +8380,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 1343,
-									"top": 1648,
+									"top": 1744,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -8364,7 +8397,7 @@
 								"$ref": "AAAAAAGOQ1G42nD2oEw="
 							},
 							"lineStyle": 2,
-							"points": "1440:1622;1328:1622;1328:1680",
+							"points": "1440:1697;1440:1728;1328:1728;1328:1776",
 							"nameLabel": {
 								"$ref": "AAAAAAGPHSeodbBa2lI="
 							},
@@ -8391,17 +8424,18 @@
 									"_parent": {
 										"$ref": "AAAAAAGPHUyWQbEm+Kc="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1657,
-									"top": 729,
+									"left": 1572,
+									"top": 687,
+									"width": 171.98974609375,
 									"height": 13,
-									"alpha": 1.5707963267948966,
-									"distance": 15,
+									"alpha": -5.940161516944677,
+									"distance": 44.598206241955516,
 									"hostEdge": {
 										"$ref": "AAAAAAGPHUyWQbEm+Kc="
 									},
-									"edgePosition": 1
+									"edgePosition": 1,
+									"text": "FK_Departamento_Empleado"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -8474,8 +8508,8 @@
 									},
 									"fillColor": "#B6FF6D",
 									"font": "Arial;13;1",
-									"left": 1000,
-									"top": 1885,
+									"left": 1008,
+									"top": 1981,
 									"width": 265.49169921875,
 									"height": 13,
 									"text": "EstadoProceso"
@@ -8501,8 +8535,8 @@
 											},
 											"fillColor": "#B6FF6D",
 											"font": "Arial;13;0",
-											"left": 1005,
-											"top": 1908,
+											"left": 1013,
+											"top": 2004,
 											"width": 255.49169921875,
 											"height": 13
 										},
@@ -8517,24 +8551,24 @@
 											},
 											"fillColor": "#B6FF6D",
 											"font": "Arial;13;0",
-											"left": 1005,
-											"top": 1923,
+											"left": 1013,
+											"top": 2019,
 											"width": 255.49169921875,
 											"height": 13
 										}
 									],
 									"fillColor": "#B6FF6D",
 									"font": "Arial;13;0",
-									"left": 1000,
-									"top": 1903,
+									"left": 1008,
+									"top": 1999,
 									"width": 265.49169921875,
 									"height": 38
 								}
 							],
 							"fillColor": "#B6FF6D",
 							"font": "Arial;13;0",
-							"left": 1000,
-							"top": 1880,
+							"left": 1008,
+							"top": 1976,
 							"width": 265.49169921875,
 							"height": 61,
 							"nameLabel": {
@@ -8579,15 +8613,17 @@
 										"$ref": "AAAAAAGPHVUlFrGVTDc="
 									},
 									"font": "Arial;13;0",
-									"left": 1049,
-									"top": 1848,
+									"left": 984,
+									"top": 1904,
+									"width": 166.92431640625,
 									"height": 13,
-									"alpha": 0.5235987755982988,
-									"distance": 30,
+									"alpha": -0.04542339947167706,
+									"distance": 66.06814663663572,
 									"hostEdge": {
 										"$ref": "AAAAAAGPHVUlFrGVTDc="
 									},
-									"edgePosition": 2
+									"edgePosition": 2,
+									"text": "FK_Proceso_EstadoProceso"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -8614,7 +8650,7 @@
 								"$ref": "AAAAAAGPHVTdCrFq5Zk="
 							},
 							"lineStyle": 2,
-							"points": "1064:1880;1064:1655;976:1655",
+							"points": "1064:1976;1064:1655;976:1655",
 							"nameLabel": {
 								"$ref": "AAAAAAGPHVUlFrGWvrM="
 							},
@@ -8641,17 +8677,18 @@
 									"_parent": {
 										"$ref": "AAAAAAGPHYwQ6LIfZEY="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1174,
-									"top": 1617,
+									"left": 1024,
+									"top": 1599,
+									"width": 262.28515625,
 									"height": 13,
-									"alpha": 1.5707963267948966,
-									"distance": 15,
+									"alpha": -2.8706463848002324,
+									"distance": 18.681541692269406,
 									"hostEdge": {
 										"$ref": "AAAAAAGPHYwQ6LIfZEY="
 									},
-									"edgePosition": 1
+									"edgePosition": 1,
+									"text": "FK_PermisoCompensatorioProceso_Proceso"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -8678,7 +8715,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 1175,
-									"top": 1648,
+									"top": 1744,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -8695,7 +8732,7 @@
 								"$ref": "AAAAAAGOyvyi2fuv+pg="
 							},
 							"lineStyle": 2,
-							"points": "976:1624;1160:1624;1160:1680",
+							"points": "976:1624;1160:1624;1160:1776",
 							"nameLabel": {
 								"$ref": "AAAAAAGPHYwQ6LIgLr0="
 							},
@@ -8724,8 +8761,8 @@
 									},
 									"fillColor": "#FFC1AD",
 									"font": "Arial;13;1",
-									"left": 1848,
-									"top": 1701,
+									"left": 1904,
+									"top": 1797,
 									"width": 309.55078125,
 									"height": 13,
 									"text": "PermisoCompensatorioProyecto"
@@ -8751,8 +8788,8 @@
 											},
 											"fillColor": "#FFC1AD",
 											"font": "Arial;13;0",
-											"left": 1853,
-											"top": 1724,
+											"left": 1909,
+											"top": 1820,
 											"width": 299.55078125,
 											"height": 13
 										},
@@ -8767,24 +8804,24 @@
 											},
 											"fillColor": "#FFC1AD",
 											"font": "Arial;13;0",
-											"left": 1853,
-											"top": 1739,
+											"left": 1909,
+											"top": 1835,
 											"width": 299.55078125,
 											"height": 13
 										}
 									],
 									"fillColor": "#FFC1AD",
 									"font": "Arial;13;0",
-									"left": 1848,
-									"top": 1719,
+									"left": 1904,
+									"top": 1815,
 									"width": 309.55078125,
 									"height": 38
 								}
 							],
 							"fillColor": "#FFC1AD",
 							"font": "Arial;13;0",
-							"left": 1848,
-							"top": 1696,
+							"left": 1904,
+							"top": 1792,
 							"width": 309.55078125,
 							"height": 61,
 							"nameLabel": {
@@ -8810,17 +8847,18 @@
 									"_parent": {
 										"$ref": "AAAAAAGPHZtE1LLi+fY="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1967,
-									"top": 1497,
+									"left": 1839,
+									"top": 1552,
+									"width": 380.7958984375,
 									"height": 13,
-									"alpha": 1.5707963267948966,
-									"distance": 15,
+									"alpha": 1.4940244036623722,
+									"distance": 78.23042886243178,
 									"hostEdge": {
 										"$ref": "AAAAAAGPHZtE1LLi+fY="
 									},
-									"edgePosition": 1
+									"edgePosition": 1,
+									"text": "FK_PermisoCompensatorioProyecto_ActividadEmpleadoProyecto"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -8847,7 +8885,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 1967,
-									"top": 1664,
+									"top": 1760,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -8864,7 +8902,7 @@
 								"$ref": "AAAAAAGPFqKLiYChAiE="
 							},
 							"lineStyle": 2,
-							"points": "1952:1312;1952:1696",
+							"points": "1952:1312;1952:1792",
 							"nameLabel": {
 								"$ref": "AAAAAAGPHZtE1bLjZoA="
 							},
@@ -8891,17 +8929,18 @@
 									"_parent": {
 										"$ref": "AAAAAAGPHZtmHLL+te4="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1902,
-									"top": 1609,
+									"left": 1640,
+									"top": 1752,
+									"width": 265.88427734375,
 									"height": 13,
-									"alpha": 1.5707963267948966,
-									"distance": 15,
+									"alpha": 1.058406747789805,
+									"distance": 73.43023900274328,
 									"hostEdge": {
 										"$ref": "AAAAAAGPHZtmHLL+te4="
 									},
-									"edgePosition": 1
+									"edgePosition": 1,
+									"text": "FK_PermisoCompensatorioProyecto_Permiso"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -8910,8 +8949,8 @@
 										"$ref": "AAAAAAGPHZtmHLL+te4="
 									},
 									"font": "Arial;13;0",
-									"left": 1805,
-									"top": 1595,
+									"left": 1751,
+									"top": 1716,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -8927,8 +8966,8 @@
 										"$ref": "AAAAAAGPHZtmHLL+te4="
 									},
 									"font": "Arial;13;0",
-									"left": 1903,
-									"top": 1664,
+									"left": 1878,
+									"top": 1801,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -8945,7 +8984,7 @@
 								"$ref": "AAAAAAGOQ1G42nD2oEw="
 							},
 							"lineStyle": 2,
-							"points": "1780:1616;1888:1616;1888:1696",
+							"points": "1736:1697;1736:1822;1904:1822",
 							"nameLabel": {
 								"$ref": "AAAAAAGPHZtmHLL/tu8="
 							},
@@ -8975,7 +9014,7 @@
 									"fillColor": "#FFFF91",
 									"font": "Arial;13;1",
 									"left": 2184,
-									"top": 1205,
+									"top": 1229,
 									"width": 250.7841796875,
 									"height": 13,
 									"text": "Dimension"
@@ -9002,7 +9041,7 @@
 											"fillColor": "#FFFF91",
 											"font": "Arial;13;0",
 											"left": 2189,
-											"top": 1228,
+											"top": 1252,
 											"width": 240.7841796875,
 											"height": 13
 										},
@@ -9018,7 +9057,7 @@
 											"fillColor": "#FFFF91",
 											"font": "Arial;13;0",
 											"left": 2189,
-											"top": 1243,
+											"top": 1267,
 											"width": 240.7841796875,
 											"height": 13
 										}
@@ -9026,7 +9065,7 @@
 									"fillColor": "#FFFF91",
 									"font": "Arial;13;0",
 									"left": 2184,
-									"top": 1223,
+									"top": 1247,
 									"width": 250.7841796875,
 									"height": 38
 								}
@@ -9034,7 +9073,7 @@
 							"fillColor": "#FFFF91",
 							"font": "Arial;13;0",
 							"left": 2184,
-							"top": 1200,
+							"top": 1224,
 							"width": 250.7841796875,
 							"height": 61,
 							"nameLabel": {
@@ -9062,7 +9101,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 2261,
-									"top": 1148,
+									"top": 1160,
 									"width": 143.787109375,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -9081,7 +9120,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 2332,
-									"top": 1168,
+									"top": 1192,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -9115,7 +9154,7 @@
 								"$ref": "AAAAAAGPHfUgsqQzYsA="
 							},
 							"lineStyle": 2,
-							"points": "2347:1200;2347:1110",
+							"points": "2347:1224;2347:1110",
 							"nameLabel": {
 								"$ref": "AAAAAAGPHfa2DaRfx0E="
 							},
@@ -9142,17 +9181,18 @@
 									"_parent": {
 										"$ref": "AAAAAAGPHgL2laTLdbg="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 2323,
-									"top": 1353,
+									"left": 2208,
+									"top": 1344,
+									"width": 234.13330078125,
 									"height": 13,
-									"alpha": 1.5707963267948966,
-									"distance": 15,
+									"alpha": 4.656889921292836,
+									"distance": 18.027756377319946,
 									"hostEdge": {
 										"$ref": "AAAAAAGPHgL2laTLdbg="
 									},
-									"edgePosition": 1
+									"edgePosition": 1,
+									"text": "FK_ActividadEmpleadoProyecto_Estado"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -9162,7 +9202,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 2559,
-									"top": 1288,
+									"top": 1320,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -9196,7 +9236,7 @@
 								"$ref": "AAAAAAGPHNIl0a7YvcA="
 							},
 							"lineStyle": 2,
-							"points": "2544:1269;2544:1344;2104:1344;2104:1312",
+							"points": "2544:1301;2544:1368;2104:1368;2104:1312",
 							"nameLabel": {
 								"$ref": "AAAAAAGPHgL2laTMzG4="
 							},
@@ -10529,6 +10569,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGOO3xqVZ11+4o="
 							},
+							"name": "FK_Proyecto_Departamento",
 							"end1": {
 								"_type": "ERDRelationshipEnd",
 								"_id": "AAAAAAGPHJcQkawxPLE=",
@@ -10583,7 +10624,11 @@
 							},
 							"name": "CodigoEmpleadoJefe",
 							"type": "INTEGER",
-							"length": "9"
+							"length": "9",
+							"foreignKey": true,
+							"referenceTo": {
+								"$ref": "AAAAAAGOO4JLNJ4KPtw="
+							}
 						}
 					]
 				},
@@ -10903,6 +10948,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGOO4IuWp39lBI="
 							},
+							"name": "FK_EmpleadoProceso_Empleado",
 							"end1": {
 								"_type": "ERDRelationshipEnd",
 								"_id": "AAAAAAGOQJQzRbcbKmA=",
@@ -11159,6 +11205,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGOO4IuWp39lBI="
 							},
+							"name": "FK_Departamento_Empleado",
 							"end1": {
 								"_type": "ERDRelationshipEnd",
 								"_id": "AAAAAAGPHUyWQbEjeQw=",
@@ -11441,6 +11488,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGOP9ilxLOB2LU="
 							},
+							"name": "FK_EmpleadoProceso_RolProceso",
 							"end1": {
 								"_type": "ERDRelationshipEnd",
 								"_id": "AAAAAAGOQHlwYrXu2hw=",
@@ -11642,6 +11690,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGOP94/qLOwOOU="
 							},
+							"name": "FK_Asistencia_EmpleadoProceso",
 							"end1": {
 								"_type": "ERDRelationshipEnd",
 								"_id": "AAAAAAGPHNOi968il+g=",
@@ -12361,6 +12410,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGOQ1G42nD0PdQ="
 							},
+							"name": "FK_PermisoCompensatorioProceso_Permiso",
 							"end1": {
 								"_type": "ERDRelationshipEnd",
 								"_id": "AAAAAAGPHSeodbBWHLQ=",
@@ -12416,6 +12466,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGOQ1G42nD0PdQ="
 							},
+							"name": "FK_PermisoCompensatorioProyecto_Permiso",
 							"end1": {
 								"_type": "ERDRelationshipEnd",
 								"_id": "AAAAAAGPHZtmHLL7xUU=",
@@ -12949,6 +13000,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGOWQPtPnYWkoU="
 							},
+							"name": "FK_Actividad_Proyecto",
 							"end1": {
 								"_type": "ERDRelationshipEnd",
 								"_id": "AAAAAAGPHJRPDKvwjJY=",
@@ -13241,6 +13293,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGOWRj2U3aIF+o="
 							},
+							"name": "FK_Proceso_Descripcion",
 							"end1": {
 								"_type": "ERDRelationshipEnd",
 								"_id": "AAAAAAGOWRsG3nawEGU=",
@@ -14058,6 +14111,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGOyPP2lReAZDo="
 							},
+							"name": "FK_EmpleadoProyecto_Proyecto",
 							"end1": {
 								"_type": "ERDRelationshipEnd",
 								"_id": "AAAAAAGOy+S5jkqIWho=",
@@ -14237,6 +14291,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGOyvyi2PutrOs="
 							},
+							"name": "FK_EmpleadoProceso_Proceso",
 							"end1": {
 								"_type": "ERDRelationshipEnd",
 								"_id": "AAAAAAGOyxys/vwvWyc=",
@@ -14265,6 +14320,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGOyvyi2PutrOs="
 							},
+							"name": "FK_PermisoCompensatorioProceso_Proceso",
 							"end1": {
 								"_type": "ERDRelationshipEnd",
 								"_id": "AAAAAAGPHYwQ6LIcIFs=",
@@ -14320,6 +14376,17 @@
 							"name": "IdDescripcion",
 							"type": "INTEGER",
 							"length": 0,
+							"foreignKey": true
+						},
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAGPH9FvvbvAmWs=",
+							"_parent": {
+								"$ref": "AAAAAAGOyvyi2PutrOs="
+							},
+							"name": "IdEstadoProceso",
+							"type": "INTEGER",
+							"length": "9",
 							"foreignKey": true
 						},
 						{
@@ -14429,6 +14496,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGOyzw2Mvy9TZg="
 							},
+							"name": "FK_CambioHorario_PeriodoAcademico",
 							"end1": {
 								"_type": "ERDRelationshipEnd",
 								"_id": "AAAAAAGPHK3wlazKTHM=",
@@ -14953,6 +15021,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGPFqKLiYCfVqM="
 							},
+							"name": "FK_PermisoCompensatorioProyecto_ActividadEmpleadoProyecto",
 							"end1": {
 								"_type": "ERDRelationshipEnd",
 								"_id": "AAAAAAGPHZtE1LLfgCI=",
@@ -15164,6 +15233,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGPHH1MUaqPDmg="
 							},
+							"name": "FK_Empleado_Usuario",
 							"end1": {
 								"_type": "ERDRelationshipEnd",
 								"_id": "AAAAAAGPHMpBua0pFsk=",
@@ -15219,6 +15289,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGPHH1MUaqPDmg="
 							},
+							"name": "FK_UsuarioRol_Usuario",
 							"end1": {
 								"_type": "ERDRelationshipEnd",
 								"_id": "AAAAAAGPHM7F6q6CzXE=",
@@ -15384,6 +15455,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGPHMp/yq09N3k="
 							},
+							"name": "FK_UsuarioRol_Rol",
 							"end1": {
 								"_type": "ERDRelationshipEnd",
 								"_id": "AAAAAAGPHM6vdK5auSE=",
@@ -15412,6 +15484,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGPHMp/yq09N3k="
 							},
+							"name": "FK_RolPermiso_Rol",
 							"end1": {
 								"_type": "ERDRelationshipEnd",
 								"_id": "AAAAAAGPHM67VK5uSV4=",
@@ -15474,6 +15547,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGPHMqWl61LcyQ="
 							},
+							"name": "FK_RolPermiso_Permiso",
 							"end1": {
 								"_type": "ERDRelationshipEnd",
 								"_id": "AAAAAAGPHM1sM64HxX8=",
@@ -15696,6 +15770,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGPHNIl0a7W4wo="
 							},
+							"name": "FK_Proyecto_Estado",
 							"end1": {
 								"_type": "ERDRelationshipEnd",
 								"_id": "AAAAAAGPHNKKRq7ztHw=",
@@ -15808,6 +15883,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGPHNIl0a7W4wo="
 							},
+							"name": "FK_ActividadEmpleadoProyecto_Estado",
 							"end1": {
 								"_type": "ERDRelationshipEnd",
 								"_id": "AAAAAAGPHgL2laTI4tk=",
@@ -15914,6 +15990,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGPHNQl5q9FUMI="
 							},
+							"name": "FK_Asistencia_NombrePrueba",
 							"end1": {
 								"_type": "ERDRelationshipEnd",
 								"_id": "AAAAAAGPHNSyxq9jCMs=",
@@ -16107,6 +16184,7 @@
 								"_parent": {
 									"$ref": "AAAAAAGPHVUlFrGROo0="
 								},
+								"name": "FK_Proceso_EstadoProceso",
 								"reference": {
 									"$ref": "AAAAAAGPHVTdCbFoF0A="
 								}
