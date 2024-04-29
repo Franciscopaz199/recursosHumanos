@@ -51,7 +51,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_beneficio_por_id (
-    id_beneficio INT
+    _id_beneficio INT
 )
 RETURNS TABLE (
     id_beneficio INT, 
@@ -61,7 +61,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_beneficio, descripcion_beneficio 
     FROM empleado.beneficio
-    WHERE id_beneficio = id_beneficio;
+    WHERE id_beneficio = _id_beneficio;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -117,7 +117,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_tipo_contrato_por_id (
-    id_tipo_contrato INT
+    _id_tipo_contrato INT
 )
 RETURNS TABLE (
     id_tipo_contrato INT, 
@@ -127,7 +127,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_tipo_contrato, descripcion_tipo_contrato 
     FROM empleado.tipo_contrato
-    WHERE id_tipo_contrato = id_tipo_contrato;
+    WHERE id_tipo_contrato = _id_tipo_contrato;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -183,7 +183,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_puesto_por_id (
-    id_puesto INT
+    _id_puesto INT
 )
 RETURNS TABLE (
     id_puesto INT, 
@@ -193,7 +193,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_puesto, descripcion_puesto 
     FROM empleado.puesto
-    WHERE id_puesto = id_puesto;
+    WHERE id_puesto = _id_puesto;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -252,7 +252,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_grado_academico_por_id (
-    id_grado_academico INT
+    _id_grado_academico INT
 )
 RETURNS TABLE (
     id_grado_academico INT, 
@@ -263,7 +263,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_grado_academico, descripcion_grado_academico, especialidad
     FROM empleado.grado_academico
-    WHERE id_grado_academico = id_grado_academico;
+    WHERE id_grado_academico = _id_grado_academico;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -319,7 +319,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_institucion_por_id (
-    id_institucion INT
+    _id_institucion INT
 )
 RETURNS TABLE (
     id_institucion INT, 
@@ -329,7 +329,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_institucion, nombre_institucion 
     FROM empleado.institucion
-    WHERE id_institucion = id_institucion;
+    WHERE id_institucion = _id_institucion;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -388,7 +388,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_nacionalidad_por_id (
-    id_nacionalidad INT
+   _id_nacionalidad INT
 )
 RETURNS TABLE (
     id_nacionalidad INT, 
@@ -399,7 +399,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_nacionalidad, nombre_nacionalidad, pais
     FROM empleado.nacionalidad
-    WHERE id_nacionalidad = id_nacionalidad;
+    WHERE id_nacionalidad = _id_nacionalidad;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -455,7 +455,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_genero_por_id (
-    id_genero INT
+    _id_genero INT
 )
 RETURNS TABLE (
     id_genero INT, 
@@ -465,7 +465,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_genero, nombre_genero 
     FROM empleado.genero
-    WHERE id_genero = id_genero;
+    WHERE id_genero = _id_genero;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -521,7 +521,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_estado_civil_por_id (
-    id_estado_civil INT
+    _id_estado_civil INT
 )
 RETURNS TABLE (
     id_estado_civil INT, 
@@ -531,7 +531,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_estado_civil, descripcion_estado_civil 
     FROM empleado.estado_civil
-    WHERE id_estado_civil = id_estado_civil;
+    WHERE id_estado_civil = _id_estado_civil;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -593,7 +593,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_usuario_por_id (
-    id_usuario INT
+    _id_usuario INT
 )
 RETURNS TABLE (
     id_usuario INT, 
@@ -605,7 +605,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_usuario, nombre_usuario, email, password
     FROM usuario.usuario
-    WHERE id_usuario = id_usuario;
+    WHERE id_usuario = _id_usuario;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -661,7 +661,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_rol_por_id (
-    id_rol INT
+    _id_rol INT
 )
 RETURNS TABLE (
     id_rol INT, 
@@ -671,7 +671,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_rol, nombre_rol 
     FROM usuario.rol
-    WHERE id_rol = id_rol;
+    WHERE id_rol = _id_rol;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -710,6 +710,7 @@ BEGIN
     DELETE FROM usuario.permiso_usuario 
     WHERE id_permiso_usuario = id_permiso_usuario;
 END;
+$$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar todos
 CREATE FUNCTION consultar_permisos_usuarios ()
@@ -726,7 +727,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_permiso_usuario_por_id (
-    id_permiso_usuario INT
+    _id_permiso_usuario INT
 )
 RETURNS TABLE (
     id_permiso_usuario INT, 
@@ -736,7 +737,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_permiso_usuario, nombre_permiso 
     FROM usuario.permiso_usuario
-    WHERE id_permiso_usuario = id_permiso_usuario;
+    WHERE id_permiso_usuario = _id_permiso_usuario;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -764,6 +765,7 @@ BEGIN
     DELETE FROM usuario.rol_permiso_usuario 
     WHERE id_permiso_usuario = id_permiso_usuario AND id_rol = id_rol;
 END;
+$$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar todos
 CREATE FUNCTION consultar_roles_permisos_usuarios ()
@@ -896,7 +898,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_empleado_por_id (
-    codigo_empleado INT
+    _codigo_empleado INT
 )
 RETURNS TABLE (
     codigo_empleado INT, 
@@ -915,7 +917,7 @@ BEGIN
     RETURN QUERY 
     SELECT codigo_empleado, id_nacionalidad, id_genero, id_estado_civil, id_usuario, dni, nombres, apellidos, fecha_nacimiento, correo, estado_empleado
     FROM empleado.empleado
-    WHERE codigo_empleado = codigo_empleado;
+    WHERE codigo_empleado = _codigo_empleado;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -971,7 +973,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_operador_telefonico_por_id (
-    id_operador_telefonico INT
+    _id_operador_telefonico INT
 )
 RETURNS TABLE (
     id_operador_telefonico INT, 
@@ -981,7 +983,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_operador_telefonico, nombre_operador 
     FROM empleado.operador_telefonico
-    WHERE id_operador_telefonico = id_operador_telefonico;
+    WHERE id_operador_telefonico = _id_operador_telefonico;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -1043,7 +1045,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_telefono_por_id (
-    id_telefono INT
+    _id_telefono INT
 )
 RETURNS TABLE (
     id_telefono INT, 
@@ -1055,7 +1057,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_telefono, id_operador_telefonico, codigo_empleado, telefono
     FROM empleado.telefono
-    WHERE id_telefono = id_telefono;
+    WHERE id_telefono = _id_telefono;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -1120,9 +1122,9 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_empleado_grado_academico_por_id (
-    codigo_empleado INT, -- llave primaria
-    id_grado_academico INT, -- llave primaria
-    id_institucion INT -- llave primaria
+    _codigo_empleado INT, -- llave primaria
+    _id_grado_academico INT, -- llave primaria
+    _id_institucion INT -- llave primaria
 )
 RETURNS TABLE (
     codigo_empleado INT, 
@@ -1134,7 +1136,7 @@ BEGIN
     RETURN QUERY 
     SELECT codigo_empleado, id_grado_academico, id_institucion, anio_obtencion
     FROM empleado.empleado_grado_academico
-    WHERE codigo_empleado = codigo_empleado AND id_grado_academico = id_grado_academico AND id_institucion = id_institucion;
+    WHERE codigo_empleado = _codigo_empleado AND id_grado_academico = _id_grado_academico AND id_institucion = _id_institucion;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -1194,7 +1196,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_departamento_por_id (
-    id_departamento INT
+    _id_departamento INT
 )
 RETURNS TABLE (
     id_departamento INT, 
@@ -1205,7 +1207,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_departamento, nombre_departamento, codigo_empleado_jefe
     FROM empleado.departamento
-    WHERE id_departamento = id_departamento;
+    WHERE id_departamento = _id_departamento;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -1295,7 +1297,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_contrato_laboral_por_id (
-    id_contrato_laboral INT
+    _id_contrato_laboral INT
 )
 RETURNS TABLE (
     id_contrato_laboral INT, 
@@ -1316,7 +1318,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_contrato_laboral, codigo_empleado, id_tipo_contrato, id_puesto, id_departamento, id_beneficio, numero_contrato, fecha_inicio, fecha_finalizacion, salario, hora_entrada, hora_salida, estado_contrato
     FROM empleado.contrato_laboral
-    WHERE id_contrato_laboral = id_contrato_laboral;
+    WHERE id_contrato_laboral = _id_contrato_laboral;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -1373,7 +1375,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_numero_periodo_por_id (
-    id_numero_periodo INT
+    _id_numero_periodo INT
 )
 RETURNS TABLE (
     id_numero_periodo INT, 
@@ -1383,7 +1385,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_numero_periodo, numero_periodo 
     FROM proyecto.numero_periodo
-    WHERE id_numero_periodo = id_numero_periodo;
+    WHERE id_numero_periodo = _id_numero_periodo;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -1443,7 +1445,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_periodo_academico_por_id (
-    id_periodo_academico INT
+    _id_periodo_academico INT
 )
 RETURNS TABLE (
     id_periodo_academico INT, 
@@ -1454,7 +1456,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_periodo_academico, id_numero_periodo, anio 
     FROM proyecto.periodo_academico
-    WHERE id_periodo_academico = id_periodo_academico;
+    WHERE id_periodo_academico = _id_periodo_academico;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -1526,7 +1528,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_cambio_horario_por_id (
-    id_cambio_horario INT
+    _id_cambio_horario INT
 )
 RETURNS TABLE (
     id_cambio_horario INT, 
@@ -1541,7 +1543,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_cambio_horario, id_contrato_laboral, id_periodo_academico, nueva_hora_entrada, nueva_hora_salida, nota, fecha_cambio
     FROM empleado.cambio_horario
-    WHERE id_cambio_horario = id_cambio_horario;
+    WHERE id_cambio_horario = _id_cambio_horario;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -1598,7 +1600,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_dimension_por_id (
-    id_dimension INT
+    _id_dimension INT
 )
 RETURNS TABLE (
     id_dimension INT, 
@@ -1608,7 +1610,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_dimension, nombre_dimension 
     FROM proyecto.dimension
-    WHERE id_dimension = id_dimension;
+    WHERE id_dimension = _id_dimension;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -1665,7 +1667,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_tipo_proyecto_por_id (
-    id_tipo_proyecto INT
+    _id_tipo_proyecto INT
 )
 RETURNS TABLE (
     id_tipo_proyecto INT, 
@@ -1675,7 +1677,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_tipo_proyecto, nombre_tipo_proyecto 
     FROM proyecto.tipo_proyecto
-    WHERE id_tipo_proyecto = id_tipo_proyecto;
+    WHERE id_tipo_proyecto = _id_tipo_proyecto;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -1732,7 +1734,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_estado_por_id (
-    id_estado INT
+    _id_estado INT
 )
 RETURNS TABLE (
     id_estado INT, 
@@ -1742,7 +1744,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_estado, nombre_estado 
     FROM proyecto.estado
-    WHERE id_estado = id_estado;
+    WHERE id_estado = _id_estado;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -1820,7 +1822,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_proyecto_por_id (
-    id_proyecto INT
+    _id_proyecto INT
 )
 RETURNS TABLE (
     id_proyecto INT, 
@@ -1837,7 +1839,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_proyecto, id_tipo_proyecto, id_periodo_academico, id_departamento, id_dimension, id_estado, nombre_proyecto, fecha_inicio, fecha_fin
     FROM proyecto.proyecto
-    WHERE id_proyecto = id_proyecto;
+    WHERE id_proyecto = _id_proyecto;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -1877,6 +1879,11 @@ CREATE FUNCTION eliminar_actividad (
     id_actividad INT
 )
 RETURNS VOID AS $$
+BEGIN
+	DELETE FROM proyecto.actividad
+	WHERE id_actividad = id_actividad;
+END;
+$$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar todos
 CREATE FUNCTION consultar_actividades ()
@@ -1895,7 +1902,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_actividad_por_id (
-    id_actividad INT
+    _id_actividad INT
 )
 RETURNS TABLE (
     id_actividad INT, 
@@ -1907,7 +1914,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_actividad, id_proyecto, nombre_actividad, fecha_actividad
     FROM proyecto.actividad
-    WHERE id_actividad = id_actividad;
+    WHERE id_actividad = _id_actividad;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -1964,7 +1971,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_rol_proyecto_por_id (
-    id_rol_proyecto INT
+    _id_rol_proyecto INT
 )
 RETURNS TABLE (
     id_rol_proyecto INT, 
@@ -1974,7 +1981,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_rol_proyecto, nombre_rol 
     FROM proyecto.rol_proyecto
-    WHERE id_rol_proyecto = id_rol_proyecto;
+    WHERE id_rol_proyecto = _id_rol_proyecto;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -2022,7 +2029,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_empleado_proyecto_por_id (
-    id_empleado_proyecto INT
+    _id_empleado_proyecto INT
 )
 RETURNS TABLE (
     id_empleado_proyecto INT, 
@@ -2034,7 +2041,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_empleado_proyecto, codigo_empleado, id_proyecto, id_rol_proyecto
     FROM proyecto.empleado_proyecto
-    WHERE id_empleado_proyecto = id_empleado_proyecto;
+    WHERE id_empleado_proyecto = _id_empleado_proyecto;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -2088,7 +2095,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_actividad_empleado_proyecto_por_id (
-    id_actividad_empleado_proyecto INT
+    _id_actividad_empleado_proyecto INT
 )
 RETURNS TABLE (
     id_actividad_empleado_proyecto INT, 
@@ -2103,7 +2110,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_actividad_empleado_proyecto, id_actividad, id_empleado_proyecto, id_estado, horas_trabajadas, dias_compensatorios, medio_verificacion
     FROM proyecto.actividad_empleado_proyecto
-    WHERE id_actividad_empleado_proyecto = id_actividad_empleado_proyecto;
+    WHERE id_actividad_empleado_proyecto = _id_actividad_empleado_proyecto;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -2160,7 +2167,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_nombre_prueba_por_id (
-    id_nombre_prueba INT
+    _id_nombre_prueba INT
 )
 RETURNS TABLE (
     id_nombre_prueba INT, 
@@ -2170,7 +2177,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_nombre_prueba, nombre_prueba 
     FROM proceso.nombre_prueba
-    WHERE id_nombre_prueba = id_nombre_prueba;
+    WHERE id_nombre_prueba = _id_nombre_prueba;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -2227,7 +2234,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_rol_proceso_por_id (
-    id_rol_proceso INT
+    _id_rol_proceso INT
 )
 RETURNS TABLE (
     id_rol_proceso INT, 
@@ -2237,7 +2244,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_rol_proceso, descripcion_rol 
     FROM proceso.rol_proceso
-    WHERE id_rol_proceso = id_rol_proceso;
+    WHERE id_rol_proceso = _id_rol_proceso;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -2294,7 +2301,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_descripcion_por_id (
-    id_descripcion INT
+    _id_descripcion INT
 )
 RETURNS TABLE (
     id_descripcion INT, 
@@ -2304,7 +2311,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_descripcion, nombre_proceso 
     FROM proceso.descripcion
-    WHERE id_descripcion = id_descripcion;
+    WHERE id_descripcion = _id_descripcion;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -2361,7 +2368,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_estado_proceso_por_id (
-    id_estado_proceso INT
+    _id_estado_proceso INT
 )
 RETURNS TABLE (
     id_estado_proceso INT, 
@@ -2371,7 +2378,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_estado_proceso, nombre_estado_proceso 
     FROM proceso.estado_proceso
-    WHERE id_estado_proceso = id_estado_proceso;
+    WHERE id_estado_proceso = _id_estado_proceso;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -2437,7 +2444,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_proceso_por_id (
-    id_proceso INT
+    _id_proceso INT
 )
 RETURNS TABLE (
     id_proceso INT, 
@@ -2450,7 +2457,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_proceso, id_descripcion, id_estado_proceso, fecha, cantidad_compensatoria
     FROM proceso.proceso
-    WHERE id_proceso = id_proceso;
+    WHERE id_proceso = _id_proceso;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -2460,7 +2467,7 @@ $$ LANGUAGE plpgsql;
 -- Funcion almacenada de insertar
 CREATE FUNCTION insertar_empleado_proceso (
     codigo_empleado INT,
-    id_rol_proceso INT
+    id_rol_proceso INT,
     id_proceso INT
 )
 RETURNS VOID AS $$
@@ -2498,7 +2505,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_empleado_proceso_por_id (
-    id_empleado_proceso INT
+    _id_empleado_proceso INT
 )
 RETURNS TABLE (
     id_empleado_proceso INT, 
@@ -2510,7 +2517,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_empleado_proceso, codigo_empleado, id_rol_proceso, id_proceso
     FROM proceso.empleado_proceso
-    WHERE id_empleado_proceso = id_empleado_proceso;
+    WHERE id_empleado_proceso = _id_empleado_proceso;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -2572,8 +2579,8 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_asistencia_por_id (
-    id_empleado_proceso INT,
-    id_nombre_prueba INT
+    _id_empleado_proceso INT,
+    _id_nombre_prueba INT
 )
 RETURNS TABLE (
     id_empleado_proceso INT, 
@@ -2584,7 +2591,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_empleado_proceso, id_nombre_prueba, estado
     FROM proceso.asistencia
-    WHERE id_empleado_proceso = id_empleado_proceso AND id_nombre_prueba = id_nombre_prueba;
+    WHERE id_empleado_proceso = _id_empleado_proceso AND id_nombre_prueba = _id_nombre_prueba;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -2641,7 +2648,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_tipo_permiso_por_id (
-    id_tipo_permiso INT
+    _id_tipo_permiso INT
 )
 RETURNS TABLE (
     id_tipo_permiso INT, 
@@ -2651,7 +2658,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_tipo_permiso, nombre_tipo_permiso 
     FROM permiso.tipo_permiso
-    WHERE id_tipo_permiso = id_tipo_permiso;
+    WHERE id_tipo_permiso = _id_tipo_permiso;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -2744,7 +2751,7 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_permiso_por_id (
-    id_permiso INT
+    _id_permiso INT
 )
 RETURNS TABLE (
     id_permiso INT, 
@@ -2766,7 +2773,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_permiso, codigo_empleado, id_tipo_permiso, hora_recibido, fecha_ingreso, fecha_inicio, fecha_final, descripcion, dias, horas, minutos, observacion, respaldo, recibido_por
     FROM permiso.permiso
-    WHERE id_permiso = id_permiso;
+    WHERE id_permiso = _id_permiso;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -2812,8 +2819,8 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_permiso_compensatorio_proceso_por_id (
-    id_permiso INT,
-    id_proceso INT
+    _id_permiso INT,
+    _id_proceso INT
 )
 RETURNS TABLE (
     id_permiso INT, 
@@ -2823,7 +2830,7 @@ BEGIN
     RETURN QUERY 
     SELECT id_permiso, id_proceso
     FROM permiso.permiso_compensatorio_proceso
-    WHERE id_permiso = id_permiso AND id_proceso = id_proceso;
+    WHERE id_permiso = _id_permiso AND id_proceso = _id_proceso;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -2870,8 +2877,8 @@ $$ LANGUAGE plpgsql;
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_permiso_compensatorio_proyecto_por_id (
-    id_permiso INT,
-    id_actividad_empleado_proyecto INT
+    _id_permiso INT,
+    _id_actividad_empleado_proyecto INT
 )
 RETURNS TABLE (
     id_permiso INT, 
@@ -2881,6 +2888,6 @@ BEGIN
     RETURN QUERY 
     SELECT id_permiso, id_actividad_empleado_proyecto
     FROM permiso.permiso_compensatorio_proyecto
-    WHERE id_permiso = id_permiso AND id_actividad_empleado_proyecto = id_actividad_empleado_proyecto;
+    WHERE id_permiso = _id_permiso AND id_actividad_empleado_proyecto = _id_actividad_empleado_proyecto;
 END;
 $$ LANGUAGE plpgsql;
