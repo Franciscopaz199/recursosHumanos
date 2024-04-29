@@ -111,7 +111,7 @@ CREATE TABLE usuario.usuario_rol
 
 CREATE TABLE empleado.empleado
 (
-	codigo_empleado SERIAL PRIMARY KEY,
+	codigo_empleado INT PRIMARY KEY,
 	id_nacionalidad INT NOT NULL,
 	id_genero INT NOT NULL,
 	id_estado_civil INT NOT NULL,
@@ -121,8 +121,7 @@ CREATE TABLE empleado.empleado
 	apellidos VARCHAR(60) NOT NULL,
 	fecha_nacimiento DATE,
 	correo VARCHAR(50) NOT NULL UNIQUE,
-	telefono VARCHAR(15) NOT NULL UNIQUE,
-	estado_empleado BIT,
+	estado_empleado BOOLEAN NOT NULL DEFAULT TRUE,
 	
 	CONSTRAINT Fk_Empleado_Nacionalidad FOREIGN KEY (id_nacionalidad) 
 		REFERENCES empleado.nacionalidad(id_nacionalidad),
@@ -194,7 +193,7 @@ CREATE TABLE empleado.contrato_laboral
 	salario DECIMAL(9,2) NOT NULL,
 	hora_entrada TIME NOT NULL,
 	hora_salida TIME NOT NULL,
-	estado_contrato BIT NOT NULL,
+	estado_contrato BOOLEAN NOT NULL,
 	
 	CONSTRAINT Fk_ContratoLaboral_Empleado FOREIGN KEY (codigo_empleado) 
 		REFERENCES empleado.empleado(codigo_empleado),
@@ -313,11 +312,12 @@ CREATE TABLE proyecto.rol_proyecto
 
 CREATE TABLE proyecto.empleado_proyecto
 (
-	id_empleado_proyecto SERIAL PRIMARY KEY,
+	id_empleado_proyecto SERIAL UNIQUE,
 	id_rol_proyecto INT NOT NULL,
 	id_proyecto INT NOT NULL,
 	codigo_empleado INT NOT NULL,
-	
+
+	CONSTRAINT PK_EmpleadoProyecto PRIMARY KEY (id_empleado_proyecto, id_rol_proyecto, id_proyecto, codigo_empleado),
 	CONSTRAINT Fk_EmpleadoProyecto_RolProyecto FOREIGN KEY (id_rol_proyecto) 
 		REFERENCES proyecto.rol_proyecto(id_rol_proyecto),
 	CONSTRAINT Fk_EmpleadoProyecto_Proyecto FOREIGN KEY (id_proyecto) 
@@ -328,7 +328,7 @@ CREATE TABLE proyecto.empleado_proyecto
 
 CREATE TABLE proyecto.actividad_empleado_proyecto
 (
-	id_actividad_empleado_proyecto SERIAL PRIMARY KEY,
+	id_actividad_empleado_proyecto SERIAL UNIQUE,
 	id_actividad INT NOT NULL,
 	id_empleado_proyecto INT NOT NULL,
 	id_estado INT NOT NULL,
@@ -336,11 +336,12 @@ CREATE TABLE proyecto.actividad_empleado_proyecto
 	dias_compensatorios INT  NOT NULL,
 	medio_verificacion VARCHAR(100),
 	
+	CONSTRAINT PK_ActividadEmpleadoProyecto PRIMARY KEY (id_actividad_empleado_proyecto, id_actividad, id_empleado_proyecto),
 	CONSTRAINT Fk_ActividadEmpleadoProyecto_Actividad FOREIGN KEY (id_actividad) 
 		REFERENCES proyecto.actividad(id_actividad),
 	CONSTRAINT Fk_ActividadEmpleadoProyecto_EmpleadoProyecto FOREIGN KEY (id_empleado_proyecto) 
 		REFERENCES proyecto.empleado_proyecto(id_empleado_proyecto),
-	CONSTRAINT Fk_ActividadEmpleadoProyecto_Estado FOREIGN KEY (id_empleado_proyecto) 
+	CONSTRAINT Fk_ActividadEmpleadoProyecto_Estado FOREIGN KEY (id_estado) 
 		REFERENCES proyecto.estado(id_estado)
 );
 
@@ -385,11 +386,12 @@ CREATE TABLE proceso.proceso
 
 CREATE TABLE proceso.empleado_proceso
 (
-	id_empleado_proceso SERIAL PRIMARY KEY,
+	id_empleado_proceso SERIAL UNIQUE,
 	codigo_empleado INT NOT NULL,
 	id_rol_proceso INT NOT NULL,
 	id_proceso INT NOT NULL,
 	
+	CONSTRAINT PK_EmpleadoProceso PRIMARY KEY (id_empleado_proceso, codigo_empleado, id_rol_proceso, id_proceso),
 	CONSTRAINT Fk_EmpleadoProceso_Empleado FOREIGN KEY (codigo_empleado) 
 		REFERENCES empleado.empleado(codigo_empleado),
 	CONSTRAINT Fk_EmpleadoProceso_RolProceso FOREIGN KEY (id_rol_proceso) 
@@ -402,7 +404,7 @@ CREATE TABLE proceso.asistencia
 (
 	id_empleado_proceso INT NOT NULL,
 	id_nombre_prueba INT NOT NULL, 
-	estado BIT NOT NULL,
+	estado BOOLEAN NOT NULL DEFAULT TRUE,
 	
 	PRIMARY KEY (id_empleado_proceso, id_nombre_prueba),
 	CONSTRAINT Fk_Asistencia_NombrePrueba FOREIGN KEY (id_nombre_prueba) 
@@ -432,7 +434,7 @@ CREATE TABLE permiso.permiso
 	horas INT,
 	minutos INT,
 	observacion VARCHAR(200),
-	respaldo BIT,
+	respaldo BOOLEAN NOT NULL DEFAULT FALSE,
 	recibido_por INT NOT NULL,
 	
 	CONSTRAINT Fk_Permiso_Empleado FOREIGN KEY (codigo_empleado) 

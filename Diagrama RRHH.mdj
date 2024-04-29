@@ -3210,7 +3210,7 @@
 									"font": "Arial;13;1",
 									"left": 2424,
 									"top": 1405,
-									"width": 248,
+									"width": 263.7841796875,
 									"height": 13,
 									"text": "Actividad"
 								},
@@ -3237,7 +3237,7 @@
 											"font": "Arial;13;0",
 											"left": 2429,
 											"top": 1428,
-											"width": 238,
+											"width": 253.7841796875,
 											"height": 13
 										},
 										{
@@ -3270,7 +3270,7 @@
 											"font": "Arial;13;0",
 											"left": 2429,
 											"top": 1443,
-											"width": 238,
+											"width": 253.7841796875,
 											"height": 13
 										},
 										{
@@ -3320,7 +3320,7 @@
 											"font": "Arial;13;0",
 											"left": 2429,
 											"top": 1458,
-											"width": 238,
+											"width": 253.7841796875,
 											"height": 13
 										},
 										{
@@ -3336,7 +3336,7 @@
 											"font": "Arial;13;0",
 											"left": 2429,
 											"top": 1473,
-											"width": 238,
+											"width": 253.7841796875,
 											"height": 13
 										},
 										{
@@ -3446,7 +3446,7 @@
 									"font": "Arial;13;0",
 									"left": 2424,
 									"top": 1423,
-									"width": 248,
+									"width": 263.7841796875,
 									"height": 68
 								}
 							],
@@ -3454,7 +3454,7 @@
 							"font": "Arial;13;0",
 							"left": 2424,
 							"top": 1400,
-							"width": 248,
+							"width": 263.7841796875,
 							"height": 91,
 							"nameLabel": {
 								"$ref": "AAAAAAGOWTjwUncWjfA="
@@ -5705,7 +5705,7 @@
 									"font": "Arial;13;1",
 									"left": 1816,
 									"top": 1181,
-									"width": 330.49169921875,
+									"width": 351.2041015625,
 									"height": 13,
 									"text": "ActividadEmpleadoProyecto"
 								},
@@ -5732,7 +5732,7 @@
 											"font": "Arial;13;0",
 											"left": 1821,
 											"top": 1204,
-											"width": 320.49169921875,
+											"width": 341.2041015625,
 											"height": 13
 										},
 										{
@@ -5748,7 +5748,7 @@
 											"font": "Arial;13;0",
 											"left": 1821,
 											"top": 1219,
-											"width": 320.49169921875,
+											"width": 341.2041015625,
 											"height": 13
 										},
 										{
@@ -5764,7 +5764,7 @@
 											"font": "Arial;13;0",
 											"left": 1821,
 											"top": 1234,
-											"width": 320.49169921875,
+											"width": 341.2041015625,
 											"height": 13
 										},
 										{
@@ -5780,7 +5780,7 @@
 											"font": "Arial;13;0",
 											"left": 1821,
 											"top": 1249,
-											"width": 320.49169921875,
+											"width": 341.2041015625,
 											"height": 13
 										},
 										{
@@ -5796,7 +5796,7 @@
 											"font": "Arial;13;0",
 											"left": 1821,
 											"top": 1264,
-											"width": 320.49169921875,
+											"width": 341.2041015625,
 											"height": 13
 										},
 										{
@@ -5812,7 +5812,7 @@
 											"font": "Arial;13;0",
 											"left": 1821,
 											"top": 1279,
-											"width": 320.49169921875,
+											"width": 341.2041015625,
 											"height": 13
 										},
 										{
@@ -5828,7 +5828,7 @@
 											"font": "Arial;13;0",
 											"left": 1821,
 											"top": 1294,
-											"width": 320.49169921875,
+											"width": 341.2041015625,
 											"height": 13
 										}
 									],
@@ -5836,7 +5836,7 @@
 									"font": "Arial;13;0",
 									"left": 1816,
 									"top": 1199,
-									"width": 330.49169921875,
+									"width": 351.2041015625,
 									"height": 113
 								}
 							],
@@ -5844,7 +5844,7 @@
 							"font": "Arial;13;0",
 							"left": 1816,
 							"top": 1176,
-							"width": 330.49169921875,
+							"width": 351.2041015625,
 							"height": 136,
 							"nameLabel": {
 								"$ref": "AAAAAAGPFqKLiYCipOw="
@@ -6690,7 +6690,7 @@
 										"$ref": "AAAAAAGPHJRPDKvzG2I="
 									},
 									"font": "Arial;13;0",
-									"left": 2696,
+									"left": 2712,
 									"top": 1472,
 									"height": 13,
 									"alpha": -0.5235987755982988,
@@ -6708,7 +6708,7 @@
 								"$ref": "AAAAAAGOWQPtPnYYyiM="
 							},
 							"lineStyle": 2,
-							"points": "2527:1048;2824:1048;2824:1464;2671:1464",
+							"points": "2527:1048;2824:1048;2824:1464;2687:1464",
 							"nameLabel": {
 								"$ref": "AAAAAAGPHJRPDav0B3A="
 							},
@@ -12091,6 +12091,7 @@
 							"name": "CodigoEmpleado",
 							"type": "INTEGER",
 							"length": "9",
+							"primaryKey": true,
 							"foreignKey": true
 						},
 						{
@@ -12102,6 +12103,7 @@
 							"name": "IdRolProceso",
 							"type": "INTEGER",
 							"length": "9",
+							"primaryKey": true,
 							"foreignKey": true
 						},
 						{
@@ -12134,6 +12136,7 @@
 							"name": "IdProceso",
 							"type": "INTEGER",
 							"length": "9",
+							"primaryKey": true,
 							"foreignKey": true
 						},
 						{
@@ -13899,7 +13902,11 @@
 							"name": "IdProyecto",
 							"type": "INTEGER",
 							"length": "9",
-							"primaryKey": true
+							"primaryKey": true,
+							"foreignKey": true,
+							"referenceTo": {
+								"$ref": "AAAAAAGOWQXSGHZGYfg="
+							}
 						},
 						{
 							"_type": "ERDColumn",
@@ -14530,6 +14537,7 @@
 							"name": "IdRolProyecto",
 							"type": "INTEGER",
 							"length": "9",
+							"primaryKey": true,
 							"foreignKey": true,
 							"referenceTo": {
 								"$ref": "AAAAAAGO7XOpPPgwOMA="
@@ -14544,6 +14552,7 @@
 							"name": "IdProyecto",
 							"type": "INTEGER",
 							"length": "9",
+							"primaryKey": true,
 							"foreignKey": true
 						},
 						{
@@ -14555,6 +14564,7 @@
 							"name": "CodigoEmpleado",
 							"type": "INTEGER",
 							"length": "9",
+							"primaryKey": true,
 							"foreignKey": true
 						}
 					]
@@ -15411,6 +15421,7 @@
 							"name": "IdActividad",
 							"type": "INTEGER",
 							"length": "9",
+							"primaryKey": true,
 							"foreignKey": true,
 							"referenceTo": {
 								"$ref": "AAAAAAGOWTy7EHc59co="
@@ -15425,6 +15436,7 @@
 							"name": "IdEmpleadoProyecto",
 							"type": "INTEGER",
 							"length": "9",
+							"primaryKey": true,
 							"foreignKey": true,
 							"referenceTo": {
 								"$ref": "AAAAAAGPFqHVbICRiPY="
