@@ -336,12 +336,12 @@ INSERT INTO empleado.departamento (nombre_departamento, codigo_empleado_jefe)
 VALUES ('Departamento 3', 3);
 
 -- 1 Insert por cada empleado.empleado en la tabla empleado.contrato_laboral
-INSERT INTO empleado.contrato_laboral (codigo_empleado, id_tipo_contrato, id_puesto, id_departamento, id_beneficio, numero_contrato, fecha_inicio, fecha_finalizacion, salario, hora_entrada, hora_salida, estado_contrato)
-VALUES (1, 1, 1, 1, 1, '00000001', '2020-01-01', '2021-01-01', 10000.00, '08:00:00', '16:00:00', TRUE);
-INSERT INTO empleado.contrato_laboral (codigo_empleado, id_tipo_contrato, id_puesto, id_departamento, id_beneficio, numero_contrato, fecha_inicio, fecha_finalizacion, salario, hora_entrada, hora_salida, estado_contrato)
-VALUES (2, 2, 2, 2, 2, '00000002', '2020-01-01', '2021-01-01', 20000.00, '08:00:00', '16:00:00', TRUE);
-INSERT INTO empleado.contrato_laboral (codigo_empleado, id_tipo_contrato, id_puesto, id_departamento, id_beneficio, numero_contrato, fecha_inicio, fecha_finalizacion, salario, hora_entrada, hora_salida, estado_contrato)
-VALUES (3, 1, 3, 3, 3, '00000003', '2020-01-01', '2021-01-01', 30000.00, '08:00:00', '16:00:00', TRUE);
+INSERT INTO empleado.contrato_laboral (codigo_empleado, id_tipo_contrato, id_puesto, id_departamento, numero_contrato, fecha_inicio, fecha_finalizacion, salario, hora_entrada, hora_salida, estado_contrato)
+VALUES (1, 1, 1, 1, '00000001', '2020-01-01', '2021-01-01', 10000.00, '08:00:00', '16:00:00', TRUE);
+INSERT INTO empleado.contrato_laboral (codigo_empleado, id_tipo_contrato, id_puesto, id_departamento, numero_contrato, fecha_inicio, fecha_finalizacion, salario, hora_entrada, hora_salida, estado_contrato)
+VALUES (2, 2, 2, 2, '00000002', '2020-01-01', '2021-01-01', 20000.00, '08:00:00', '16:00:00', TRUE);
+INSERT INTO empleado.contrato_laboral (codigo_empleado, id_tipo_contrato, id_puesto, id_departamento, numero_contrato, fecha_inicio, fecha_finalizacion, salario, hora_entrada, hora_salida, estado_contrato)
+VALUES (3, 1, 3, 3, '00000003', '2020-01-01', '2021-01-01', 30000.00, '08:00:00', '16:00:00', TRUE);
 
 -- 1 Insert por cada empleado.contrato_laboral en la tabla empleado.contrato_laboral_beneficio
 INSERT INTO empleado.contrato_laboral_beneficio (id_contrato_laboral, id_beneficio)

@@ -153,8 +153,8 @@ CREATE TABLE empleado.telefono
 
 CREATE TABLE empleado.empleado_grado_academico
 (
-	codigo_empleado INT,
-	id_grado_academico INT,
+	codigo_empleado INT NOT NULL,
+	id_grado_academico INT NOT NULL,
 	id_institucion INT NOT NULL,
 	anio_obtencion DATE NOT NULL,
 	
@@ -186,7 +186,6 @@ CREATE TABLE empleado.contrato_laboral
 	id_tipo_contrato INT NOT NULL,
 	id_puesto INT NOT NULL,
 	id_departamento INT NOT NULL,
-	id_beneficio INT NOT NULL,
 	numero_contrato VARCHAR(9) NOT NULL UNIQUE,
 	fecha_inicio DATE NOT NULL,
 	fecha_finalizacion DATE,
