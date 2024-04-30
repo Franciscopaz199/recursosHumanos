@@ -236,9 +236,9 @@ VALUES
 
 -- 2 Insert de la tabla empleado.genero
 INSERT INTO empleado.genero (nombre_genero)
-VALUES ('Macho');
+VALUES ('Masculino');
 INSERT INTO empleado.genero (nombre_genero)
-VALUES ('Hembra');
+VALUES ('Femenino');
 
 -- 3 Insert de la tabla empleado.estado_civil
 INSERT INTO empleado.estado_civil (descripcion_estado_civil)
