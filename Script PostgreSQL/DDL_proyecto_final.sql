@@ -56,7 +56,7 @@ CREATE TABLE empleado.genero
 CREATE TABLE empleado.estado_civil
 (
     id_estado_civil SERIAL PRIMARY KEY,
-    descripcion_estado_civil VARCHAR(10) UNIQUE NOT NULL
+    descripcion_estado_civil VARCHAR(20) UNIQUE NOT NULL
 );
   
 -- Catalogo de usuario
