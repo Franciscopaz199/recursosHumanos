@@ -1411,7 +1411,6 @@ CREATE FUNCTION insertar_contrato_laboral (
 	id_tipo_contrato INT,
 	id_puesto INT,
 	id_departamento INT,
-	id_beneficio INT,
 	numero_contrato VARCHAR(9),
 	fecha_inicio DATE,
 	fecha_finalizacion DATE,
@@ -1422,8 +1421,8 @@ CREATE FUNCTION insertar_contrato_laboral (
 )
 RETURNS VOID AS $$
 BEGIN
-    INSERT INTO empleado.contrato_laboral (codigo_empleado, id_tipo_contrato, id_puesto, id_departamento, id_beneficio, numero_contrato, fecha_inicio, fecha_finalizacion, salario, hora_entrada, hora_salida, estado_contrato) 
-    VALUES (codigo_empleado, id_tipo_contrato, id_puesto, id_departamento, id_beneficio, numero_contrato, fecha_inicio, fecha_finalizacion, salario, hora_entrada, hora_salida, estado_contrato);
+    INSERT INTO empleado.contrato_laboral (codigo_empleado, id_tipo_contrato, id_puesto, id_departamento, numero_contrato, fecha_inicio, fecha_finalizacion, salario, hora_entrada, hora_salida, estado_contrato) 
+    VALUES (codigo_empleado, id_tipo_contrato, id_puesto, id_departamento, numero_contrato, fecha_inicio, fecha_finalizacion, salario, hora_entrada, hora_salida, estado_contrato);
 END;
 $$ LANGUAGE plpgsql;
 
@@ -1434,7 +1433,6 @@ CREATE FUNCTION actualizar_contrato_laboral (
 	_id_tipo_contrato INT,
 	_id_puesto INT,
 	_id_departamento INT,
-	_id_beneficio INT,
 	_numero_contrato VARCHAR(9),
 	_fecha_inicio DATE,
 	_fecha_finalizacion DATE,
@@ -1450,7 +1448,6 @@ BEGIN
 		id_tipo_contrato = _id_tipo_contrato, 
 		id_puesto = _id_puesto,
 		id_departamento = _id_departamento, 
-		id_beneficio = _id_beneficio, 
 		numero_contrato = _numero_contrato,
 		fecha_inicio = _fecha_inicio, 
 		fecha_finalizacion = _fecha_finalizacion,
@@ -1482,7 +1479,6 @@ RETURNS TABLE (
     id_tipo_contrato INT,
     id_puesto INT,
     id_departamento INT,
-    id_beneficio INT,
     numero_contrato VARCHAR(9),
     fecha_inicio DATE,
     fecha_finalizacion DATE,
@@ -1499,7 +1495,6 @@ BEGIN
 			ecl.id_tipo_contrato,
 			ecl.id_puesto, 
 			ecl.id_departamento,
-			ecl.id_beneficio, 
 			ecl.numero_contrato,
 			ecl.fecha_inicio, 
 			ecl.fecha_finalizacion, 
@@ -1521,7 +1516,6 @@ RETURNS TABLE (
     id_tipo_contrato INT,
     id_puesto INT,
     id_departamento INT,
-    id_beneficio INT,
     numero_contrato VARCHAR(9),
     fecha_inicio DATE,
     fecha_finalizacion DATE,
@@ -1538,7 +1532,6 @@ BEGIN
 			ecl.id_tipo_contrato,
 			ecl.id_puesto, 
 			ecl.id_departamento,
-			ecl.id_beneficio, 
 			ecl.numero_contrato,
 			ecl.fecha_inicio, 
 			ecl.fecha_finalizacion, 
