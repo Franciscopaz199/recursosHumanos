@@ -3,7 +3,7 @@
 
 -- Funcionces almacenadas basicas para tabla empleado.beneficio
 
--- Funcion almacenada de insertar
+-- Funcion almacenada de insertar beneficio
 CREATE FUNCTION insertar_beneficio (
     descripcion_beneficio VARCHAR(100)
 )
@@ -14,7 +14,9 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Funcion almacenada de actualizar
+SELECT insertar_beneficio('BENEFICIO 4');
+
+-- Funcion almacenada de actualizar beneficio
 CREATE FUNCTION actualizar_beneficio(
     _id_beneficio INT,
     _descripcion_beneficio VARCHAR(100)
@@ -27,6 +29,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+SELECT actualizar_beneficio(4,'BENEFICIO 5');
+
 -- Funcion almacenada de eliminar
 CREATE FUNCTION eliminar_beneficio(
     _id_beneficio INT
@@ -38,6 +42,8 @@ BEGIN
     WHERE id_beneficio = _id_beneficio;
 END;
 $$ LANGUAGE plpgsql;
+
+SELECT eliminar_beneficio(4);
 
 -- Funcion almacenada de consultar todos
 CREATE OR REPLACE FUNCTION consultar_beneficio()
@@ -53,6 +59,8 @@ BEGIN
     FROM empleado.beneficio eb;
 END;
 $$ LANGUAGE plpgsql;
+
+SELECT consultar_beneficio();
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_beneficio_id(
@@ -72,6 +80,9 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+SELECT *
+FROM consultar_beneficio_id(2);
+
 -- Funcionces almacenadas basicas para tabla empleado.tipo_contrato
 
 -- Funcion almacenada de insertar
@@ -84,6 +95,10 @@ BEGIN
     VALUES (descripcion_tipo_contrato);
 END;
 $$ LANGUAGE plpgsql;
+
+SELECT insertar_tipo_contrato ('Permanente3');
+SELECT insertar_tipo_contrato ('Permanente4');
+
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_tipo_contrato (
@@ -98,6 +113,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+SELECT actualizar_tipo_contrato (6,'PermamenteActualizado');
+
 -- Funcion almacenada de eliminar
 CREATE FUNCTION eliminar_tipo_contrato (
     _id_tipo_contrato INT
@@ -109,6 +126,8 @@ BEGIN
     WHERE id_tipo_contrato = _id_tipo_contrato;
 END;
 $$ LANGUAGE plpgsql;
+
+SELECT eliminar_tipo_contrato (4);
 
 -- Funcion almacenada de consultar todos
 CREATE FUNCTION consultar_tipo_contratos()
@@ -124,6 +143,8 @@ BEGIN
     FROM empleado.tipo_contrato etc;
 END;
 $$ LANGUAGE plpgsql;
+
+SELECT * FROM consultar_tipo_contratos();
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_tipo_contrato_por_id(
@@ -143,6 +164,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+SELECT * FROM consultar_tipo_contrato_por_id(2);
+
 -- Funcionces almacenadas basicas para tabla empleado.puesto
 
 -- Funcion almacenada de insertar
@@ -155,6 +178,9 @@ BEGIN
     VALUES (descripcion_puesto);
 END;
 $$ LANGUAGE plpgsql;
+
+SELECT insertar_puesto ('Operador 2');
+SELECT insertar_puesto ('Operador 3');
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_puesto (
@@ -169,6 +195,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+SELECT actualizar_puesto (5,'OperadorActuali');
+
 -- Funcion almacenada de eliminar
 CREATE FUNCTION eliminar_puesto (
     _id_puesto INT
@@ -180,6 +208,8 @@ BEGIN
     WHERE id_puesto = _id_puesto;
 END;
 $$ LANGUAGE plpgsql;
+
+SELECT eliminar_puesto (4);
 
 -- Funcion almacenada de consultar todos
 CREATE FUNCTION consultar_puestos()
@@ -195,6 +225,8 @@ BEGIN
     FROM empleado.puesto ep;
 END;
 $$ LANGUAGE plpgsql;
+
+SELECT * FROM consultar_puestos();
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_puesto_por_id(
@@ -214,6 +246,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+SELECT * FROM consultar_puesto_por_id(2);
+
 -- Funcionces almacenadas basicas para tabla empleado.grado_academico
 
 -- Funcion almacenada de insertar
@@ -227,6 +261,8 @@ BEGIN
     VALUES (descripcion_grado_academico, especialidad);
 END;
 $$ LANGUAGE plpgsql;
+
+SELECT insertar_grado_academico ('Bachiller','Computacion');
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_grado_academico (
