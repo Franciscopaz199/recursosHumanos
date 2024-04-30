@@ -49,7 +49,7 @@ CREATE TABLE empleado.nacionalidad
 CREATE TABLE empleado.genero
 (
     id_genero SERIAL PRIMARY KEY,
-    nombre_genero VARCHAR(8) UNIQUE NOT NULL
+    nombre_genero VARCHAR(10) UNIQUE NOT NULL
 );
 
 

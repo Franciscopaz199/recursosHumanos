@@ -997,6 +997,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+SELECT * FROM consultar_empleados();
+
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_empleado_por_id (
     _codigo_empleado INT
@@ -1769,7 +1771,7 @@ BEGIN
 		ech.nota, 
 		ech.fecha_cambio
     FROM 
-		empleado.cambio_horario ech;
+		empleado.cambio_horario ech
     WHERE ech.id_cambio_horario = _id_cambio_horario;
 END;
 $$ LANGUAGE plpgsql;
