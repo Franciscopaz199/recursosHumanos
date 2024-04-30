@@ -14,8 +14,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT insertar_beneficio('descri_bene_1');
-
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_beneficio(
     _id_beneficio INT,
@@ -29,8 +27,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT actualizar_beneficio(1,'descri_bene_1_actua');
-
 -- Funcion almacenada de eliminar
 CREATE FUNCTION eliminar_beneficio(
     _id_beneficio INT
@@ -42,8 +38,6 @@ BEGIN
     WHERE id_beneficio = _id_beneficio;
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT eliminar_beneficio(1);
 
 -- Funcion almacenada de consultar todos
 CREATE OR REPLACE FUNCTION consultar_beneficio()
@@ -59,8 +53,6 @@ BEGIN
     FROM empleado.beneficio eb;
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT * FROM consultar_beneficio();
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_beneficio_id(
@@ -80,10 +72,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT * 
-FROM consultar_beneficio_id(2);
-
-
 -- Funcionces almacenadas basicas para tabla empleado.tipo_contrato
 
 -- Funcion almacenada de insertar
@@ -96,8 +84,6 @@ BEGIN
     VALUES (descripcion_tipo_contrato);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_tipo_contrato('contrato_tipo1');
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_tipo_contrato (
@@ -139,8 +125,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_tipo_contratos();
-
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_tipo_contrato_por_id(
     _id_tipo_contrato INT
@@ -159,8 +143,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT * FROM consultar_tipo_contrato_por_id(1);
-
 -- Funcionces almacenadas basicas para tabla empleado.puesto
 
 -- Funcion almacenada de insertar
@@ -173,8 +155,6 @@ BEGIN
     VALUES (descripcion_puesto);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_puesto ('puesto1');
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_puesto (
@@ -216,10 +196,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT *
-FROM consultar_puestos();
-
-
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_puesto_por_id(
     _id_puesto INT
@@ -238,8 +214,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_puesto_por_id(1);
-
 -- Funcionces almacenadas basicas para tabla empleado.grado_academico
 
 -- Funcion almacenada de insertar
@@ -253,8 +227,6 @@ BEGIN
     VALUES (descripcion_grado_academico, especialidad);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_grado_academico('descri_grado_aca1','especialidad1');
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_grado_academico (
@@ -300,8 +272,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT * FROM consultar_grados_academicos();
-
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_grado_academico_por_id(
     _id_grado_academico INT
@@ -322,8 +292,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_grado_academico_por_id(1);
-
 -- Funcionces almacenadas basicas para tabla empleado.institucion
 
 -- Funcion almacenada de insertar
@@ -336,8 +304,6 @@ BEGIN
     VALUES (nombre_institucion);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_institucion('institucion1');
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_institucion (
@@ -379,8 +345,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_instituciones();
-
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_institucion_por_id(
     _id_institucion INT
@@ -399,8 +363,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_institucion_por_id(1);
-
 -- Funcionces almacenadas basicas para tabla empleado.nacionalidad
 
 -- Funcion almacenada de insertar
@@ -414,8 +376,6 @@ BEGIN
     VALUES (nombre_nacionalidad, pais);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_nacionalidad('Hondureña','Honduras');
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_nacionalidad (
@@ -461,8 +421,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_nacionalidades();
-
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_nacionalidad_por_id (
    _id_nacionalidad INT
@@ -496,8 +454,6 @@ BEGIN
     VALUES (nombre_genero);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_genero('Feme');
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_genero (
@@ -539,8 +495,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_generos();
-
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_genero_por_id(
     _id_genero INT
@@ -559,8 +513,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_genero_por_id(1);
-
 -- Funcionces almacenadas basicas para tabla empleado.estado_civil
 
 -- Funcion almacenada de insertar
@@ -573,8 +525,6 @@ BEGIN
     VALUES (descripcion_estado_civil);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_estado_civil('casado'); 
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_estado_civil (
@@ -616,8 +566,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_estados_civile();
-
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_estado_civil_por_id (
     _id_estado_civil INT
@@ -652,8 +600,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT insertar_usuario ('Usuario1','Usuario1@algo.com','constrasenia1');
-
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_usuario(
     _id_usuario INT,
@@ -670,8 +616,6 @@ BEGIN
     WHERE id_usuario = id_usuario;
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT actualizar_usuario(1,'Usuario1a','aUsuario1@algo.com','aconstrasenia1');
 
 -- Funcion almacenada de eliminar
 CREATE FUNCTION eliminar_usuario (
@@ -730,7 +674,9 @@ $$ LANGUAGE plpgsql;
 
 
 -- Funcionces almacenadas basicas para tabla usuario.rol
+
 -- Funcion almacenada de insertar
+
 CREATE FUNCTION insertar_rol (
     nombre_rol VARCHAR(30)
 )
@@ -740,8 +686,6 @@ BEGIN
     VALUES (nombre_rol);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_rol ('rol1');
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_rol (
@@ -782,8 +726,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_rol();
-
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_rol_por_id (
     _id_rol INT
@@ -815,8 +757,6 @@ BEGIN
     VALUES (nombre_permiso);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_permiso_usuario('permisoUsuario1');
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_permiso_usuario (
@@ -878,6 +818,7 @@ $$ LANGUAGE plpgsql;
 
 
 -- Funcionces almacenadas basicas para tabla usuario.rol_permiso_usuario
+
 -- Funcion almacenada de insertar
 CREATE FUNCTION insertar_rol_permiso_usuario (
     id_rol INT,
@@ -889,8 +830,6 @@ BEGIN
     VALUES (id_rol, id_permiso_usuario);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_rol_permiso_usuario (1,1);
 
 -- Funcion almacenada de eliminar
 CREATE FUNCTION eliminar_rol_permiso_usuario (
@@ -933,8 +872,6 @@ BEGIN
     VALUES (id_usuario, id_rol);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_usuario_rol (1,1);
 
 -- Funcion almacenada de eliminar
 CREATE FUNCTION eliminar_usuario_rol (
@@ -985,8 +922,6 @@ BEGIN
     VALUES (codigo_empleado, id_nacionalidad, id_genero, id_estado_civil, id_usuario, dni, nombres, apellidos, fecha_nacimiento, correo);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_empleado (1,1,1,1,1,'0615','Dahen','Corrales','20-05-2002','dahen.com');
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_empleado (
@@ -1062,8 +997,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT * FROM consultar_empleadoss();
-
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_empleado_por_id (
     _codigo_empleado INT
@@ -1114,8 +1047,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT insertar_operador_telefonico('tigo');
-
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_operador_telefonico(
     _id_operador_telefonico INT,
@@ -1128,8 +1059,6 @@ BEGIN
     WHERE id_operador_telefonico = _id_operador_telefonico;
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT actualizar_operador_telefonico(1,'Claro');
 
 -- Funcion almacenada de eliminar
 CREATE FUNCTION eliminar_operador_telefonico (
@@ -1157,8 +1086,6 @@ BEGIN
     FROM empleado.operador_telefonico eot;
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT consultar_operadores_telefonicos();
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_operador_telefonico_por_id (
@@ -1193,8 +1120,6 @@ BEGIN
     VALUES (id_operador_telefonico, codigo_empleado, telefono);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_telefono (1,1,'33089547');
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_telefono (
@@ -1284,8 +1209,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT insertar_empleado_grado_academico(1,1,1,'28-04-2020');
-
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_empleado_grado_academico (
     _codigo_empleado INT, -- llave primaria
@@ -1338,8 +1261,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_empleados_grados_academico ();
-
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_empleado_grado_academico_por_id (
     _codigo_empleado INT, -- llave primaria
@@ -1380,8 +1301,6 @@ BEGIN
     VALUES (nombre_departamento, codigo_empleado_jefe);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_departamento ('Depa1',1);
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_departamento (
@@ -1426,8 +1345,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_departamento();
-
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_departamento_por_id(
     _id_departamento INT
@@ -1447,8 +1364,6 @@ BEGIN
     WHERE ed.id_departamento = _id_departamento;
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT consultar_departamento_por_id(1);
 
 -- Funcionces almacenadas basicas para tabla empleado.contrato_laboral
 
@@ -1473,8 +1388,6 @@ BEGIN
     VALUES (codigo_empleado, id_tipo_contrato, id_puesto, id_departamento, id_beneficio, numero_contrato, fecha_inicio, fecha_finalizacion, salario, hora_entrada, hora_salida, estado_contrato);
 END;
 $$ LANGUAGE plpgsql;
-
---SELECT insertar_contrato_laboral (1,1,1,1,1,'C1','20-05-2002','20-05-2025',5000,'12:00:00','18:00:00',1);
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_contrato_laboral (
@@ -1614,8 +1527,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT insertar_numero_periodo (1);
-
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_numero_periodo (
     _id_numero_periodo INT,
@@ -1689,8 +1600,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT insertar_periodo_academico (1,2020);
-
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_periodo_academico (
     _id_periodo_academico INT,
@@ -1734,8 +1643,6 @@ BEGIN
     FROM proyecto.periodo_academico ppa;
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT consultar_periodos_academicos();
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_periodo_academico_por_id (
@@ -1880,8 +1787,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT insertar_dimension('dimension1');
-
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_dimension(
     _id_dimension INT,
@@ -1894,8 +1799,6 @@ BEGIN
     WHERE id_dimension = _id_dimension;
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT actualizar_dimension(1,'Dimen 2');
 
 -- Funcion almacenada de eliminar
 CREATE FUNCTION eliminar_dimension (
@@ -1923,8 +1826,6 @@ BEGIN
     FROM proyecto.dimension pd;
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT consultar_dimensiones();
 
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_dimension_por_id (
@@ -1958,8 +1859,6 @@ BEGIN
     VALUES (nombre_tipo_proyecto);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_tipo_proyecto ('TipoProyecto1');
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_tipo_proyecto (
@@ -2000,8 +1899,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_tipos_proyectoss ();
-
 -- Funcion almacenada de consultar por id
 CREATE FUNCTION consultar_tipo_proyecto_por_id (
     _id_tipo_proyecto INT
@@ -2032,8 +1929,6 @@ BEGIN
     VALUES (nombre_estado);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_estado('estado1');
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_estado (
@@ -2093,8 +1988,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_estado_por_id(1);
-
 -- Funcionces almacenadas basicas para tabla proyecto.proyecto
 
 -- Funcion almacenada de insertar
@@ -2114,8 +2007,6 @@ BEGIN
     VALUES (id_tipo_proyecto, id_periodo_academico, id_departamento, id_dimension, id_estado, nombre_proyecto, fecha_inicio, fecha_fin);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_proyecto(1,1,1,1,1,'Proyecto1','20-05-2020','20-05-2024');
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_proyecto (
@@ -2217,8 +2108,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_proyecto_por_id (1);
-
 -- Funcionces almacenadas basicas para tabla proyecto.actividad
 
 -- Funcion almacenada de insertar
@@ -2233,8 +2122,6 @@ BEGIN
     VALUES (id_proyecto, nombre_actividad, fecha_actividad);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_actividad (1,'Actividad1','20-05-2024');
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_actividad (
@@ -2305,8 +2192,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_actividad_por_id (1);
-
 -- Funcionces almacenadas basicas para tabla proyecto.rol_proyecto
 
 -- Funcion almacenada de insertar
@@ -2319,8 +2204,6 @@ BEGIN
     VALUES (nombre_rol);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_rol_proyecto ('RolProyecto1');
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_rol_proyecto (
@@ -2379,8 +2262,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_rol_proyecto_por_id (1);
-
 -- Funcionces almacenadas basicas para tabla proyecto.empleado_proyecto
 
 -- Funcion almacenada de insertar
@@ -2395,8 +2276,6 @@ BEGIN
     VALUES (codigo_empleado, id_proyecto, id_rol_proyecto);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_empleado_proyecto (1,1,1);
 
 -- Funcion almacenada de eliminar
 CREATE FUNCTION eliminar_empleado_proyecto (
@@ -2451,8 +2330,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_empleado_proyecto_por_idd (1);
-
 -- Funcionces almacenadas basicas para tabla proyecto.actividad_empleado_proyecto
 
 -- Funcion almacenada de insertar
@@ -2470,8 +2347,6 @@ BEGIN
     VALUES (id_actividad, id_empleado_proyecto, id_estado, horas_trabajadas, dias_compensatorios, medio_verificacion);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_actividad_empleado_proyecto (1,1,1,1,1,'medioVeri');
 
 -- Funcion almacenada de eliminar
 CREATE FUNCTION eliminar_actividad_empleado_proyecto (
@@ -2561,7 +2436,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_actividad_empleado_proyecto_por_idd(1);
 
 -- Funcionces almacenadas basicas para tabla proceso.nombre_prueba
 
@@ -2575,8 +2449,6 @@ BEGIN
     VALUES (nombre_prueba);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_nombre_prueba ('nombrePrueba1');
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_nombre_prueba (
@@ -2636,10 +2508,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_nombre_prueba_por_idd(1);
-
-
 -- Funcionces almacenadas basicas para tabla proceso.rol_proceso
+
 -- Funcion almacenada de insertar
 CREATE FUNCTION insertar_rol_proceso (
     descripcion_rol VARCHAR(30)
@@ -2650,8 +2520,6 @@ BEGIN
     VALUES (descripcion_rol);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_rol_proceso ('RolPorceso1');
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_rol_proceso (
@@ -2711,8 +2579,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_rol_proceso_por_idd(1);
-
 -- Funcionces almacenadas basicas para tabla proceso.descripcion
 
 -- Funcion almacenada de insertar
@@ -2725,8 +2591,6 @@ BEGIN
     VALUES (nombre_proceso);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_descripcion ('nombrep1');
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_descripcion (
@@ -2747,7 +2611,8 @@ CREATE FUNCTION eliminar_descripcion (
 )
 RETURNS VOID AS $$
 BEGIN
-    DELETE FROM proceso.descripcion 
+    DELETE 
+	FROM proceso.descripcion 
     WHERE id_descripcion = _id_descripcion;
 END;
 $$ LANGUAGE plpgsql;
@@ -2785,8 +2650,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_descripcion_por_id(1);
-
 -- Funcionces almacenadas basicas para tabla proceso.estado_proceso
 
 -- Funcion almacenada de insertar
@@ -2799,8 +2662,6 @@ BEGIN
     VALUES (nombre_estado_proceso);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_estado_proceso('nombreEstadoProceso1');
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_estado_proceso (
@@ -2860,8 +2721,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_estado_proceso_por_id(1);
-
 -- Funcionces almacenadas basicas para tabla proceso.proceso
 
 -- Funcion almacenada de insertar
@@ -2877,8 +2736,6 @@ BEGIN
     VALUES (id_descripcion, id_estado_proceso, fecha, cantidad_compensatoria);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_proceso (1,1,'20-05-2024',1);
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_proceso (
@@ -2955,8 +2812,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_proceso_por_id(1);
-
 -- Funcionces almacenadas basicas para tabla proceso.empleado_proceso
 
 -- Funcion almacenada de insertar
@@ -2971,8 +2826,6 @@ BEGIN
     VALUES (codigo_empleado, id_rol_proceso, id_proceso);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_empleado_proceso (1,1,1);
 
 -- Funcion almacenada de eliminar
 CREATE FUNCTION eliminar_empleado_proceso (
@@ -3028,7 +2881,6 @@ END;
 $$ LANGUAGE plpgsql;
 
 
-
 -- Funcionces almacenadas basicas para tabla poceso.asistencia
 
 -- Funcion almacenada de insertar
@@ -3043,8 +2895,6 @@ BEGIN
     VALUES (id_empleado_proceso, id_nombre_prueba, estado);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_asistencia (1,1,'true');
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_asistencia (
@@ -3111,8 +2961,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_asistencia_por_id (1,1);
-
 -- Funcionces almacenadas basicas para tabla permiso.tipo_permiso
 
 -- Funcion almacenada de insertar
@@ -3125,8 +2973,6 @@ BEGIN
     VALUES (nombre_tipo_permiso);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_tipo_permiso ('tipoPermiso1');
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_tipo_permiso (
@@ -3186,8 +3032,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_tipo_permiso_por_idd(1);
-
 -- Funcionces almacenadas basicas para tabla permiso.permiso
 
 -- Funcion almacenada de insertar
@@ -3212,8 +3056,6 @@ BEGIN
     VALUES (codigo_empleado, id_tipo_permiso, hora_recibido, fecha_ingreso, fecha_inicio, fecha_final, descripcion, dias, horas, minutos, observacion, respaldo, recibido_por);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_permiso (1,1,'12:00:00','20-05-2023','28-05-2023','30-05-2023','DESCRIP',9,4,30,'observa','true',1);
 
 -- Funcion almacenada de actualizar
 CREATE FUNCTION actualizar_permiso (
@@ -3345,9 +3187,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_permiso_por_idd (1);
-
 -- Funcionces almacenadas basicas para tabla permiso.permiso_compensatorio_proceso
+
 -- Funcion almacenada de insertar
 CREATE FUNCTION insertar_permiso_compensatorio_proceso (
     id_permiso INT,
@@ -3359,8 +3200,6 @@ BEGIN
     VALUES (id_permiso, id_proceso);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT insertar_permiso_compensatorio_proceso (1,1);
 
 -- Funcion almacenada de eliminar
 CREATE FUNCTION eliminar_permiso_compensatorio_proceso (
