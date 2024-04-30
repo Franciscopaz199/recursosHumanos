@@ -201,9 +201,7 @@ CREATE TABLE empleado.contrato_laboral
 	CONSTRAINT Fk_ContratoLaboral_Puesto FOREIGN KEY (id_puesto) 
 		REFERENCES empleado.puesto(id_puesto),
 	CONSTRAINT Fk_ContratoLaboral_Departamento FOREIGN KEY (id_departamento) 
-		REFERENCES empleado.departamento(id_departamento),
-	CONSTRAINT Fk_ContratoLaboral_Beneficio FOREIGN KEY (id_beneficio) 
-		REFERENCES empleado.beneficio(id_beneficio)
+		REFERENCES empleado.departamento(id_departamento)
 );
 
 CREATE TABLE empleado.contrato_laboral_beneficio
