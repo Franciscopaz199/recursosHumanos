@@ -316,7 +316,8 @@ CREATE TABLE proyecto.empleado_proyecto
 	id_proyecto INT NOT NULL,
 	codigo_empleado INT NOT NULL,
 
-	CONSTRAINT PK_EmpleadoProyecto PRIMARY KEY (id_empleado_proyecto, id_rol_proyecto, id_proyecto, codigo_empleado),
+	CONSTRAINT PK_EmpleadoProyecto PRIMARY KEY (id_empleado_proyecto),
+	CONSTRAINT UK_EmpleadoProyecto UNIQUE (id_rol_proyecto, id_proyecto, codigo_empleado),
 	CONSTRAINT Fk_EmpleadoProyecto_RolProyecto FOREIGN KEY (id_rol_proyecto) 
 		REFERENCES proyecto.rol_proyecto(id_rol_proyecto),
 	CONSTRAINT Fk_EmpleadoProyecto_Proyecto FOREIGN KEY (id_proyecto) 
@@ -335,7 +336,8 @@ CREATE TABLE proyecto.actividad_empleado_proyecto
 	dias_compensatorios INT  NOT NULL,
 	medio_verificacion VARCHAR(100),
 	
-	CONSTRAINT PK_ActividadEmpleadoProyecto PRIMARY KEY (id_actividad_empleado_proyecto, id_actividad, id_empleado_proyecto),
+	CONSTRAINT PK_ActividadEmpleadoProyecto PRIMARY KEY (id_actividad_empleado_proyecto),
+	CONSTRAINT UK_ActividadEmpleadoProyecto UNIQUE (id_actividad, id_empleado_proyecto),
 	CONSTRAINT Fk_ActividadEmpleadoProyecto_Actividad FOREIGN KEY (id_actividad) 
 		REFERENCES proyecto.actividad(id_actividad),
 	CONSTRAINT Fk_ActividadEmpleadoProyecto_EmpleadoProyecto FOREIGN KEY (id_empleado_proyecto) 
@@ -366,7 +368,7 @@ CREATE TABLE proceso.descripcion
 CREATE TABLE proceso.estado_proceso
 (
 	id_estado_proceso SERIAL PRIMARY KEY,
-	nombre_estado_proceso VARCHAR(100) UNIQUE
+	nombre_estado_proceso VARCHAR(100) NOT NULL UNIQUE
 );
 
 CREATE TABLE proceso.proceso
@@ -390,7 +392,8 @@ CREATE TABLE proceso.empleado_proceso
 	id_rol_proceso INT NOT NULL,
 	id_proceso INT NOT NULL,
 	
-	CONSTRAINT PK_EmpleadoProceso PRIMARY KEY (id_empleado_proceso, codigo_empleado, id_rol_proceso, id_proceso),
+	CONSTRAINT PK_EmpleadoProceso PRIMARY KEY (id_empleado_proceso),
+	CONSTRAINT UK_EmpleadoProceso UNIQUE (codigo_empleado, id_proceso),
 	CONSTRAINT Fk_EmpleadoProceso_Empleado FOREIGN KEY (codigo_empleado) 
 		REFERENCES empleado.empleado(codigo_empleado),
 	CONSTRAINT Fk_EmpleadoProceso_RolProceso FOREIGN KEY (id_rol_proceso) 
@@ -429,7 +432,7 @@ CREATE TABLE permiso.permiso
 	fecha_inicio DATE NOT NULL,
 	fecha_final DATE NOT NULL,
 	descripcion VARCHAR(200),
-	dias INT NOT NULL,
+	dias INT,
 	horas INT,
 	minutos INT,
 	observacion VARCHAR(200),
@@ -444,10 +447,10 @@ CREATE TABLE permiso.permiso
 		REFERENCES empleado.empleado(codigo_empleado)
 );
 
-CREATE TABLE  permiso.permiso_compesatorio_proceso
+CREATE TABLE permiso.permiso_compesatorio_proceso
 (
-	id_permiso INT,
-	id_proceso INT,
+	id_permiso INT NOT NULL,
+	id_proceso INT NOT NULL,
 	
 	PRIMARY KEY(id_permiso, id_proceso),
 	CONSTRAINT Fk_PermisoCompesatorioProceso_PermisoFinal FOREIGN KEY (id_permiso) 
@@ -458,8 +461,8 @@ CREATE TABLE  permiso.permiso_compesatorio_proceso
 
 CREATE TABLE permiso.permiso_compesatorio_proyecto
 (
-	id_permiso INT,
-	id_actividad_empleado_proyecto INT,
+	id_permiso INT NOT NULL,
+	id_actividad_empleado_proyecto INT NOT NULL,
 	
 	PRIMARY KEY(id_permiso, id_actividad_empleado_proyecto),
 	CONSTRAINT Fk_PermisoCompesatorioProyecto_PermisoFinal FOREIGN KEY (id_permiso) 
