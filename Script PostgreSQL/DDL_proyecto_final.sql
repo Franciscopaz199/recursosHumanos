@@ -29,8 +29,8 @@ CREATE TABLE empleado.puesto
 CREATE TABLE empleado.grado_academico
 (
     id_grado_academico SERIAL PRIMARY KEY,
-    descripcion_grado_academico VARCHAR(30) UNIQUE NOT NULL,
-    especialidad VARCHAR(35) UNIQUE NOT NULL
+    descripcion_grado_academico VARCHAR(30) NOT NULL,
+    especialidad VARCHAR(35) NOT NULL
 );
 
 CREATE TABLE empleado.institucion
@@ -360,7 +360,7 @@ CREATE TABLE proceso.rol_proceso
 CREATE TABLE proceso.descripcion
 (
 	id_descripcion SERIAL PRIMARY KEY,
-	nombre_proceso VARCHAR(100) NOT NULL UNIQUE
+	nombre_proceso VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE proceso.estado_proceso
@@ -445,27 +445,27 @@ CREATE TABLE permiso.permiso
 		REFERENCES empleado.empleado(codigo_empleado)
 );
 
-CREATE TABLE permiso.permiso_compesatorio_proceso
+CREATE TABLE permiso.permiso_compensatorio_proceso
 (
 	id_permiso INT NOT NULL,
 	id_proceso INT NOT NULL,
 	
 	PRIMARY KEY(id_permiso, id_proceso),
-	CONSTRAINT Fk_PermisoCompesatorioProceso_PermisoFinal FOREIGN KEY (id_permiso) 
+	CONSTRAINT Fk_PermisoCompensatorioProceso_PermisoFinal FOREIGN KEY (id_permiso) 
 		REFERENCES permiso.permiso(id_permiso),
-	CONSTRAINT Fk_PermisoCompesatorioProceso_Proceso FOREIGN KEY (id_proceso) 
+	CONSTRAINT Fk_PermisoCompensatorioProceso_Proceso FOREIGN KEY (id_proceso) 
 		REFERENCES proceso.proceso(id_proceso)
 );
 
-CREATE TABLE permiso.permiso_compesatorio_proyecto
+CREATE TABLE permiso.permiso_compensatorio_proyecto
 (
 	id_permiso INT NOT NULL,
 	id_actividad_empleado_proyecto INT NOT NULL,
 	
 	PRIMARY KEY(id_permiso, id_actividad_empleado_proyecto),
-	CONSTRAINT Fk_PermisoCompesatorioProyecto_PermisoFinal FOREIGN KEY (id_permiso) 
+	CONSTRAINT Fk_PermisoCompensatorioProyecto_PermisoFinal FOREIGN KEY (id_permiso) 
 		REFERENCES permiso.permiso(id_permiso),
-	CONSTRAINT Fk_PermisoCompesatorioProyecto_ActividadEmpleadoProyecto FOREIGN KEY (id_actividad_empleado_proyecto) 
+	CONSTRAINT Fk_PermisoCompensatorioProyecto_ActividadEmpleadoProyecto FOREIGN KEY (id_actividad_empleado_proyecto) 
 		REFERENCES proyecto.actividad_empleado_proyecto(id_actividad_empleado_proyecto)
 
 );

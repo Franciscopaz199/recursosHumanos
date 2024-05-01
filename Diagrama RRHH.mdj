@@ -4916,7 +4916,7 @@
 										"$ref": "AAAAAAGOy0IHCf1o73Q="
 									},
 									"edgePosition": 1,
-									"text": "FK_Vinculacion_PeriodoAcademico"
+									"text": "FK_Proyecto_PeriodoAcademico"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -5647,7 +5647,7 @@
 										"$ref": "AAAAAAGO7XSNDPhpZp8="
 									},
 									"edgePosition": 2,
-									"text": "FK_EmpleadoPropyectoRol_RolProyecto"
+									"text": "FK_EmpleadoPropyecto_RolProyecto"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -14497,7 +14497,7 @@
 								"_parent": {
 									"$ref": "AAAAAAGO7XSNDPhly9U="
 								},
-								"name": "FK_EmpleadoPropyectoRol_RolProyecto",
+								"name": "FK_EmpleadoPropyecto_RolProyecto",
 								"reference": {
 									"$ref": "AAAAAAGOyPP2lReAZDo="
 								},
@@ -14820,7 +14820,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGOyzw2Mvy9TZg="
 							},
-							"name": "FK_Vinculacion_PeriodoAcademico",
+							"name": "FK_Proyecto_PeriodoAcademico",
 							"end1": {
 								"_type": "ERDRelationshipEnd",
 								"_id": "AAAAAAGOy0IHCf1l1/8=",
