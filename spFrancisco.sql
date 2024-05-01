@@ -1729,3 +1729,317 @@ $$ LANGUAGE plpgsql;
 SELECT *
 FROM empleados_por_correo('gmail');
 
+
+-- Funciones almacenadas usando IF
+
+-- 1. Mostrar todos los empleados por departamento si se pasa o todos los empleados si no se pasa el departamento
+CREATE OR REPLACE FUNCTION empleados_por_departamento(departamento_id INT)
+RETURNS TABLE (
+    codigo_empleado INT,
+    estado_empleado BOOLEAN,
+    nombre_nacionalidad VARCHAR(25),
+    nombre_genero VARCHAR(10),
+    descripcion_estado_civil VARCHAR(20),
+    dni VARCHAR(15),
+    nombres VARCHAR(60),
+    apellidos VARCHAR(60),
+    fecha_nacimiento DATE,
+    correo VARCHAR(50),
+    nombre_departamento VARCHAR(50)
+) AS $$
+BEGIN
+    IF departamento_id IS NOT NULL THEN
+        RETURN QUERY 
+        SELECT 
+            e.codigo_empleado,
+            e.estado_empleado,
+            n.nombre_nacionalidad,
+            g.nombre_genero,
+            ec.descripcion_estado_civil,
+            e.dni,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            e.correo,
+            d.nombre_departamento
+        FROM empleado.empleado e
+        INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+        INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+        INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+        INNER JOIN empleado.contrato_laboral cl ON e.codigo_empleado = cl.codigo_empleado
+        INNER JOIN empleado.departamento d ON cl.id_departamento = d.id_departamento
+        WHERE d.id_departamento = departamento_id;
+    ELSE
+        RETURN QUERY 
+        SELECT 
+            e.codigo_empleado,
+            e.estado_empleado,
+            n.nombre_nacionalidad,
+            g.nombre_genero,
+            ec.descripcion_estado_civil,
+            e.dni,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            e.correo,
+            d.nombre_departamento
+        FROM empleado.empleado e
+        INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+        INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+        INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+        INNER JOIN empleado.contrato_laboral cl ON e.codigo_empleado = cl.codigo_empleado
+        INNER JOIN empleado.departamento d ON cl.id_departamento = d.id_departamento;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM empleados_por_departamento(NULL);
+
+
+-- 2. Mostrar todos los empleados por nacionalidad si se pasa o todos los empleados si no se pasa la nacionalidad
+CREATE OR REPLACE FUNCTION empleados_por_nacionalidad(nacionalidad_id INT)
+RETURNS TABLE (
+    codigo_empleado INT,
+    estado_empleado BOOLEAN,
+    nombre_nacionalidad VARCHAR(25),
+    nombre_genero VARCHAR(10),
+    descripcion_estado_civil VARCHAR(20),
+    dni VARCHAR(15),
+    nombres VARCHAR(60),
+    apellidos VARCHAR(60),
+    fecha_nacimiento DATE,
+    correo VARCHAR(50)
+) AS $$
+BEGIN
+    IF nacionalidad_id IS NOT NULL THEN
+        RETURN QUERY 
+        SELECT 
+            e.codigo_empleado,
+            e.estado_empleado,
+            n.nombre_nacionalidad,
+            g.nombre_genero,
+            ec.descripcion_estado_civil,
+            e.dni,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            e.correo
+        FROM empleado.empleado e
+        INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+        INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+        INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+        WHERE n.id_nacionalidad = nacionalidad_id;
+    ELSE
+        RETURN QUERY 
+        SELECT 
+            e.codigo_empleado,
+            e.estado_empleado,
+            n.nombre_nacionalidad,
+            g.nombre_genero,
+            ec.descripcion_estado_civil,
+            e.dni,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            e.correo
+        FROM empleado.empleado e
+        INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+        INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+        INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM empleados_por_nacionalidad(1);
+
+SELECT *
+FROM empleados_por_nacionalidad(NULL);
+
+
+
+
+-- 3. Mostrar todos los empleados por genero si se pasa o todos los empleados si no se pasa el genero
+CREATE OR REPLACE FUNCTION empleados_por_genero(genero_id INT)
+RETURNS TABLE (
+    codigo_empleado INT,
+    estado_empleado BOOLEAN,
+    nombre_nacionalidad VARCHAR(25),
+    nombre_genero VARCHAR(10),
+    descripcion_estado_civil VARCHAR(20),
+    dni VARCHAR(15),
+    nombres VARCHAR(60),
+    apellidos VARCHAR(60),
+    fecha_nacimiento DATE,
+    correo VARCHAR(50)
+) AS $$
+BEGIN
+    IF genero_id IS NOT NULL THEN
+        RETURN QUERY 
+        SELECT 
+            e.codigo_empleado,
+            e.estado_empleado,
+            n.nombre_nacionalidad,
+            g.nombre_genero,
+            ec.descripcion_estado_civil,
+            e.dni,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            e.correo
+        FROM empleado.empleado e
+        INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+        INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+        INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+        WHERE g.id_genero = genero_id;
+    ELSE
+        RETURN QUERY 
+        SELECT 
+            e.codigo_empleado,
+            e.estado_empleado,
+            n.nombre_nacionalidad,
+            g.nombre_genero,
+            ec.descripcion_estado_civil,
+            e.dni,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            e.correo
+        FROM empleado.empleado e
+        INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+        INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+        INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM empleados_por_genero(1);
+
+
+SELECT *
+FROM empleados_por_genero(null);
+
+
+-- 4. Mostrar todos los empleados por estado civil si se pasa o todos los empleados si no se pasa el estado civil
+CREATE OR REPLACE FUNCTION empleados_por_estado_civil(estado_civil_id INT)
+RETURNS TABLE (
+    codigo_empleado INT,
+    estado_empleado BOOLEAN,
+    nombre_nacionalidad VARCHAR(25),
+    nombre_genero VARCHAR(10),
+    descripcion_estado_civil VARCHAR(20),
+    dni VARCHAR(15),
+    nombres VARCHAR(60),
+    apellidos VARCHAR(60),
+    fecha_nacimiento DATE,
+    correo VARCHAR(50)
+) AS $$
+BEGIN
+    IF estado_civil_id IS NOT NULL THEN
+        RETURN QUERY 
+        SELECT 
+            e.codigo_empleado,
+            e.estado_empleado,
+            n.nombre_nacionalidad,
+            g.nombre_genero,
+            ec.descripcion_estado_civil,
+            e.dni,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            e.correo
+        FROM empleado.empleado e
+        INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+        INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+        INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+        WHERE ec.id_estado_civil = estado_civil_id;
+    ELSE
+        RETURN QUERY 
+        SELECT 
+            e.codigo_empleado,
+            e.estado_empleado,
+            n.nombre_nacionalidad,
+            g.nombre_genero,
+            ec.descripcion_estado_civil,
+            e.dni,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            e.correo
+        FROM empleado.empleado e
+        INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+        INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+        INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+
+SELECT *
+FROM empleados_por_estado_civil(1);
+
+SELECT *
+FROM empleados_por_estado_civil(null);
+
+
+-- 5. Mostrar todos los empleados por estado de contrato si se pasa o todos los empleados si no se pasa el estado de contrato
+CREATE OR REPLACE FUNCTION empleados_por_estado_contrato(contrato_estado BOOLEAN)
+RETURNS TABLE (
+    codigo_empleado INT,
+    estado_empleado BOOLEAN,
+    nombre_nacionalidad VARCHAR(25),
+    nombre_genero VARCHAR(10),
+    descripcion_estado_civil VARCHAR(20),
+    dni VARCHAR(15),
+    nombres VARCHAR(60),
+    apellidos VARCHAR(60),
+    fecha_nacimiento DATE,
+    correo VARCHAR(50)
+) AS $$
+BEGIN
+    IF contrato_estado IS NOT NULL THEN
+        RETURN QUERY 
+        SELECT 
+            e.codigo_empleado,
+            e.estado_empleado,
+            n.nombre_nacionalidad,
+            g.nombre_genero,
+            ec.descripcion_estado_civil,
+            e.dni,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            e.correo
+        FROM empleado.empleado e
+        INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+        INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+        INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+        INNER JOIN empleado.contrato_laboral cl ON e.codigo_empleado = cl.codigo_empleado
+        WHERE cl.estado_contrato = contrato_estado;
+    ELSE
+        RETURN QUERY 
+        SELECT 
+            e.codigo_empleado,
+            e.estado_empleado,
+            n.nombre_nacionalidad,
+            g.nombre_genero,
+            ec.descripcion_estado_civil,
+            e.dni,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            e.correo
+        FROM empleado.empleado e
+        INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+        INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+        INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+
+SELECT *
+FROM empleados_por_estado_contrato(null);
+
+
