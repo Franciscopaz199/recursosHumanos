@@ -4916,7 +4916,7 @@
 										"$ref": "AAAAAAGOy0IHCf1o73Q="
 									},
 									"edgePosition": 1,
-									"text": "FK_Vinculacion_PeriodoAcademico"
+									"text": "FK_Proyecto_PeriodoAcademico"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -5647,7 +5647,7 @@
 										"$ref": "AAAAAAGO7XSNDPhpZp8="
 									},
 									"edgePosition": 2,
-									"text": "FK_EmpleadoPropyectoRol_RolProyecto"
+									"text": "FK_EmpleadoPropyecto_RolProyecto"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -11746,7 +11746,7 @@
 							},
 							"name": "Nombres",
 							"type": "VARCHAR",
-							"length": "20"
+							"length": "60"
 						},
 						{
 							"_type": "ERDColumn",
@@ -11754,9 +11754,9 @@
 							"_parent": {
 								"$ref": "AAAAAAGOO4IuWp39lBI="
 							},
-							"name": "ApellidoPersona",
+							"name": "Apellidos",
 							"type": "VARCHAR",
-							"length": "20"
+							"length": "60"
 						},
 						{
 							"_type": "ERDColumn",
@@ -12091,8 +12091,8 @@
 							"name": "CodigoEmpleado",
 							"type": "INTEGER",
 							"length": "9",
-							"primaryKey": true,
-							"foreignKey": true
+							"foreignKey": true,
+							"unique": true
 						},
 						{
 							"_type": "ERDColumn",
@@ -12103,7 +12103,6 @@
 							"name": "IdRolProceso",
 							"type": "INTEGER",
 							"length": "9",
-							"primaryKey": true,
 							"foreignKey": true
 						},
 						{
@@ -12136,8 +12135,8 @@
 							"name": "IdProceso",
 							"type": "INTEGER",
 							"length": "9",
-							"primaryKey": true,
-							"foreignKey": true
+							"foreignKey": true,
+							"unique": true
 						},
 						{
 							"_type": "ERDColumn",
@@ -14498,7 +14497,7 @@
 								"_parent": {
 									"$ref": "AAAAAAGO7XSNDPhly9U="
 								},
-								"name": "FK_EmpleadoPropyectoRol_RolProyecto",
+								"name": "FK_EmpleadoPropyecto_RolProyecto",
 								"reference": {
 									"$ref": "AAAAAAGOyPP2lReAZDo="
 								},
@@ -14537,7 +14536,6 @@
 							"name": "IdRolProyecto",
 							"type": "INTEGER",
 							"length": "9",
-							"primaryKey": true,
 							"foreignKey": true,
 							"referenceTo": {
 								"$ref": "AAAAAAGO7XOpPPgwOMA="
@@ -14552,8 +14550,8 @@
 							"name": "IdProyecto",
 							"type": "INTEGER",
 							"length": "9",
-							"primaryKey": true,
-							"foreignKey": true
+							"foreignKey": true,
+							"unique": true
 						},
 						{
 							"_type": "ERDColumn",
@@ -14564,8 +14562,8 @@
 							"name": "CodigoEmpleado",
 							"type": "INTEGER",
 							"length": "9",
-							"primaryKey": true,
-							"foreignKey": true
+							"foreignKey": true,
+							"unique": true
 						}
 					]
 				},
@@ -14822,7 +14820,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGOyzw2Mvy9TZg="
 							},
-							"name": "FK_Vinculacion_PeriodoAcademico",
+							"name": "FK_Proyecto_PeriodoAcademico",
 							"end1": {
 								"_type": "ERDRelationshipEnd",
 								"_id": "AAAAAAGOy0IHCf1l1/8=",

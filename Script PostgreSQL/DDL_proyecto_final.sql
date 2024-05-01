@@ -29,8 +29,8 @@ CREATE TABLE empleado.puesto
 CREATE TABLE empleado.grado_academico
 (
     id_grado_academico SERIAL PRIMARY KEY,
-    descripcion_grado_academico VARCHAR(30) UNIQUE NOT NULL,
-    especialidad VARCHAR(35) UNIQUE NOT NULL
+    descripcion_grado_academico VARCHAR(30) NOT NULL,
+    especialidad VARCHAR(35) NOT NULL
 );
 
 CREATE TABLE empleado.institucion
