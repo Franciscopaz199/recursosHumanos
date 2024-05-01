@@ -1691,6 +1691,55 @@ $$ LANGUAGE plpgsql;
 
 SELECT * FROM consultar_contrato_laboral_por_id (2);
 
+-- Funciones almacenadas basicas para tabla empleado.contrato_laboral_beneficio
+
+-- Funcion almacenada de insertar
+CREATE FUNCTION insertar_contrato_laboral_beneficio (
+    id_contrato_laboral INT,
+    id_beneficio INT
+)
+RETURNS VOID AS $$
+BEGIN
+    INSERT INTO empleado.contrato_laboral_beneficio (id_contrato_laboral, id_beneficio) 
+    VALUES (id_contrato_laboral, id_beneficio);
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT insertar_contrato_laboral_beneficio (1,1);
+
+-- Funcion almacenada de eliminar
+CREATE FUNCTION eliminar_contrato_laboral_beneficio (
+    _id_contrato_laboral INT,
+    _id_beneficio INT
+)
+RETURNS VOID AS $$
+BEGIN
+    DELETE 
+    FROM empleado.contrato_laboral_beneficio 
+    WHERE id_contrato_laboral = _id_contrato_laboral AND id_beneficio = _id_beneficio;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT eliminar_contrato_laboral_beneficio (1,1);
+
+-- Funcion almacenada de consultar todos
+CREATE FUNCTION consultar_contratos_laborales_beneficios ()
+RETURNS TABLE (
+    id_contrato_laboral INT, 
+    id_beneficio INT
+) AS $$
+BEGIN
+    RETURN QUERY 
+    SELECT 
+        eclb.id_contrato_laboral, 
+        eclb.id_beneficio
+    FROM empleado.contrato_laboral_beneficio eclb;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM consultar_contratos_laborales_beneficios ();
+
+
 -- Funciones almacenadas basicas para tabla proyecto.numero_periodo
 
 -- Funcion almacenada de insertar
