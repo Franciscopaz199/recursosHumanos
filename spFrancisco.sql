@@ -1238,3 +1238,115 @@ $$ LANGUAGE plpgsql;
 
 SELECT *
 FROM mostrar_proyectos_periodo_academico(2);
+
+
+-- funciones usando CASE
+
+-- Obtener el estado de un proyecto en base a la fecha actual
+-- Pendiente, En curso, Finalizado
+CREATE OR REPLACE FUNCTION estado_proyecto(proyecto_id INT)
+RETURNS TEXT AS $$
+DECLARE
+    inicio DATE;
+    fin DATE;
+BEGIN
+    SELECT fecha_inicio, fecha_fin INTO inicio, fin
+    FROM proyecto.proyecto
+    WHERE id_proyecto = proyecto_id;
+
+    RETURN CASE
+        WHEN CURRENT_DATE < inicio THEN 'Pendiente'
+        WHEN CURRENT_DATE BETWEEN inicio AND fin THEN 'En curso'
+        WHEN CURRENT_DATE > fin THEN 'Finalizado'
+    END;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM estado_proyecto(1);
+
+-- Clasificar el periodo academico en base a la cantidad de proyectos
+-- Bajo, Medio, Alto
+CREATE OR REPLACE FUNCTION clasificar_periodo(periodo_id INT)
+RETURNS TEXT AS $$
+DECLARE
+    num_proyectos INT;
+BEGIN
+    SELECT COUNT(*) INTO num_proyectos
+    FROM proyecto.proyecto
+    WHERE id_periodo_academico = periodo_id;
+
+    RETURN CASE
+        WHEN num_proyectos < 10 THEN 'Bajo'
+        WHEN num_proyectos BETWEEN 10 AND 20 THEN 'Medio'
+        WHEN num_proyectos > 20 THEN 'Alto'
+    END;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM clasificar_periodo(1);
+
+
+-- Obtener la prioridad de un proyecto en base al periodo academico
+-- Primer semestre, Segundo semestre
+CREATE OR REPLACE FUNCTION prioridad_proyecto(proyecto_id INT)
+RETURNS TEXT AS $$
+DECLARE
+    periodo_id INT;
+BEGIN
+    SELECT id_periodo_academico INTO periodo_id
+    FROM proyecto.proyecto
+    WHERE id_proyecto = proyecto_id;
+
+    RETURN (SELECT clasificar_periodo(periodo_id));
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM prioridad_proyecto(1);
+
+-- Obtener el tipo de periodo academico
+-- Primer semestre, Segundo semestre
+CREATE OR REPLACE FUNCTION tipo_periodo(periodo_id INT)
+RETURNS TEXT AS $$
+DECLARE
+    num_periodo VARCHAR(15);
+BEGIN
+    SELECT numero_periodo INTO num_periodo
+    FROM proyecto.numero_periodo
+    WHERE id_numero_periodo = periodo_id;
+
+    RETURN CASE num_periodo
+        WHEN '1PAC' THEN 'Primer periodo Academico'
+        WHEN '2PAC' THEN 'Segundo periodo Academico'
+        WHEN '3PAC' THEN 'Tercer periodo Academico'
+    END;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM tipo_periodo(1);
+
+-- Obtener el progreso de un proyecto
+-- 0%, N%, 100%
+CREATE OR REPLACE FUNCTION progreso_proyecto(proyecto_id INT)
+RETURNS TEXT AS $$
+DECLARE
+    inicio DATE;
+    fin DATE;
+BEGIN
+    SELECT fecha_inicio, fecha_fin INTO inicio, fin
+    FROM proyecto.proyecto
+    WHERE id_proyecto = proyecto_id;
+
+    RETURN CASE
+        WHEN CURRENT_DATE < inicio THEN '0%'
+        WHEN CURRENT_DATE BETWEEN inicio AND fin THEN ((CURRENT_DATE - inicio) * 100 / (fin - inicio)) || '%'
+        WHEN CURRENT_DATE > fin THEN '100%'
+    END;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM progreso_proyecto(1);
