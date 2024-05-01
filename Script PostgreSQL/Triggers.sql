@@ -157,7 +157,7 @@ RETURNS TRIGGER AS $$
 BEGIN
     IF (TG_OP = 'INSERT') THEN
         INSERT INTO auditoria_empleado_proyecto (id_proyecto, codigo_empleado, id_tipo_cambio, valores_nuevos)
-        VALUES (NEW.id_proyecto, 1, NEW.codigo_empleado, row_to_json(NEW));
+        VALUES (NEW.id_proyecto, NEW.codigo_empleado, 1, row_to_json(NEW));
         RETURN NEW;
     ELSIF (TG_OP = 'UPDATE') THEN
         INSERT INTO auditoria_empleado_proyecto (id_proyecto, codigo_empleado, id_tipo_cambio, valores_anteriores, valores_nuevos)
