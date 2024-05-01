@@ -1238,3 +1238,808 @@ $$ LANGUAGE plpgsql;
 
 SELECT *
 FROM mostrar_proyectos_periodo_academico(2);
+
+
+-- funciones usando CASE
+
+-- Obtener el estado de un proyecto en base a la fecha actual
+-- Pendiente, En curso, Finalizado
+CREATE OR REPLACE FUNCTION estado_proyecto(proyecto_id INT)
+RETURNS TEXT AS $$
+DECLARE
+    inicio DATE;
+    fin DATE;
+BEGIN
+    SELECT fecha_inicio, fecha_fin INTO inicio, fin
+    FROM proyecto.proyecto
+    WHERE id_proyecto = proyecto_id;
+
+    RETURN CASE
+        WHEN CURRENT_DATE < inicio THEN 'Pendiente'
+        WHEN CURRENT_DATE BETWEEN inicio AND fin THEN 'En curso'
+        WHEN CURRENT_DATE > fin THEN 'Finalizado'
+    END;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM estado_proyecto(1);
+
+-- Clasificar el periodo academico en base a la cantidad de proyectos
+-- Bajo, Medio, Alto
+CREATE OR REPLACE FUNCTION clasificar_periodo(periodo_id INT)
+RETURNS TEXT AS $$
+DECLARE
+    num_proyectos INT;
+BEGIN
+    SELECT COUNT(*) INTO num_proyectos
+    FROM proyecto.proyecto
+    WHERE id_periodo_academico = periodo_id;
+
+    RETURN CASE
+        WHEN num_proyectos < 10 THEN 'Bajo'
+        WHEN num_proyectos BETWEEN 10 AND 20 THEN 'Medio'
+        WHEN num_proyectos > 20 THEN 'Alto'
+    END;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM clasificar_periodo(1);
+
+
+-- Obtener la prioridad de un proyecto en base al periodo academico
+-- Primer semestre, Segundo semestre
+CREATE OR REPLACE FUNCTION prioridad_proyecto(proyecto_id INT)
+RETURNS TEXT AS $$
+DECLARE
+    periodo_id INT;
+BEGIN
+    SELECT id_periodo_academico INTO periodo_id
+    FROM proyecto.proyecto
+    WHERE id_proyecto = proyecto_id;
+
+    RETURN (SELECT clasificar_periodo(periodo_id));
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM prioridad_proyecto(1);
+
+-- Obtener el tipo de periodo academico
+-- Primer semestre, Segundo semestre
+CREATE OR REPLACE FUNCTION tipo_periodo(periodo_id INT)
+RETURNS TEXT AS $$
+DECLARE
+    num_periodo VARCHAR(15);
+BEGIN
+    SELECT numero_periodo INTO num_periodo
+    FROM proyecto.numero_periodo
+    WHERE id_numero_periodo = periodo_id;
+
+    RETURN CASE num_periodo
+        WHEN '1PAC' THEN 'Primer periodo Academico'
+        WHEN '2PAC' THEN 'Segundo periodo Academico'
+        WHEN '3PAC' THEN 'Tercer periodo Academico'
+    END;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM tipo_periodo(1);
+
+-- Obtener el progreso de un proyecto
+-- 0%, N%, 100%
+CREATE OR REPLACE FUNCTION progreso_proyecto(proyecto_id INT)
+RETURNS TEXT AS $$
+DECLARE
+    inicio DATE;
+    fin DATE;
+BEGIN
+    SELECT fecha_inicio, fecha_fin INTO inicio, fin
+    FROM proyecto.proyecto
+    WHERE id_proyecto = proyecto_id;
+
+    RETURN CASE
+        WHEN CURRENT_DATE < inicio THEN '0%'
+        WHEN CURRENT_DATE BETWEEN inicio AND fin THEN ((CURRENT_DATE - inicio) * 100 / (fin - inicio)) || '%'
+        WHEN CURRENT_DATE > fin THEN '100%'
+    END;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM progreso_proyecto(1);
+
+CREATE OR REPLACE FUNCTION consultar_empleados_proceso_especifico(IN proceso_id INT)
+RETURNS TABLE (
+    codigo_empleado INT,
+    estado_empleado BOOLEAN,
+    nombre_nacionalidad VARCHAR(25),
+    nombre_genero VARCHAR(10),
+    descripcion_estado_civil VARCHAR(20),
+    dni VARCHAR(15),
+    nombres VARCHAR(60),
+    apellidos VARCHAR(60),
+    fecha_nacimiento DATE,
+    correo VARCHAR(50),
+    nombre_proceso VARCHAR(100)
+) AS $$
+BEGIN
+    RETURN QUERY 
+    SELECT 
+        e.codigo_empleado,
+        e.estado_empleado,
+        n.nombre_nacionalidad,
+        g.nombre_genero,
+        ec.descripcion_estado_civil,
+        e.dni,
+        e.nombres,
+        e.apellidos,
+        e.fecha_nacimiento,
+        e.correo,
+        pd.nombre_proceso
+    FROM empleado.empleado e
+    INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+    INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+    INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+    INNER JOIN proceso.empleado_proceso ep ON e.codigo_empleado = ep.codigo_empleado
+    INNER JOIN proceso.proceso pr ON ep.id_proceso = pr.id_proceso
+	INNER JOIN proceso.descripcion pd ON pr.id_descripcion = pd.id_descripcion
+    WHERE pr.id_proceso = proceso_id;
+
+END; 
+$$ LANGUAGE plpgsql;
+
+-- SP DE BUSQUEDA (FILTROS)
+-- 1. Obtener todos los proyectos de un periodo academico
+CREATE OR REPLACE FUNCTION proyectos_por_periodo(periodo_id INT)
+RETURNS TABLE ( 
+    id_proyecto INT, 
+    nombre_proyecto VARCHAR(60), 
+    fecha_inicio DATE, 
+    fecha_final DATE, 
+    nombre_dimension VARCHAR(60)
+) AS $$
+BEGIN
+    RETURN QUERY 
+    SELECT 
+        pp.id_proyecto,
+        pp.nombre_proyecto,
+        pp.fecha_inicio,
+        pp.fecha_fin,
+        pd.nombre_dimension
+    FROM proyecto.proyecto pp
+    INNER JOIN proyecto.dimension pd ON pp.id_dimension = pd.id_dimension
+    WHERE pp.id_periodo_academico = periodo_id;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT * 
+FROM proyectos_por_periodo(1);
+
+
+--2. Obtener todos los proyectos que iniciaron en un rango de fechas
+CREATE OR REPLACE FUNCTION proyectos_por_fecha(inicio DATE, fin DATE)
+RETURNS TABLE ( 
+    id_proyecto INT, 
+    nombre_proyecto VARCHAR(60), 
+    fecha_inicio DATE, 
+    fecha_final DATE, 
+    nombre_dimension VARCHAR(60)
+) AS $$
+BEGIN
+    RETURN QUERY 
+    SELECT 
+        pp.id_proyecto,
+        pp.nombre_proyecto,
+        pp.fecha_inicio,
+        pp.fecha_fin,
+        pd.nombre_dimension
+    FROM proyecto.proyecto pp
+    INNER JOIN proyecto.dimension pd ON pp.id_dimension = pd.id_dimension
+    WHERE pp.fecha_inicio BETWEEN inicio AND fin;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM proyectos_por_fecha('2001-01-01', '2021-12-31');
+
+--3. Obtener todos los proyectos que finalizaron en un rango de fechas
+CREATE OR REPLACE FUNCTION proyectos_por_fecha_final(inicio DATE, fin DATE)
+RETURNS TABLE ( 
+    id_proyecto INT, 
+    nombre_proyecto VARCHAR(60), 
+    fecha_inicio DATE, 
+    fecha_final DATE, 
+    nombre_dimension VARCHAR(60)
+) AS $$
+BEGIN
+    RETURN QUERY 
+    SELECT 
+        pp.id_proyecto,
+        pp.nombre_proyecto,
+        pp.fecha_inicio,
+        pp.fecha_fin,
+        pd.nombre_dimension
+    FROM proyecto.proyecto pp
+    INNER JOIN proyecto.dimension pd ON pp.id_dimension = pd.id_dimension
+    WHERE pp.fecha_fin BETWEEN inicio AND fin;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM proyectos_por_fecha_final('2021-01-01', '2021-12-31');
+
+
+--4. Obtener todos los proyectos que iniciaron y finalizaron en un rango de fechas
+CREATE OR REPLACE FUNCTION proyectos_por_fecha_inicio_fin(inicio DATE, fin DATE)
+RETURNS TABLE ( 
+    id_proyecto INT, 
+    nombre_proyecto VARCHAR(60), 
+    fecha_inicio DATE, 
+    fecha_final DATE, 
+    nombre_dimension VARCHAR(60)
+) AS $$
+BEGIN
+    RETURN QUERY 
+    SELECT 
+        pp.id_proyecto,
+        pp.nombre_proyecto,
+        pp.fecha_inicio,
+        pp.fecha_fin,
+        pd.nombre_dimension
+    FROM proyecto.proyecto pp
+    INNER JOIN proyecto.dimension pd ON pp.id_dimension = pd.id_dimension
+    WHERE pp.fecha_inicio BETWEEN inicio AND fin
+    AND pp.fecha_fin BETWEEN inicio AND fin;
+END;
+$$ LANGUAGE plpgsql;
+
+
+SELECT *
+FROM proyectos_por_fecha_inicio_fin('2001-01-01', '2021-12-31');
+
+
+--5. Obtener todos los proyectos por un estado determinado
+CREATE OR REPLACE FUNCTION proyectos_por_estado(estado_proyecto VARCHAR(20))
+RETURNS TABLE ( 
+    id_proyecto INT, 
+    nombre_proyecto VARCHAR(60), 
+    fecha_inicio DATE, 
+    fecha_final DATE, 
+    nombre_dimension VARCHAR(60)
+) AS $$
+BEGIN
+    RETURN QUERY 
+    SELECT 
+        pp.id_proyecto,
+        pp.nombre_proyecto,
+        pp.fecha_inicio,
+        pp.fecha_fin,
+        pd.nombre_dimension
+    FROM proyecto.proyecto pp
+    INNER JOIN proyecto.dimension pd ON pp.id_dimension = pd.id_dimension
+    INNER JOIN proyecto.estado pe ON pe.id_estado = pp.id_estado
+	WHERE pe.nombre_estado = estado_proyecto;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM proyectos_por_estado('En proceso');
+
+--6. Obtener todos los proyectos por coincidencia de nombre de proyecto
+CREATE OR REPLACE FUNCTION proyectos_por_nombre(proyecto_nombre VARCHAR(60))
+RETURNS TABLE ( 
+    id_proyecto INT, 
+    nombre_proyecto VARCHAR(60), 
+    fecha_inicio DATE, 
+    fecha_final DATE, 
+    nombre_dimension VARCHAR(60)
+) AS $$
+BEGIN
+    RETURN QUERY 
+    SELECT 
+        pp.id_proyecto,
+        pp.nombre_proyecto,
+        pp.fecha_inicio,
+        pp.fecha_fin,
+        pd.nombre_dimension
+    FROM proyecto.proyecto pp
+    INNER JOIN proyecto.dimension pd ON pp.id_dimension = pd.id_dimension
+    WHERE pp.nombre_proyecto LIKE '%' || proyecto_nombre || '%';
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM proyectos_por_nombre('pro');
+
+
+
+--7. Obtener todos los proyectos por periodo academico y estado
+CREATE OR REPLACE FUNCTION proyectos_por_periodo_estado(periodo_id INT, proyecto_estado VARCHAR(20))
+RETURNS TABLE ( 
+    id_proyecto INT, 
+    nombre_proyecto VARCHAR(60), 
+    fecha_inicio DATE, 
+    fecha_final DATE, 
+    nombre_dimension VARCHAR(60)
+) AS $$
+BEGIN
+    RETURN QUERY 
+    SELECT 
+        pp.id_proyecto,
+        pp.nombre_proyecto,
+        pp.fecha_inicio,
+        pp.fecha_fin,
+        pd.nombre_dimension
+    FROM proyecto.proyecto pp
+    INNER JOIN proyecto.dimension pd ON pp.id_dimension = pd.id_dimension
+	INNER JOIN proyecto.estado pe ON pe.id_estado = pp.id_estado
+    WHERE pp.id_periodo_academico = periodo_id
+    AND pe.nombre_estado = proyecto_estado;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM proyectos_por_periodo_estado(2, 'Finalizado');
+
+--8. Obtener todos los proyectos por periodo academico y nombre de proyecto
+CREATE OR REPLACE FUNCTION proyectos_por_periodo_nombre(periodo_id INT, proyecto_nombre VARCHAR(60))
+RETURNS TABLE ( 
+    id_proyecto INT, 
+    nombre_proyecto VARCHAR(60), 
+    fecha_inicio DATE, 
+    fecha_final DATE, 
+    nombre_dimension VARCHAR(60)
+) AS $$
+BEGIN
+    RETURN QUERY 
+    SELECT 
+        pp.id_proyecto,
+        pp.nombre_proyecto,
+        pp.fecha_inicio,
+        pp.fecha_fin,
+        pd.nombre_dimension
+    FROM proyecto.proyecto pp
+    INNER JOIN proyecto.dimension pd ON pp.id_dimension = pd.id_dimension
+    WHERE pp.id_periodo_academico = periodo_id
+    AND pp.nombre_proyecto LIKE '%' || proyecto_nombre || '%';
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM proyectos_por_periodo_nombre(1, 'Proyecto');
+
+
+-- 9. Obtener todos los empleador por nombre
+CREATE OR REPLACE FUNCTION empleados_por_nombre(empleado_nombre VARCHAR(60))
+RETURNS TABLE (
+    codigo_empleado INT,
+    estado_empleado BOOLEAN,
+    nombre_nacionalidad VARCHAR(25),
+    nombre_genero VARCHAR(10),
+    descripcion_estado_civil VARCHAR(20),
+    dni VARCHAR(15),
+    nombres VARCHAR(60),
+    apellidos VARCHAR(60),
+    fecha_nacimiento DATE,
+    correo VARCHAR(50)
+) AS $$
+BEGIN
+    RETURN QUERY 
+    SELECT 
+        e.codigo_empleado,
+        e.estado_empleado,
+        n.nombre_nacionalidad,
+        g.nombre_genero,
+        ec.descripcion_estado_civil,
+        e.dni,
+        e.nombres,
+        e.apellidos,
+        e.fecha_nacimiento,
+        e.correo
+    FROM empleado.empleado e
+    INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+    INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+    INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+    WHERE e.nombres LIKE '%' || empleado_nombre || '%';
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM empleados_por_nombre('J');
+
+-- 10. Obtener todos los empleados por apellido
+CREATE OR REPLACE FUNCTION empleados_por_apellido(empleado_apellido VARCHAR(60))
+RETURNS TABLE (
+    codigo_empleado INT,
+    estado_empleado BOOLEAN,
+    nombre_nacionalidad VARCHAR(25),
+    nombre_genero VARCHAR(10),
+    descripcion_estado_civil VARCHAR(20),
+    dni VARCHAR(15),
+    nombres VARCHAR(60),
+    apellidos VARCHAR(60),
+    fecha_nacimiento DATE,
+    correo VARCHAR(50)
+) AS $$
+BEGIN
+    RETURN QUERY 
+    SELECT 
+        e.codigo_empleado,
+        e.estado_empleado,
+        n.nombre_nacionalidad,
+        g.nombre_genero,
+        ec.descripcion_estado_civil,
+        e.dni,
+        e.nombres,
+        e.apellidos,
+        e.fecha_nacimiento,
+        e.correo
+    FROM empleado.empleado e
+    INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+    INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+    INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+    WHERE e.apellidos LIKE '%' || empleado_apellido || '%';
+END;
+
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM empleados_por_apellido('M');
+
+-- 11. Obtener todos los empleados por correo
+CREATE OR REPLACE FUNCTION empleados_por_correo(empleado_correo VARCHAR(50))
+RETURNS TABLE (
+    codigo_empleado INT,
+    estado_empleado BOOLEAN,
+    nombre_nacionalidad VARCHAR(25),
+    nombre_genero VARCHAR(10),
+    descripcion_estado_civil VARCHAR(20),
+    dni VARCHAR(15),
+    nombres VARCHAR(60),
+    apellidos VARCHAR(60),
+    fecha_nacimiento DATE,
+    correo VARCHAR(50)
+) AS $$
+BEGIN
+    RETURN QUERY 
+    SELECT 
+        e.codigo_empleado,
+        e.estado_empleado,
+        n.nombre_nacionalidad,
+        g.nombre_genero,
+        ec.descripcion_estado_civil,
+        e.dni,
+        e.nombres,
+        e.apellidos,
+        e.fecha_nacimiento,
+        e.correo
+    FROM empleado.empleado e
+    INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+    INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+    INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+    WHERE e.correo LIKE '%' || empleado_correo || '%';
+END;
+
+$$ LANGUAGE plpgsql;
+
+
+SELECT *
+FROM empleados_por_correo('gmail');
+
+
+-- Funciones almacenadas usando IF
+
+-- 1. Mostrar todos los empleados por departamento si se pasa o todos los empleados si no se pasa el departamento
+CREATE OR REPLACE FUNCTION empleados_por_departamento(departamento_id INT)
+RETURNS TABLE (
+    codigo_empleado INT,
+    estado_empleado BOOLEAN,
+    nombre_nacionalidad VARCHAR(25),
+    nombre_genero VARCHAR(10),
+    descripcion_estado_civil VARCHAR(20),
+    dni VARCHAR(15),
+    nombres VARCHAR(60),
+    apellidos VARCHAR(60),
+    fecha_nacimiento DATE,
+    correo VARCHAR(50),
+    nombre_departamento VARCHAR(50)
+) AS $$
+BEGIN
+    IF departamento_id IS NOT NULL THEN
+        RETURN QUERY 
+        SELECT 
+            e.codigo_empleado,
+            e.estado_empleado,
+            n.nombre_nacionalidad,
+            g.nombre_genero,
+            ec.descripcion_estado_civil,
+            e.dni,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            e.correo,
+            d.nombre_departamento
+        FROM empleado.empleado e
+        INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+        INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+        INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+        INNER JOIN empleado.contrato_laboral cl ON e.codigo_empleado = cl.codigo_empleado
+        INNER JOIN empleado.departamento d ON cl.id_departamento = d.id_departamento
+        WHERE d.id_departamento = departamento_id;
+    ELSE
+        RETURN QUERY 
+        SELECT 
+            e.codigo_empleado,
+            e.estado_empleado,
+            n.nombre_nacionalidad,
+            g.nombre_genero,
+            ec.descripcion_estado_civil,
+            e.dni,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            e.correo,
+            d.nombre_departamento
+        FROM empleado.empleado e
+        INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+        INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+        INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+        INNER JOIN empleado.contrato_laboral cl ON e.codigo_empleado = cl.codigo_empleado
+        INNER JOIN empleado.departamento d ON cl.id_departamento = d.id_departamento;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM empleados_por_departamento(NULL);
+
+
+-- 2. Mostrar todos los empleados por nacionalidad si se pasa o todos los empleados si no se pasa la nacionalidad
+CREATE OR REPLACE FUNCTION empleados_por_nacionalidad(nacionalidad_id INT)
+RETURNS TABLE (
+    codigo_empleado INT,
+    estado_empleado BOOLEAN,
+    nombre_nacionalidad VARCHAR(25),
+    nombre_genero VARCHAR(10),
+    descripcion_estado_civil VARCHAR(20),
+    dni VARCHAR(15),
+    nombres VARCHAR(60),
+    apellidos VARCHAR(60),
+    fecha_nacimiento DATE,
+    correo VARCHAR(50)
+) AS $$
+BEGIN
+    IF nacionalidad_id IS NOT NULL THEN
+        RETURN QUERY 
+        SELECT 
+            e.codigo_empleado,
+            e.estado_empleado,
+            n.nombre_nacionalidad,
+            g.nombre_genero,
+            ec.descripcion_estado_civil,
+            e.dni,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            e.correo
+        FROM empleado.empleado e
+        INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+        INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+        INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+        WHERE n.id_nacionalidad = nacionalidad_id;
+    ELSE
+        RETURN QUERY 
+        SELECT 
+            e.codigo_empleado,
+            e.estado_empleado,
+            n.nombre_nacionalidad,
+            g.nombre_genero,
+            ec.descripcion_estado_civil,
+            e.dni,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            e.correo
+        FROM empleado.empleado e
+        INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+        INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+        INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM empleados_por_nacionalidad(1);
+
+SELECT *
+FROM empleados_por_nacionalidad(NULL);
+
+
+
+
+-- 3. Mostrar todos los empleados por genero si se pasa o todos los empleados si no se pasa el genero
+CREATE OR REPLACE FUNCTION empleados_por_genero(genero_id INT)
+RETURNS TABLE (
+    codigo_empleado INT,
+    estado_empleado BOOLEAN,
+    nombre_nacionalidad VARCHAR(25),
+    nombre_genero VARCHAR(10),
+    descripcion_estado_civil VARCHAR(20),
+    dni VARCHAR(15),
+    nombres VARCHAR(60),
+    apellidos VARCHAR(60),
+    fecha_nacimiento DATE,
+    correo VARCHAR(50)
+) AS $$
+BEGIN
+    IF genero_id IS NOT NULL THEN
+        RETURN QUERY 
+        SELECT 
+            e.codigo_empleado,
+            e.estado_empleado,
+            n.nombre_nacionalidad,
+            g.nombre_genero,
+            ec.descripcion_estado_civil,
+            e.dni,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            e.correo
+        FROM empleado.empleado e
+        INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+        INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+        INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+        WHERE g.id_genero = genero_id;
+    ELSE
+        RETURN QUERY 
+        SELECT 
+            e.codigo_empleado,
+            e.estado_empleado,
+            n.nombre_nacionalidad,
+            g.nombre_genero,
+            ec.descripcion_estado_civil,
+            e.dni,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            e.correo
+        FROM empleado.empleado e
+        INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+        INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+        INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM empleados_por_genero(1);
+
+
+SELECT *
+FROM empleados_por_genero(null);
+
+
+-- 4. Mostrar todos los empleados por estado civil si se pasa o todos los empleados si no se pasa el estado civil
+CREATE OR REPLACE FUNCTION empleados_por_estado_civil(estado_civil_id INT)
+RETURNS TABLE (
+    codigo_empleado INT,
+    estado_empleado BOOLEAN,
+    nombre_nacionalidad VARCHAR(25),
+    nombre_genero VARCHAR(10),
+    descripcion_estado_civil VARCHAR(20),
+    dni VARCHAR(15),
+    nombres VARCHAR(60),
+    apellidos VARCHAR(60),
+    fecha_nacimiento DATE,
+    correo VARCHAR(50)
+) AS $$
+BEGIN
+    IF estado_civil_id IS NOT NULL THEN
+        RETURN QUERY 
+        SELECT 
+            e.codigo_empleado,
+            e.estado_empleado,
+            n.nombre_nacionalidad,
+            g.nombre_genero,
+            ec.descripcion_estado_civil,
+            e.dni,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            e.correo
+        FROM empleado.empleado e
+        INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+        INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+        INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+        WHERE ec.id_estado_civil = estado_civil_id;
+    ELSE
+        RETURN QUERY 
+        SELECT 
+            e.codigo_empleado,
+            e.estado_empleado,
+            n.nombre_nacionalidad,
+            g.nombre_genero,
+            ec.descripcion_estado_civil,
+            e.dni,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            e.correo
+        FROM empleado.empleado e
+        INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+        INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+        INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+
+SELECT *
+FROM empleados_por_estado_civil(1);
+
+SELECT *
+FROM empleados_por_estado_civil(null);
+
+
+-- 5. Mostrar todos los empleados por estado de contrato si se pasa o todos los empleados si no se pasa el estado de contrato
+CREATE OR REPLACE FUNCTION empleados_por_estado_contrato(contrato_estado BOOLEAN)
+RETURNS TABLE (
+    codigo_empleado INT,
+    estado_empleado BOOLEAN,
+    nombre_nacionalidad VARCHAR(25),
+    nombre_genero VARCHAR(10),
+    descripcion_estado_civil VARCHAR(20),
+    dni VARCHAR(15),
+    nombres VARCHAR(60),
+    apellidos VARCHAR(60),
+    fecha_nacimiento DATE,
+    correo VARCHAR(50)
+) AS $$
+BEGIN
+    IF contrato_estado IS NOT NULL THEN
+        RETURN QUERY 
+        SELECT 
+            e.codigo_empleado,
+            e.estado_empleado,
+            n.nombre_nacionalidad,
+            g.nombre_genero,
+            ec.descripcion_estado_civil,
+            e.dni,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            e.correo
+        FROM empleado.empleado e
+        INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+        INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+        INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+        INNER JOIN empleado.contrato_laboral cl ON e.codigo_empleado = cl.codigo_empleado
+        WHERE cl.estado_contrato = contrato_estado;
+    ELSE
+        RETURN QUERY 
+        SELECT 
+            e.codigo_empleado,
+            e.estado_empleado,
+            n.nombre_nacionalidad,
+            g.nombre_genero,
+            ec.descripcion_estado_civil,
+            e.dni,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            e.correo
+        FROM empleado.empleado e
+        INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+        INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+        INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+
+SELECT *
+FROM empleados_por_estado_contrato(null);
+
+
