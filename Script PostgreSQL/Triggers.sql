@@ -430,3 +430,40 @@ CREATE TRIGGER tr_auditoria_permiso_compesatorio_proyecto
 AFTER INSERT OR UPDATE OR DELETE ON permiso.permiso_compesatorio_proyecto
 FOR EACH ROW
 EXECUTE FUNCTION auditoria_permiso_compesatorio_proyecto();
+
+
+------------------------------------------------------------------------------------------------------------------
+-- Triggers especiales
+-- Trigger para validar que el correo sea valido
+CREATE OR REPLACE FUNCTION validar_correo_tr()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF (validar_correo(NEW.correo)) THEN
+        RETURN NEW;
+    ELSE
+        RAISE EXCEPTION 'El correo % no es valido', NEW.correo;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER tr_validar_correo
+BEFORE INSERT OR UPDATE ON empleado.empleado
+FOR EACH ROW
+EXECUTE FUNCTION validar_correo_tr();
+
+-- Trigger para validar que el telefono sea valido
+CREATE OR REPLACE FUNCTION validar_telefono_tr()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF (validar_telefono(NEW.telefono)) THEN
+        RETURN NEW;
+    ELSE
+        RAISE EXCEPTION 'El telefono % no es valido', NEW.telefono;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER tr_validar_telefono
+BEFORE INSERT OR UPDATE ON empleado.empleado
+FOR EACH ROW
+EXECUTE FUNCTION validar_telefono_tr();
