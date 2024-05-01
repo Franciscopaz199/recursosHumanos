@@ -360,7 +360,7 @@ CREATE TABLE proceso.rol_proceso
 CREATE TABLE proceso.descripcion
 (
 	id_descripcion SERIAL PRIMARY KEY,
-	nombre_proceso VARCHAR(100) NOT NULL UNIQUE
+	nombre_proceso VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE proceso.estado_proceso
