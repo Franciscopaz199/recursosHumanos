@@ -467,3 +467,47 @@ CREATE TRIGGER tr_validar_telefono
 BEFORE INSERT OR UPDATE ON empleado.empleado
 FOR EACH ROW
 EXECUTE FUNCTION validar_telefono_tr();
+
+-- Trigger para validar que un permiso sea de tipo compensatorio antes de asignarlo a la tabla permiso_compensatorio_proceso
+-- Funcion para validar si un permiso es de tipo compensatorio
+CREATE OR REPLACE FUNCTION validar_permiso_compensatorio(_id_permiso INT)
+RETURNS BOOLEAN AS $$
+DECLARE
+    es_compensatorio BOOLEAN;
+BEGIN
+    es_compensatorio := (SELECT id_tipo_permiso = 2 FROM permiso.permiso WHERE id_permiso = _id_permiso);
+    RETURN es_compensatorio;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION validar_permiso_compensatorio_proceso_tr()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF (validar_permiso_compensatorio(NEW.id_permiso)) THEN
+        RETURN NEW;
+    ELSE
+        RAISE EXCEPTION 'El permiso con id % no es de tipo compensatorio', NEW.id_permiso;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER tr_validar_permiso_compensatorio_proceso
+BEFORE INSERT OR UPDATE ON permiso.permiso_compesatorio_proceso
+FOR EACH ROW
+EXECUTE FUNCTION validar_permiso_compensatorio_proceso_tr();
+
+-- Trigger para validar que un permiso sea de tipo compensatorio antes de asignarlo a la tabla permiso_compensatorio_proyecto
+CREATE OR REPLACE FUNCTION validar_permiso_compensatorio_proyecto_tr()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF (validar_permiso_compensatorio(NEW.id_permiso)) THEN
+        RETURN NEW;
+    ELSE
+        RAISE EXCEPTION 'El permiso con id % no es de tipo compensatorio', NEW.id_permiso;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER tr_validar_permiso_compensatorio_proyecto
+BEFORE INSERT OR UPDATE ON permiso.permiso_compensatorio_proyecto
+FOR EACH ROW

@@ -115,7 +115,7 @@ CREATE TABLE empleado.empleado
 	id_nacionalidad INT NOT NULL,
 	id_genero INT NOT NULL,
 	id_estado_civil INT NOT NULL,
-	id_usuario INT NOT NULL,
+	id_usuario INT,
 	dni VARCHAR(15) NOT NULL UNIQUE,
 	nombres VARCHAR(60) NOT NULL,
 	apellidos VARCHAR(60) NOT NULL,
