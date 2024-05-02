@@ -15,11 +15,11 @@ SELECT insertar_tipo_contrato('Contrato de prácticas');
 SELECT insertar_tipo_contrato('Contrato de formación y aprendizaje');
 
 -- 5 Insert de la tabla empleado.puesto
-SELECT insertar_puesto('Desarrollador de software');
-SELECT insertar_puesto('Analista de datos');
-SELECT insertar_puesto('Gerente de ventas');
-SELECT insertar_puesto('Asistente administrativo');
-SELECT insertar_puesto('Técnico de soporte');
+SELECT insertar_puesto('Docente');
+SELECT insertar_puesto('VOAE');
+SELECT insertar_puesto('DEGT');
+SELECT insertar_puesto('Administrar');
+SELECT insertar_puesto('Director');
 
 -- 5 Insert de la tabla empleado.grado_academico
 
