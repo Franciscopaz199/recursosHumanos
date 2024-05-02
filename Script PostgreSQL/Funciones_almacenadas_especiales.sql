@@ -473,11 +473,7 @@
 
 
 
-
--- Funciones Almacenadas utilizando operadores de comparacion.
-
---DROP FUNCTION IF EXISTS consultar_empleados_mayores_35();
--- SP mostrar a los empleados mayores a 35 años
+-- 1. SP mostrar a los empleados mayores a 35 años
 CREATE OR REPLACE FUNCTION consultar_empleados_mayores_35()
 RETURNS TABLE (
 	codigo_empleado INT,
@@ -506,10 +502,12 @@ BEGIN
 		e.fecha_nacimiento,
 		e.correo,
 		EXTRACT(YEAR FROM age(e.fecha_nacimiento)) AS edad
-	FROM empleado.empleado e
-	INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
-	INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
-	INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+	FROM empleado.empleado e INNER JOIN empleado.nacionalidad n 
+		ON e.id_nacionalidad = n.id_nacionalidad
+		INNER JOIN empleado.genero g 
+		ON e.id_genero = g.id_genero
+		INNER JOIN empleado.estado_civil ec
+		ON e.id_estado_civil = ec.id_estado_civil
 	WHERE EXTRACT(YEAR FROM age(e.fecha_nacimiento)) > 35;
 END; 
 $$ LANGUAGE plpgsql;
@@ -517,7 +515,7 @@ $$ LANGUAGE plpgsql;
 SELECT * 
 FROM consultar_empleados_mayores_35();
 
--- SP mostrar los empleados de género femenino
+-- 2. SP mostrar los empleados de género femenino
 CREATE OR REPLACE FUNCTION consultar_empleados_genero_femenino()
 RETURNS TABLE (
     codigo_empleado INT,
@@ -544,10 +542,12 @@ BEGIN
         e.apellidos,
         e.fecha_nacimiento,
         e.correo
-    FROM empleado.empleado e
-    INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
-    INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
-    INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+    FROM empleado.empleado e INNER JOIN empleado.nacionalidad n 
+		ON e.id_nacionalidad = n.id_nacionalidad
+		INNER JOIN empleado.genero g 
+		ON e.id_genero = g.id_genero
+		INNER JOIN empleado.estado_civil ec 
+		ON e.id_estado_civil = ec.id_estado_civil
     WHERE g.nombre_genero = 'Femenino';
 
 END; 
@@ -556,7 +556,7 @@ $$ LANGUAGE plpgsql;
 SELECT *
 FROM consultar_empleados_genero_femenino();
 
--- SP mostrar los empleados de género masculino
+-- 3. SP mostrar los empleados de género masculino
 CREATE OR REPLACE FUNCTION consultar_empleados_genero_masculino()
 RETURNS TABLE (
     codigo_empleado INT,
@@ -583,10 +583,12 @@ BEGIN
         e.apellidos,
         e.fecha_nacimiento,
         e.correo
-    FROM empleado.empleado e
-    INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
-    INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
-    INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+    FROM empleado.empleado e INNER JOIN empleado.nacionalidad n
+		ON e.id_nacionalidad = n.id_nacionalidad
+		INNER JOIN empleado.genero g
+		ON e.id_genero = g.id_genero
+		INNER JOIN empleado.estado_civil ec 
+		ON e.id_estado_civil = ec.id_estado_civil
     WHERE g.nombre_genero = 'Masculino';
 
 END; 
@@ -595,8 +597,8 @@ $$ LANGUAGE plpgsql;
 SELECT * 
 FROM consultar_empleados_genero_masculino();
 
--- SP mostrar los empleados mayores a 35 años y de género masculino
-CREATE OR REPLACE FUNCTION consultar_empleados_mayores_35_masculino()
+-- 4. SP mostrar los empleados menores a 35 años y de género masculino
+CREATE OR REPLACE FUNCTION consultar_empleados_menores_35_masculino()
 RETURNS TABLE (
     codigo_empleado INT,
     estado_empleado BOOLEAN,
@@ -622,19 +624,21 @@ BEGIN
         e.apellidos,
         e.fecha_nacimiento,
         e.correo
-    FROM empleado.empleado e
-    INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
-    INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
-    INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
-    WHERE EXTRACT(YEAR FROM age(e.fecha_nacimiento)) > 35 AND g.nombre_genero = 'Masculino';
+    FROM empleado.empleado e INNER JOIN empleado.nacionalidad n 
+		ON e.id_nacionalidad = n.id_nacionalidad
+		INNER JOIN empleado.genero g 
+		ON e.id_genero = g.id_genero
+		INNER JOIN empleado.estado_civil ec 
+		ON e.id_estado_civil = ec.id_estado_civil
+    WHERE EXTRACT(YEAR FROM age(e.fecha_nacimiento)) < 35 AND g.nombre_genero = 'Masculino';
 
 END; 
 $$ LANGUAGE plpgsql;
 
 SELECT * 
-FROM consultar_empleados_mayores_35_masculino();
+FROM consultar_empleados_menores_35_masculino();
 
--- SP mostrar los empleados mayores a 35 años y de género femenino
+-- 5. SP mostrar los empleados mayores a 35 años y de género femenino
 CREATE OR REPLACE FUNCTION consultar_empleados_mayores_35_femenino()
 RETURNS TABLE (
     codigo_empleado INT,
@@ -661,10 +665,12 @@ BEGIN
         e.apellidos,
         e.fecha_nacimiento,
         e.correo
-    FROM empleado.empleado e
-    INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
-    INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
-    INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+    FROM empleado.empleado e INNER JOIN empleado.nacionalidad n 
+		ON e.id_nacionalidad = n.id_nacionalidad
+		INNER JOIN empleado.genero g 
+		ON e.id_genero = g.id_genero
+		INNER JOIN empleado.estado_civil ec
+		ON e.id_estado_civil = ec.id_estado_civil
     WHERE EXTRACT(YEAR FROM age(e.fecha_nacimiento)) > 35 AND g.nombre_genero = 'Femenino';
 
 END; 
@@ -673,7 +679,7 @@ $$ LANGUAGE plpgsql;
 SELECT *
 FROM consultar_empleados_mayores_35_femenino();
 
--- SP mostrar los empleados egresados de la UNAH
+-- 6. SP mostrar los empleados egresados de la UNAH
 CREATE OR REPLACE FUNCTION consultar_empleados_egresados_unah()
 RETURNS TABLE (
     codigo_empleado INT,
@@ -708,13 +714,18 @@ BEGIN
         ga.especialidad,
         i.nombre_institucion,
         ega.anio_obtencion
-    FROM empleado.empleado e
-    INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
-    INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
-    INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
-    INNER JOIN empleado.empleado_grado_academico ega ON e.codigo_empleado = ega.codigo_empleado
-    INNER JOIN empleado.grado_academico ga ON ega.id_grado_academico = ga.id_grado_academico
-    INNER JOIN empleado.institucion i ON ega.id_institucion = i.id_institucion
+    FROM empleado.empleado e INNER JOIN empleado.nacionalidad n 
+		ON e.id_nacionalidad = n.id_nacionalidad
+		INNER JOIN empleado.genero g 
+		ON e.id_genero = g.id_genero
+		INNER JOIN empleado.estado_civil ec
+		ON e.id_estado_civil = ec.id_estado_civil
+		INNER JOIN empleado.empleado_grado_academico ega 
+		ON e.codigo_empleado = ega.codigo_empleado
+		INNER JOIN empleado.grado_academico ga
+		ON ega.id_grado_academico = ga.id_grado_academico
+		INNER JOIN empleado.institucion i 
+		ON ega.id_institucion = i.id_institucion
     WHERE i.nombre_institucion = 'UNAH';
 
 END; 
@@ -723,8 +734,7 @@ $$ LANGUAGE plpgsql;
 SELECT * 
 FROM consultar_empleados_egresados_unah();
 
--- SP mostrar a los empleados con nacionalidad extranjera 
--- TODOS AQUELLO CUYA NACIONALIDAD NO SEA HONDUREÑA
+-- 7. SP mostrar a los empleados con nacionalidad extranjera 
 
 CREATE OR REPLACE FUNCTION consultar_empleados_nacionalidad_extranjera()
 RETURNS TABLE (
@@ -752,10 +762,12 @@ BEGIN
         e.apellidos,
         e.fecha_nacimiento,
         e.correo
-    FROM empleado.empleado e
-    INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
-    INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
-    INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+    FROM empleado.empleado e INNER JOIN empleado.nacionalidad n 
+		ON e.id_nacionalidad = n.id_nacionalidad
+		INNER JOIN empleado.genero g
+		ON e.id_genero = g.id_genero
+		INNER JOIN empleado.estado_civil ec
+		ON e.id_estado_civil = ec.id_estado_civil
     WHERE n.nombre_nacionalidad != 'Hondureña';
 
 END; 
@@ -764,7 +776,7 @@ $$ LANGUAGE plpgsql;
 SELECT * 
 FROM consultar_empleados_nacionalidad_extranjera();
 
--- SP mostrar a los empleados con nacionalidad hondureña
+-- 8. SP mostrar a los empleados con nacionalidad hondureña
 CREATE OR REPLACE FUNCTION consultar_empleados_nacionalidad_hondurena()
 RETURNS TABLE (
     codigo_empleado INT,
@@ -791,10 +803,12 @@ BEGIN
         e.apellidos,
         e.fecha_nacimiento,
         e.correo
-    FROM empleado.empleado e
-    INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
-    INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
-    INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+    FROM empleado.empleado e INNER JOIN empleado.nacionalidad n
+		ON e.id_nacionalidad = n.id_nacionalidad
+		INNER JOIN empleado.genero g 
+		ON e.id_genero = g.id_genero
+		INNER JOIN empleado.estado_civil ec 
+		ON e.id_estado_civil = ec.id_estado_civil
     WHERE n.nombre_nacionalidad = 'Hondureña';
 
 END; 
@@ -804,7 +818,7 @@ $$ LANGUAGE plpgsql;
 SELECT * 
 FROM consultar_empleados_nacionalidad_hondurena();
 
--- SP mostrar al empleado más antiguo
+-- 9. SP mostrar al empleado más antiguo
 CREATE OR REPLACE FUNCTION consultar_empleado_mas_antiguo()
 RETURNS TABLE (
     codigo_empleado INT,
@@ -833,20 +847,23 @@ BEGIN
         e.fecha_nacimiento,
         e.correo,
         cl.fecha_inicio
-    FROM empleado.empleado e
-    INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
-    INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
-    INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
-    INNER JOIN empleado.contrato_laboral cl ON e.codigo_empleado = cl.codigo_empleado
+    FROM empleado.empleado e INNER JOIN empleado.nacionalidad n 
+		ON e.id_nacionalidad = n.id_nacionalidad
+		INNER JOIN empleado.genero g 
+		ON e.id_genero = g.id_genero
+		INNER JOIN empleado.estado_civil ec
+		ON e.id_estado_civil = ec.id_estado_civil
+		INNER JOIN empleado.contrato_laboral cl 
+		ON e.codigo_empleado = cl.codigo_empleado
     WHERE cl.fecha_inicio = (SELECT MIN(ecl.fecha_inicio) FROM empleado.contrato_laboral ecl);
 
 END; 
 $$ LANGUAGE plpgsql;
 
 
-SELECT consultar_empleado_mas_antiguo();
+SELECT * FROM consultar_empleado_mas_antiguo();
 
--- SP mostrar al empleado más reciente
+-- 10. SP mostrar al empleado más reciente
 CREATE OR REPLACE FUNCTION consultar_empleado_mas_reciente()
 RETURNS TABLE (
     codigo_empleado INT,
@@ -875,20 +892,22 @@ BEGIN
         e.fecha_nacimiento,
         e.correo,
         cl.fecha_inicio
-    FROM empleado.empleado e
-    INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
-    INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
-    INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
-    INNER JOIN empleado.contrato_laboral cl ON e.codigo_empleado = cl.codigo_empleado
+    FROM empleado.empleado e INNER JOIN empleado.nacionalidad n
+		ON e.id_nacionalidad = n.id_nacionalidad
+		INNER JOIN empleado.genero g 
+		ON e.id_genero = g.id_genero
+		INNER JOIN empleado.estado_civil ec
+		ON e.id_estado_civil = ec.id_estado_civil
+		INNER JOIN empleado.contrato_laboral cl 
+		ON e.codigo_empleado = cl.codigo_empleado
     WHERE cl.fecha_inicio = (SELECT MAX(ecl.fecha_inicio) FROM empleado.contrato_laboral ecl);
 
 END; 
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_empleado_mas_reciente();
+SELECT * FROM consultar_empleado_mas_reciente();
 
--- DROP FUNCTION IF EXISTS consultar_empleados_contrato_activo();
--- SP mostrar a los empleados con contrato activo
+-- 11. SP mostrar a los empleados con contrato activo
 CREATE OR REPLACE FUNCTION consultar_empleados_contrato_activo()
 RETURNS TABLE (
     codigo_empleado INT,
@@ -917,20 +936,23 @@ BEGIN
         e.fecha_nacimiento,
         e.correo,
         cl.fecha_inicio
-    FROM empleado.empleado e
-    INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
-    INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
-    INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
-    INNER JOIN empleado.contrato_laboral cl ON e.codigo_empleado = cl.codigo_empleado
+    FROM empleado.empleado e INNER JOIN empleado.nacionalidad n 
+		ON e.id_nacionalidad = n.id_nacionalidad
+		INNER JOIN empleado.genero g 
+		ON e.id_genero = g.id_genero
+		INNER JOIN empleado.estado_civil ec 
+		ON e.id_estado_civil = ec.id_estado_civil
+		INNER JOIN empleado.contrato_laboral cl 
+		ON e.codigo_empleado = cl.codigo_empleado
     WHERE cl.estado_contrato = TRUE;
 
 END; 
 $$ LANGUAGE plpgsql;
 
-SELECT * from consultar_empleados_contrato_activo();
+SELECT * FROM consultar_empleados_contrato_activo();
 
 
--- Mostrar los empleados que pertenecen a un proyecto en especifico 
+-- 12. Mostrar los empleados que pertenecen a un proyecto en especifico 
 
 CREATE OR REPLACE FUNCTION consultar_empleados_proyecto_especifico(IN proyecto_id INT)
 RETURNS TABLE (
@@ -971,10 +993,9 @@ BEGIN
 END; 
 $$ LANGUAGE plpgsql;
 
-SELECT consultar_empleados_proyecto_especifico(3);
+SELECT * FROM consultar_empleados_proyecto_especifico(3);
 
---DROP FUNCTION IF EXISTS consultar_actividades_proyecto_especifico(IN proyecto_id INT)
--- Mostrar las actividades que pertenecen a un proyecto en especifico
+-- 13. Mostrar las actividades que pertenecen a un proyecto en especifico
 CREATE OR REPLACE FUNCTION consultar_actividades_proyecto_especifico(IN proyecto_id INT)
 RETURNS TABLE (
     id_actividad INT,
@@ -989,8 +1010,8 @@ BEGIN
         a.nombre_actividad,
         a.fecha_actividad,
         p.nombre_proyecto
-    FROM proyecto.actividad a
-    INNER JOIN proyecto.proyecto p ON a.id_proyecto = p.id_proyecto
+    FROM proyecto.actividad a INNER JOIN proyecto.proyecto p
+		ON a.id_proyecto = p.id_proyecto
     WHERE p.id_proyecto = proyecto_id;
 
 END; 
@@ -999,7 +1020,7 @@ $$ LANGUAGE plpgsql;
 SELECT * FROM consultar_actividades_proyecto_especifico(2);
 
 
--- Mostrar los empleados que trabajaron en un proceso de admisión en especifico 
+-- 14. Mostrar los empleados que trabajaron en un proceso de admisión en especifico 
 
 CREATE OR REPLACE FUNCTION consultar_empleados_proceso_especifico(IN proceso_id INT)
 RETURNS TABLE (
@@ -1029,13 +1050,18 @@ BEGIN
         e.fecha_nacimiento,
         e.correo,
         pd.nombre_proceso
-    FROM empleado.empleado e
-    INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
-    INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
-    INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
-    INNER JOIN proceso.empleado_proceso ep ON e.codigo_empleado = ep.codigo_empleado
-    INNER JOIN proceso.proceso pr ON ep.id_proceso = pr.id_proceso
-	INNER JOIN proceso.descripcion pd ON pr.id_descripcion = pd.id_descripcion
+    FROM empleado.empleado e INNER JOIN empleado.nacionalidad n 
+		ON e.id_nacionalidad = n.id_nacionalidad
+		INNER JOIN empleado.genero g 
+		ON e.id_genero = g.id_genero
+		INNER JOIN empleado.estado_civil ec
+		ON e.id_estado_civil = ec.id_estado_civil
+		INNER JOIN proceso.empleado_proceso ep
+		ON e.codigo_empleado = ep.codigo_empleado
+		INNER JOIN proceso.proceso pr 
+		ON ep.id_proceso = pr.id_proceso
+		INNER JOIN proceso.descripcion pd
+		ON pr.id_descripcion = pd.id_descripcion
     WHERE pr.id_proceso = proceso_id;
 
 END; 
@@ -1043,9 +1069,7 @@ $$ LANGUAGE plpgsql;
 
 SELECT * FROM consultar_empleados_proceso_especifico(3);
 
-
-
--- Mostrar los empleados que pertenecen a un departamento en especifico
+-- 15. Mostrar los empleados que pertenecen a un departamento en especifico
 CREATE OR REPLACE FUNCTION consultar_empleados_departamento_especifico(IN departamento_id INT)
 RETURNS TABLE (
     codigo_empleado INT,
@@ -1074,12 +1098,16 @@ BEGIN
         e.fecha_nacimiento,
         e.correo,
         d.nombre_departamento
-    FROM empleado.empleado e
-    INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
-    INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
-    INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
-    INNER JOIN empleado.contrato_laboral cl ON e.codigo_empleado = cl.codigo_empleado
-    INNER JOIN empleado.departamento d ON cl.id_departamento = d.id_departamento
+    FROM empleado.empleado e INNER JOIN empleado.nacionalidad n 
+		ON e.id_nacionalidad = n.id_nacionalidad
+		INNER JOIN empleado.genero g 
+		ON e.id_genero = g.id_genero
+		INNER JOIN empleado.estado_civil ec 
+		ON e.id_estado_civil = ec.id_estado_civil
+		INNER JOIN empleado.contrato_laboral cl 
+		ON e.codigo_empleado = cl.codigo_empleado
+		INNER JOIN empleado.departamento d 
+		ON cl.id_departamento = d.id_departamento
     WHERE d.id_departamento = departamento_id AND cl.estado_contrato = TRUE;
 
 END; 
@@ -1087,7 +1115,7 @@ $$ LANGUAGE plpgsql;
 
 SELECT * FROM consultar_empleados_departamento_especifico(2);
 
--- Mostrar los jefes de cada departamento
+-- 16. Mostrar los jefes de cada departamento
 CREATE OR REPLACE FUNCTION consultar_jefes_departamento()
 RETURNS TABLE (
     codigo_empleado INT,
@@ -1104,7 +1132,7 @@ RETURNS TABLE (
 ) AS $$
 BEGIN
     RETURN QUERY 
-    SELECT 
+	SELECT 
         e.codigo_empleado,
         e.estado_empleado,
         n.nombre_nacionalidad,
@@ -1116,20 +1144,19 @@ BEGIN
         e.fecha_nacimiento,
         e.correo,
         d.nombre_departamento
-    FROM empleado.empleado e
-    INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
-    INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
-    INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
-    INNER JOIN empleado.contrato_laboral cl ON e.codigo_empleado = cl.codigo_empleado
-    INNER JOIN empleado.departamento d ON e.codigo_empleado = d.codigo_empleado_jefe;
-
+    FROM empleado.departamento d LEFT JOIN empleado.empleado e
+		ON e.codigo_empleado = d.codigo_empleado_jefe
+		INNER JOIN empleado.nacionalidad n 
+		ON e.id_nacionalidad = n.id_nacionalidad
+		INNER JOIN empleado.genero g 
+		ON e.id_genero = g.id_genero
+		INNER JOIN empleado.estado_civil ec 
+		ON e.id_estado_civil = ec.id_estado_civil;
 END; 
 $$ LANGUAGE plpgsql;
 SELECT * FROM consultar_jefes_departamento();
 
-
---DROP FUNCTION IF EXISTS consultar_proyectos_dimension(IN dimension_id INT)
--- Mostrar los proyectos por una dimensión determinada 
+-- 17. Mostrar los proyectos por una dimensión determinada 
 CREATE OR REPLACE FUNCTION consultar_proyectos_dimension(IN dimension_id INT)
 RETURNS TABLE (
     id_proyecto INT,
@@ -1146,8 +1173,8 @@ BEGIN
         p.fecha_inicio,
         p.fecha_fin,
         d.nombre_dimension
-    FROM proyecto.proyecto p
-    INNER JOIN proyecto.dimension d ON p.id_dimension = d.id_dimension
+    FROM proyecto.proyecto p INNER JOIN proyecto.dimension d 
+		ON p.id_dimension = d.id_dimension
     WHERE d.id_dimension = dimension_id;
 
 END; 
@@ -1157,6 +1184,91 @@ SELECT *
 FROM consultar_proyectos_dimension(3);
 
 
+-- 18. Mostrar la cantidad de permisos compensatorios que se le han otorgado a un empleado por todos los proceso
+	
+CREATE OR REPLACE FUNCTION consultar_permisos_compensatorios_empleado_process(empleado_codigo INT)
+RETURNS INT AS $$
+DECLARE
+    cantidad_permisos_compensatorios INT;
+BEGIN
+    cantidad_permisos_compensatorios := 0;
+
+   SELECT SUM(compensatorios_por_proceso) AS total_compensatorios
+   INTO cantidad_permisos_compensatorios
+   FROM (SELECT 
+			COUNT(ep.id_empleado_proceso) * COALESCE(pp.cantidad_compensatoria, 0) AS compensatorios_por_proceso
+         FROM proceso.empleado_proceso ep
+			 INNER JOIN proceso.asistencia pa 
+			 ON pa.id_empleado_proceso = ep.id_empleado_proceso 
+			 INNER JOIN proceso.proceso pp 
+			 ON ep.id_proceso = pp.id_proceso
+			 INNER JOIN proceso.descripcion pd 
+			 ON pp.id_descripcion = pd.id_descripcion
+   		 WHERE ep.codigo_empleado = empleado_codigo 
+         AND pa.estado = true
+    GROUP BY pp.id_proceso
+    ) subquery;
+	
+    RETURN cantidad_permisos_compensatorios;
+	
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM consultar_permisos_compensatorios_empleado_process(2);
+
+-- 19 Mostrar la cantidad de asistencias por cada proceso
+CREATE OR REPLACE FUNCTION mostrar_asistencia_proceso()
+RETURNS TABLE (
+    nombre_proceso VARCHAR(100),
+    fecha DATE,
+    cantidad_asistentes BIGINT 
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        d.nombre_proceso,
+        p.fecha,
+        COUNT(ep.codigo_empleado) AS cantidad_asistentes
+    FROM proceso.empleado_proceso ep JOIN empleado.empleado e
+		ON ep.codigo_empleado = e.codigo_empleado
+		JOIN proceso.proceso p
+		ON ep.id_proceso = p.id_proceso
+		JOIN proceso.descripcion d 
+		ON p.id_descripcion = d.id_descripcion
+    GROUP BY d.nombre_proceso, p.fecha;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT * 
+FROM mostrar_asistencia_proceso();
+
+
+-- 20 MOSTRAR LOS PROYECTOS POR PERIODO ACADEMICO
+CREATE OR REPLACE FUNCTION mostrar_proyectos_periodo_academico(IN periodo_academico_id INT)
+RETURNS TABLE (
+    nombre_proyecto VARCHAR(60),
+    fecha_inicio DATE,
+    fecha_fin DATE,
+    nombre_periodo VARCHAR(15)
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        p.nombre_proyecto,
+        p.fecha_inicio,
+        p.fecha_fin,
+        np.numero_periodo
+    FROM proyecto.proyecto p JOIN proyecto.periodo_academico pa 
+		ON p.id_periodo_academico = pa.id_periodo_academico
+		JOIN proyecto.numero_periodo np 
+		ON pa.id_numero_periodo = np.id_numero_periodo
+    WHERE pa.id_periodo_academico = periodo_academico_id;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM mostrar_proyectos_periodo_academico(2);
 
 
 -----------------------------------------------------------------------------------------------------------------
@@ -1489,4 +1601,41 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+-- sp para mostrar la institucion donde se han graduado la mayor cantidad de empleados
+
+CREATE OR REPLACE FUNCTION institucion_mayor_cantidad_empleados_graduados()
+RETURNS TABLE (
+    nombre_institucion VARCHAR(100),
+    cantidad_empleados BIGINT
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT i.nombre_institucion, COUNT(e.codigo_empleado) AS cantidad_empleados
+    FROM empleado.empleado e INNER JOIN empleado.empleado_grado_academico ega
+        ON e.codigo_empleado = ega.codigo_empleado
+        INNER JOIN empleado.institucion i
+        ON ega.id_institucion = i.id_institucion
+    GROUP BY i.nombre_institucion
+    ORDER BY COUNT(e.codigo_empleado) DESC
+    LIMIT 1;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Sp para mostrar el nombre del proyecto con mas cantidad de actividades
+
+CREATE OR REPLACE FUNCTION proyecto_mayor_cantidad_actividades()
+RETURNS TABLE (
+    nombre_proyecto VARCHAR(100),
+    cantidad_actividades BIGINT
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT p.nombre_proyecto, COUNT(a.id_actividad) AS cantidad_actividades
+    FROM proyecto.proyecto p INNER JOIN proyecto.actividad a
+        ON p.id_proyecto = a.id_proyecto
+    GROUP BY p.nombre_proyecto
+    ORDER BY COUNT(a.id_actividad) DESC
+    LIMIT 1;
+END;
+$$ LANGUAGE plpgsql;
 
