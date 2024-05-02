@@ -13684,8 +13684,7 @@
 							},
 							"name": "NombreProceso",
 							"type": "VARCHAR",
-							"length": "10",
-							"unique": true
+							"length": "10"
 						}
 					]
 				},

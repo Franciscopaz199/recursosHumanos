@@ -9,6 +9,9 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+SELECT * 
+FROM calcular_dias('2024-04-04', '2024-04-10');
+
 -- Funcion para obtener el nombre y apellido del empleado concatenado y separados por un espacio
 CREATE OR REPLACE FUNCTION obtener_nombre_completo(_codigo_empleado INT)
 RETURNS VARCHAR AS $$
@@ -22,6 +25,9 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+SELECT *
+FROM obtener_nombre_completo(1);
+
 -- Funcion para obtener la diferencia de horas entre dos horas
 CREATE OR REPLACE FUNCTION calcular_diferencia_horas(hora_entrada TIME, hora_salida TIME)
 RETURNS TIME AS $$
@@ -32,6 +38,9 @@ BEGIN
     RETURN diferencia;
 END;
 $$ LANGUAGE plpgsql;
+
+SELECT *
+FROM calcular_diferencia_horas('08:00:00', '12:00:00');
 
 -- Funcion para obtener el nombre del rol de un empleado en un proyecto
 CREATE OR REPLACE FUNCTION obtener_rol_proyecto(_codigo_empleado INT, _id_proyecto INT)
@@ -47,6 +56,9 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+SELECT *
+FROM obtener_rol_proyecto(1, 1);
+
 -- Funcion para obtener el nombre del rol de un empleado en un proceso
 CREATE OR REPLACE FUNCTION obtener_rol_proceso(_codigo_empleado INT, _id_proceso INT)
 RETURNS VARCHAR AS $$
@@ -61,6 +73,9 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+SELECT *
+FROM obtener_rol_proceso(1, 1);
+
 -- Funcion para validar si un correo es valido
 CREATE OR REPLACE FUNCTION validar_correo(correo VARCHAR)
 RETURNS BOOLEAN AS $$
@@ -71,6 +86,9 @@ BEGIN
     RETURN es_valido;
 END;
 $$ LANGUAGE plpgsql;
+
+SELECT *
+FROM validar_correo('esdras@unah.hn');
 
 -- Funcion para contar la cantidad de permisos que tiene un rol de usuario
 CREATE OR REPLACE FUNCTION contar_permisos_rol(_id_rol INT)
@@ -85,6 +103,9 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+SELECT *
+FROM contar_permisos_rol(1);
+
 -- Funcion para validad si un numero de telefono es valido formato (9742-5325)
 CREATE OR REPLACE FUNCTION validar_telefono(telefono VARCHAR)
 RETURNS BOOLEAN AS $$
@@ -95,6 +116,9 @@ BEGIN
     RETURN es_valido;
 END;
 $$ LANGUAGE plpgsql;
+
+SELECT *
+FROM validar_telefono('9742-5325');
 
 -- Funcion para obtener el nombre del operador telefonico
 CREATE OR REPLACE FUNCTION obtener_operador_telefonico(_id_telefono INT)
@@ -110,7 +134,10 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Funcion para obtener hace cuantos dias meses se comenzo un proyecto
+SELECT *
+FROM obtener_operador_telefonico(1);
+
+-- Funcion para obtener hace cuantos dias se comenzo un proyecto
 CREATE OR REPLACE FUNCTION calcular_dias_proyecto(_id_proyecto INT)
 RETURNS INT AS $$
 DECLARE
@@ -122,3 +149,6 @@ BEGIN
     RETURN ABS(dias);
 END;
 $$ LANGUAGE plpgsql;
+
+SELECT *
+FROM calcular_dias_proyecto(1);
