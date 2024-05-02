@@ -346,8 +346,8 @@ FOR EACH ROW
 EXECUTE FUNCTION auditoria_permiso();
 
 ------------------------------------------------------------------------------------------------------------------
--- auditoria a la tabla permiso.permiso_compesatorio_proceso
-CREATE TABLE auditoria_permiso_compesatorio_proceso (
+-- auditoria a la tabla permiso.permiso_compensatorio_proceso
+CREATE TABLE auditoria_permiso_compensatorio_proceso (
     id_registro SERIAL PRIMARY KEY,
     id_permiso INT,
     id_proceso INT,
@@ -355,42 +355,42 @@ CREATE TABLE auditoria_permiso_compesatorio_proceso (
     id_tipo_cambio INT,
     valores_anteriores JSONB,
     valores_nuevos JSONB,
-    CONSTRAINT fk_auditoria_permiso_compesatorio_proceso_tipo_cambio FOREIGN KEY (id_tipo_cambio) 
+    CONSTRAINT fk_auditoria_permiso_compensatorio_proceso_tipo_cambio FOREIGN KEY (id_tipo_cambio) 
         REFERENCES tipo_cambio (id_tipo_cambio),
-    CONSTRAINT fk_auditoria_permiso_compesatorio_proceso_permiso FOREIGN KEY (id_permiso)
+    CONSTRAINT fk_auditoria_permiso_compensatorio_proceso_permiso FOREIGN KEY (id_permiso)
         REFERENCES permiso.permiso (id_permiso),
-    CONSTRAINT fk_auditoria_permiso_compesatorio_proceso_proceso FOREIGN KEY (id_proceso)
+    CONSTRAINT fk_auditoria_permiso_compensatorio_proceso_proceso FOREIGN KEY (id_proceso)
         REFERENCES proceso.proceso (id_proceso)
 );
 
--- TRIGGER PARA AUDITORIA DE LA TABLA permiso.permiso_compesatorio_proceso
-CREATE OR REPLACE FUNCTION auditoria_permiso_compesatorio_proceso()
+-- TRIGGER PARA AUDITORIA DE LA TABLA permiso.permiso_compensatorio_proceso
+CREATE OR REPLACE FUNCTION auditoria_permiso_compensatorio_proceso()
 RETURNS TRIGGER AS $$
 BEGIN
     IF (TG_OP = 'INSERT') THEN
-        INSERT INTO auditoria_permiso_compesatorio_proceso (id_permiso, id_proceso, id_tipo_cambio, valores_nuevos)
+        INSERT INTO auditoria_permiso_compensatorio_proceso (id_permiso, id_proceso, id_tipo_cambio, valores_nuevos)
         VALUES (NEW.id_permiso, NEW.id_proceso, 1, row_to_json(NEW));
         RETURN NEW;
     ELSIF (TG_OP = 'UPDATE') THEN
-        INSERT INTO auditoria_permiso_compesatorio_proceso (id_permiso, id_proceso, id_tipo_cambio, valores_anteriores, valores_nuevos)
+        INSERT INTO auditoria_permiso_compensatorio_proceso (id_permiso, id_proceso, id_tipo_cambio, valores_anteriores, valores_nuevos)
         VALUES (NEW.id_permiso, NEW.id_proceso, 2, row_to_json(OLD), row_to_json(NEW));
         RETURN NEW;
     ELSIF (TG_OP = 'DELETE') THEN
-        INSERT INTO auditoria_permiso_compesatorio_proceso (id_permiso, id_proceso, id_tipo_cambio, valores_anteriores)
+        INSERT INTO auditoria_permiso_compensatorio_proceso (id_permiso, id_proceso, id_tipo_cambio, valores_anteriores)
         VALUES (OLD.id_permiso, OLD.id_proceso, 3, row_to_json(OLD));
         RETURN OLD;
     END IF;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER tr_auditoria_permiso_compesatorio_proceso
-AFTER INSERT OR UPDATE OR DELETE ON permiso.permiso_compesatorio_proceso
+CREATE TRIGGER tr_auditoria_permiso_compensatorio_proceso
+AFTER INSERT OR UPDATE OR DELETE ON permiso.permiso_compensatorio_proceso
 FOR EACH ROW
-EXECUTE FUNCTION auditoria_permiso_compesatorio_proceso();
+EXECUTE FUNCTION auditoria_permiso_compensatorio_proceso();
 
 ------------------------------------------------------------------------------------------------------------------
--- auditoria a la tabla permiso.permiso_compesatorio_proyecto
-CREATE TABLE auditoria_permiso_compesatorio_proyecto (
+-- auditoria a la tabla permiso.permiso_compensatorio_proyecto
+CREATE TABLE auditoria_permiso_compensatorio_proyecto (
     id_registro SERIAL PRIMARY KEY,
     id_permiso INT,
     id_actividad_empleado_proyecto INT,
@@ -398,38 +398,38 @@ CREATE TABLE auditoria_permiso_compesatorio_proyecto (
     id_tipo_cambio INT,
     valores_anteriores JSONB,
     valores_nuevos JSONB,
-    CONSTRAINT fk_auditoria_permiso_compesatorio_proyecto_tipo_cambio FOREIGN KEY (id_tipo_cambio) 
+    CONSTRAINT fk_auditoria_permiso_compensatorio_proyecto_tipo_cambio FOREIGN KEY (id_tipo_cambio) 
         REFERENCES tipo_cambio (id_tipo_cambio),
-    CONSTRAINT fk_auditoria_permiso_compesatorio_proyecto_permiso FOREIGN KEY (id_permiso)
+    CONSTRAINT fk_auditoria_permiso_compensatorio_proyecto_permiso FOREIGN KEY (id_permiso)
         REFERENCES permiso.permiso (id_permiso),
-    CONSTRAINT fk_auditoria_permiso_compesatorio_proyecto_actividad_empleado_proyecto FOREIGN KEY (id_actividad_empleado_proyecto)
+    CONSTRAINT fk_auditoria_permiso_compensatorio_proyecto_actividad_empleado_proyecto FOREIGN KEY (id_actividad_empleado_proyecto)
         REFERENCES proyecto.actividad_empleado_proyecto (id_actividad_empleado_proyecto)
 );
 
--- TRIGGER PARA AUDITORIA DE LA TABLA permiso.permiso_compesatorio_proyecto
-CREATE OR REPLACE FUNCTION auditoria_permiso_compesatorio_proyecto()
+-- TRIGGER PARA AUDITORIA DE LA TABLA permiso.permiso_compensatorio_proyecto
+CREATE OR REPLACE FUNCTION auditoria_permiso_compensatorio_proyecto()
 RETURNS TRIGGER AS $$
 BEGIN
     IF (TG_OP = 'INSERT') THEN
-        INSERT INTO auditoria_permiso_compesatorio_proyecto (id_permiso, id_actividad_empleado_proyecto, id_tipo_cambio, valores_nuevos)
+        INSERT INTO auditoria_permiso_compensatorio_proyecto (id_permiso, id_actividad_empleado_proyecto, id_tipo_cambio, valores_nuevos)
         VALUES (NEW.id_permiso, NEW.id_actividad_empleado_proyecto, 1, row_to_json(NEW));
         RETURN NEW;
     ELSIF (TG_OP = 'UPDATE') THEN
-        INSERT INTO auditoria_permiso_compesatorio_proyecto (id_permiso, id_actividad_empleado_proyecto, id_tipo_cambio, valores_anteriores, valores_nuevos)
+        INSERT INTO auditoria_permiso_compensatorio_proyecto (id_permiso, id_actividad_empleado_proyecto, id_tipo_cambio, valores_anteriores, valores_nuevos)
         VALUES (NEW.id_permiso, NEW.id_actividad_empleado_proyecto, 2, row_to_json(OLD), row_to_json(NEW));
         RETURN NEW;
     ELSIF (TG_OP = 'DELETE') THEN
-        INSERT INTO auditoria_permiso_compesatorio_proyecto (id_permiso, id_actividad_empleado_proyecto, id_tipo_cambio, valores_anteriores)
+        INSERT INTO auditoria_permiso_compensatorio_proyecto (id_permiso, id_actividad_empleado_proyecto, id_tipo_cambio, valores_anteriores)
         VALUES (OLD.id_permiso, OLD.id_actividad_empleado_proyecto, 3, row_to_json(OLD));
         RETURN OLD;
     END IF;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER tr_auditoria_permiso_compesatorio_proyecto
-AFTER INSERT OR UPDATE OR DELETE ON permiso.permiso_compesatorio_proyecto
+CREATE TRIGGER tr_auditoria_permiso_compensatorio_proyecto
+AFTER INSERT OR UPDATE OR DELETE ON permiso.permiso_compensatorio_proyecto
 FOR EACH ROW
-EXECUTE FUNCTION auditoria_permiso_compesatorio_proyecto();
+EXECUTE FUNCTION auditoria_permiso_compensatorio_proyecto();
 
 
 ------------------------------------------------------------------------------------------------------------------
@@ -464,7 +464,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER tr_validar_telefono
-BEFORE INSERT OR UPDATE ON empleado.empleado
+BEFORE INSERT OR UPDATE ON empleado.telefono
 FOR EACH ROW
 EXECUTE FUNCTION validar_telefono_tr();
 
@@ -492,7 +492,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER tr_validar_permiso_compensatorio_proceso
-BEFORE INSERT OR UPDATE ON permiso.permiso_compesatorio_proceso
+BEFORE INSERT OR UPDATE ON permiso.permiso_compensatorio_proceso
 FOR EACH ROW
 EXECUTE FUNCTION validar_permiso_compensatorio_proceso_tr();
 
@@ -511,3 +511,4 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER tr_validar_permiso_compensatorio_proyecto
 BEFORE INSERT OR UPDATE ON permiso.permiso_compensatorio_proyecto
 FOR EACH ROW
+EXECUTE FUNCTION validar_permiso_compensatorio_proyecto_tr();

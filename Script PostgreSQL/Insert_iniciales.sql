@@ -305,17 +305,17 @@ VALUES ('Tigo');
 
 -- 2 Insert por cada empleado.empleado en la tabla empleado.telefono
 INSERT INTO empleado.telefono (codigo_empleado, telefono, id_operador_telefonico)
-VALUES (1, '99999999', 1);
+VALUES (1, '9742-5325', 1);
 INSERT INTO empleado.telefono (codigo_empleado, telefono, id_operador_telefonico)
-VALUES (1, '88888888', 2);
+VALUES (1, '9742-5326', 2);
 INSERT INTO empleado.telefono (codigo_empleado, telefono, id_operador_telefonico)
-VALUES (2, '77777777', 1);
+VALUES (2, '9742-5327', 1);
 INSERT INTO empleado.telefono (codigo_empleado, telefono, id_operador_telefonico)
-VALUES (2, '66666666', 2);
+VALUES (2, '9742-5328', 2);
 INSERT INTO empleado.telefono (codigo_empleado, telefono, id_operador_telefonico)
-VALUES (3, '55555555', 1);
+VALUES (3, '9742-5329', 1);
 INSERT INTO empleado.telefono (codigo_empleado, telefono, id_operador_telefonico)
-VALUES (3, '44444444', 2);
+VALUES (3, '9742-5330', 2);
 
 -- 2 Insert por cada empleado.empleado en la tabla empleado.empleado_grado_academico
 INSERT INTO empleado.empleado_grado_academico (codigo_empleado, id_grado_academico, id_institucion, anio_obtencion)
@@ -551,24 +551,24 @@ VALUES ('Administrativo');
 
 -- 1 Insert por cada permiso.tipo_permiso en la tabla permiso.permiso
 INSERT INTO permiso.permiso (codigo_empleado, id_tipo_permiso, hora_recibido, fecha_ingreso, fecha_inicio, fecha_final, descripcion, dias, horas, minutos, observacion, respaldo, recibido_por)
-VALUES (1, 1, '08:00:00', '2020-01-01', '2020-01-01', '2020-01-01', 'Descripcion', 1, 1, 1, 'Observacion', TRUE, 1);
+VALUES (1, 2, '08:00:00', '2020-01-01', '2020-01-01', '2020-01-01', 'Descripcion', 1, 1, 1, 'Observacion', TRUE, 1);
 INSERT INTO permiso.permiso (codigo_empleado, id_tipo_permiso, hora_recibido, fecha_ingreso, fecha_inicio, fecha_final, descripcion, dias, horas, minutos, observacion, respaldo, recibido_por)
 VALUES (2, 2, '08:00:00', '2020-01-01', '2020-01-01', '2020-01-01', 'Descripcion', 1, 1, 1, 'Observacion', TRUE, 2);
 INSERT INTO permiso.permiso (codigo_empleado, id_tipo_permiso, hora_recibido, fecha_ingreso, fecha_inicio, fecha_final, descripcion, dias, horas, minutos, observacion, respaldo, recibido_por)
-VALUES (3, 3, '08:00:00', '2020-01-01', '2020-01-01', '2020-01-01', 'Descripcion', 1, 1, 1, 'Observacion', TRUE, 3);
+VALUES (3, 2, '08:00:00', '2020-01-01', '2020-01-01', '2020-01-01', 'Descripcion', 1, 1, 1, 'Observacion', TRUE, 3);
 
--- 1 Insert por cada permiso.permiso en la tabla permiso.permiso_compesatorio_proceso
-INSERT INTO permiso.permiso_compesatorio_proceso (id_permiso, id_proceso)
+-- 1 Insert por cada permiso.permiso en la tabla permiso.permiso_compensatorio_proceso
+INSERT INTO permiso.permiso_compensatorio_proceso (id_permiso, id_proceso)
 VALUES (1, 1);
-INSERT INTO permiso.permiso_compesatorio_proceso (id_permiso, id_proceso)
+INSERT INTO permiso.permiso_compensatorio_proceso (id_permiso, id_proceso)
 VALUES (2, 2);
-INSERT INTO permiso.permiso_compesatorio_proceso (id_permiso, id_proceso)
+INSERT INTO permiso.permiso_compensatorio_proceso (id_permiso, id_proceso)
 VALUES (3, 3);
 
--- 1 Insert por cada permiso.permiso en la tabla permiso.permiso_compesatorio_proyecto
-INSERT INTO permiso.permiso_compesatorio_proyecto (id_permiso, id_actividad_empleado_proyecto)
+-- 1 Insert por cada permiso.permiso en la tabla permiso.permiso_compensatorio_proyecto
+INSERT INTO permiso.permiso_compensatorio_proyecto (id_permiso, id_actividad_empleado_proyecto)
 VALUES (1, 1);
-INSERT INTO permiso.permiso_compesatorio_proyecto (id_permiso, id_actividad_empleado_proyecto)
+INSERT INTO permiso.permiso_compensatorio_proyecto (id_permiso, id_actividad_empleado_proyecto)
 VALUES (2, 2);
-INSERT INTO permiso.permiso_compesatorio_proyecto (id_permiso, id_actividad_empleado_proyecto)
+INSERT INTO permiso.permiso_compensatorio_proyecto (id_permiso, id_actividad_empleado_proyecto)
 VALUES (3, 3);

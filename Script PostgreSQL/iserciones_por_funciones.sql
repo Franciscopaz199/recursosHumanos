@@ -83,7 +83,6 @@ SELECT insertar_rol_permiso_usuario(2, 1);
 SELECT insertar_rol_permiso_usuario(1, 2);
 SELECT insertar_rol_permiso_usuario(1, 3);
 SELECT insertar_rol_permiso_usuario(1, 4);
-SELECT insertar_rol_permiso_usuario(1, 5);
 
 -- 5 Insert de la tabla usuario.usuario_rol
 SELECT insertar_usuario_rol(2, 1);
@@ -102,8 +101,6 @@ SELECT insertar_empleado(5, 5, 1, 3, 5, '098765432', 'Pedro', 'García', '1988-1
 
 -- 5 Insert de la tabla empleado.operador_telefonico
 SELECT insertar_operador_telefonico('Telcel');
-SELECT insertar_operador_telefonico('Movistar');
-SELECT insertar_operador_telefonico('Digicel');
 SELECT insertar_operador_telefonico('AT&T');
 SELECT insertar_operador_telefonico('T-Mobile');
 
@@ -139,11 +136,11 @@ SELECT insertar_contrato_laboral(5, 6, 2, 1, '098765432', '2023-11-15', '2024-11
 
 
 -- 5 Insert por cada proyecto.numero_periodo en la tabla proyecto.numero_periodo
-SELECT insertar_numero_periodo(1);
-SELECT insertar_numero_periodo(2);
-SELECT insertar_numero_periodo(3);
-SELECT insertar_numero_periodo(4);
-SELECT insertar_numero_periodo(5);
+SELECT insertar_numero_periodo('1');
+SELECT insertar_numero_periodo('2');
+SELECT insertar_numero_periodo('3');
+SELECT insertar_numero_periodo('4');
+SELECT insertar_numero_periodo('5');
 
 -- 5 Insert por cada proyecto.numero_periodo en la tabla proyecto.periodo_academico
 
