@@ -2043,3 +2043,183 @@ SELECT *
 FROM empleados_por_estado_contrato(null);
 
 
+-- SP USANDO IF EXISTS
+-- 1. Mostrar todos los empleados por departamento si existe el departamento pasado, de lo contrario mostrar todos los empleados
+CREATE OR REPLACE FUNCTION empleados_por_departamento(departamento_id INT)
+RETURNS TABLE (
+    codigo_empleado INT,
+    estado_empleado BOOLEAN,
+    nombre_nacionalidad VARCHAR(25),
+    nombre_genero VARCHAR(10),
+    descripcion_estado_civil VARCHAR(20),
+    dni VARCHAR(15),
+    nombres VARCHAR(60),
+    apellidos VARCHAR(60),
+    fecha_nacimiento DATE,
+    correo VARCHAR(50),
+    nombre_departamento VARCHAR(50)
+) AS $$
+BEGIN
+    IF EXISTS (
+                SELECT 1 FROM empleado.departamento 
+                WHERE id_departamento = departamento_id ) 
+    THEN
+        RETURN QUERY 
+        SELECT 
+            e.codigo_empleado,
+            e.estado_empleado,
+            n.nombre_nacionalidad,
+            g.nombre_genero,
+            ec.descripcion_estado_civil,
+            e.dni,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            e.correo,
+            d.nombre_departamento
+        FROM empleado.empleado e
+        INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+        INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+        INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+        INNER JOIN empleado.contrato_laboral cl ON e.codigo_empleado = cl.codigo_empleado
+        INNER JOIN empleado.departamento d ON cl.id_departamento = d.id_departamento
+        WHERE d.id_departamento = departamento_id;
+    ELSE
+        RETURN QUERY 
+        SELECT 
+            e.codigo_empleado,
+            e.estado_empleado,
+            n.nombre_nacionalidad,
+            g.nombre_genero,
+            ec.descripcion_estado_civil,
+            e.dni,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            e.correo,
+            d.nombre_departamento
+        FROM empleado.empleado e
+        INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+        INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+        INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+        INNER JOIN empleado.contrato_laboral cl ON e.codigo_empleado = cl.codigo_empleado
+        INNER JOIN empleado.departamento d ON cl.id_departamento = d.id_departamento;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM empleados_por_departamento(1);
+
+SELECT *
+FROM empleados_por_departamento(10);
+
+--2. Mostrar todos los proyectos por dimension si existe la dimension pasada, de lo contrario mostrar todos los proyectos
+CREATE OR REPLACE FUNCTION proyectos_por_dimension(dimension_id INT)
+RETURNS TABLE (
+    id_proyecto INT,
+    nombre_proyecto VARCHAR(60),
+    fecha_inicio DATE,
+    fecha_final DATE,
+    nombre_dimension VARCHAR(60)
+) AS $$
+BEGIN
+    IF EXISTS (
+                SELECT 1 FROM proyecto.dimension 
+                WHERE id_dimension = dimension_id ) 
+    THEN
+        RETURN QUERY 
+        SELECT 
+            p.id_proyecto,
+            p.nombre_proyecto,
+            p.fecha_inicio,
+            p.fecha_fin,
+            d.nombre_dimension
+        FROM proyecto.proyecto p
+        INNER JOIN proyecto.dimension d ON p.id_dimension = d.id_dimension
+        WHERE d.id_dimension = dimension_id;
+    ELSE
+        RETURN QUERY 
+        SELECT 
+            p.id_proyecto,
+            p.nombre_proyecto,
+            p.fecha_inicio,
+            p.fecha_fin,
+            d.nombre_dimension
+        FROM proyecto.proyecto p
+        INNER JOIN proyecto.dimension d ON p.id_dimension = d.id_dimension;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM proyectos_por_dimension(1);
+
+
+SELECT *
+FROM proyectos_por_dimension(20);
+
+--3. Mostrar todos los empleados por nacionalidad si existe la nacionalidad pasada, de lo contrario mostrar todos los empleados
+CREATE OR REPLACE FUNCTION empleados_por_nacionalidad(nacionalidad_id INT)
+RETURNS TABLE (
+    codigo_empleado INT,
+    estado_empleado BOOLEAN,
+    nombre_nacionalidad VARCHAR(25),
+    nombre_genero VARCHAR(10),
+    descripcion_estado_civil VARCHAR(20),
+    dni VARCHAR(15),
+    nombres VARCHAR(60),
+    apellidos VARCHAR(60),
+    fecha_nacimiento DATE,
+    correo VARCHAR(50)
+) AS $$
+BEGIN
+    IF EXISTS (
+                SELECT 1 FROM empleado.nacionalidad 
+                WHERE id_nacionalidad = nacionalidad_id ) 
+    THEN
+        RETURN QUERY 
+        SELECT 
+            e.codigo_empleado,
+            e.estado_empleado,
+            n.nombre_nacionalidad,
+            g.nombre_genero,
+            ec.descripcion_estado_civil,
+            e.dni,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            e.correo
+        FROM empleado.empleado e
+        INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+        INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+        INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil
+        WHERE n.id_nacionalidad = nacionalidad_id;
+    ELSE
+        RETURN QUERY 
+        SELECT 
+            e.codigo_empleado,
+            e.estado_empleado,
+            n.nombre_nacionalidad,
+            g.nombre_genero,
+            ec.descripcion_estado_civil,
+            e.dni,
+            e.nombres,
+            e.apellidos,
+            e.fecha_nacimiento,
+            e.correo
+        FROM empleado.empleado e
+        INNER JOIN empleado.nacionalidad n ON e.id_nacionalidad = n.id_nacionalidad
+        INNER JOIN empleado.genero g ON e.id_genero = g.id_genero
+        INNER JOIN empleado.estado_civil ec ON e.id_estado_civil = ec.id_estado_civil;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT *
+FROM empleados_por_nacionalidad(1);
+
+
+SELECT *
+FROM empleados_por_nacionalidad(3000);
+
