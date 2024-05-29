@@ -345,11 +345,11 @@ CREATE TABLE proyecto.actividad_empleado_proyecto
 );
 
 -- creacion del modulo proceso
-CREATE TABLE proceso.nombre_prueba
+CREATE TABLE proceso.nombre_prueba 
 (
 	id_nombre_prueba SERIAL PRIMARY KEY,
-	nombre_prueba VARCHAR (100) NOT NULL UNIQUE
-);
+	nombre_prueba VARCHAR (100) NOT NULL UNIQUE 
+); 
 
 CREATE TABLE proceso.rol_proceso
 (
